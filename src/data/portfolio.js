@@ -94,10 +94,7 @@ export const portfolio = {
         items: [
           { name: 'Python', level: 75 },
           { name: 'Java', level: 60 },
-          { name: 'React', level: 30 },
           { name: 'JavaScript', level: 60 },
-          { name: 'Django', level: 50 },
-          { name: 'FastAPI', level: 60 },
           { name: 'C', level: 50 }
         ],
       },
@@ -106,6 +103,7 @@ export const portfolio = {
         items: [
           { name: 'HTML', level: 85 },
           { name: 'CSS', level: 80 },
+          { name: 'JavaScript', level: 60 },
           { name: 'React', level: 40 }
         ],
       },
@@ -114,9 +112,7 @@ export const portfolio = {
         items: [
           { name: 'PostgreSQL', level: 75 },
           { name: 'MongoDB', level: 50 },
-          { name: 'Oracle SQL', level: 70 },
-          { name: 'Docker', level: 50 },
-          { name: 'Flask', level: 55 }
+          { name: 'Oracle SQL', level: 70 }
         ],
       },
       {
@@ -124,7 +120,17 @@ export const portfolio = {
         items: [
           { name: 'MATLAB', level: 35 },
           { name: 'Testing', level: 60 },
-          { name: 'Debugging', level: 75 }
+          { name: 'Debugging', level: 75 },
+          { name: 'Docker', level: 50 }
+        ],
+      },
+      {
+        title: 'Frameworks',
+        items: [
+          { name: 'Flask', level: 55 },
+          { name: 'Django', level: 50 },
+          { name: 'FastAPI', level: 60 },
+          { name: 'React', level: 40 }
         ],
       },
     ],
