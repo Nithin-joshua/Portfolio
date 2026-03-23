@@ -1,4 +1,4 @@
-﻿// This file holds all portfolio content in one place so it is easy to update later.
+// This file holds all portfolio content in one place so it is easy to update later.
 export const portfolio = {
   brand: 'NV',
   links: [
@@ -37,7 +37,7 @@ export const portfolio = {
       { label: 'Focus', value: 'Backend and frontend development' },
     ],
     intro:
-      'I build backend systems and user-facing interfaces with a practical focus on clear code, reliable delivery, and work that stays usable after handoff.',
+      'I build practical backend systems and user interfaces, focusing on clean code, reliability, and maintainability.',
     primaryAction: {
       label: 'View projects',
       target: 'projects',
@@ -51,11 +51,11 @@ export const portfolio = {
       cardLabel: 'Short profile',
       cardTitle: 'Nithin V',
       cardText:
-        'MCA student with hands-on experience across Python, Java, FastAPI, Django, and React.',
+        'MCA student with hands-on experience in Python, Java, FastAPI, and React.',
       featureLabel: 'Featured build',
       featureTitle: 'Bio.VAN',
       featureText:
-        'Voice authentication built around speaker embeddings, similarity search, and a lightweight backend pipeline.',
+        'Voice authentication using speaker embeddings and a lightweight backend pipeline.',
       featureAction: 'Project details',
       stats: [
         { label: 'Current study', value: 'MCA' },
@@ -63,7 +63,7 @@ export const portfolio = {
         { label: 'Based in', value: 'Bangalore' },
       ],
       quote:
-        'Clear structure, practical decisions, and systems that can be maintained without drama.',
+        'Clear structure, practical decisions, and systems that can be maintained.',
     },
   },
   about: {
@@ -71,10 +71,10 @@ export const portfolio = {
     kicker: 'About',
     title: 'Built around steady work',
     intro:
-      'The reference portfolio uses a quiet, high-contrast rhythm. This version keeps that mood, but shifts the story to the work and study shown in the resume.',
+      'A focus on clean architecture and practical solutions, moving from backend stability to seamless user experiences.',
     paragraphs: [
-      'I work across backend systems and interfaces, usually starting from the part that needs to be dependable before moving outward to the user experience.',
-      'My resume is strongest where application logic, data flow, and implementation detail meet. I like work that asks for structure, debugging, and small decisions that make a project easier to keep running.',
+      'I bridge backend logic and user interfaces, prioritizing reliability before scaling outward.',
+      'My focus is on structural clarity, efficient data flow, and smart debugging to keep applications running smoothly.',
     ],
     quickFacts: [
       { label: 'Based in', value: 'Bangalore, Karnataka' },
@@ -85,25 +85,47 @@ export const portfolio = {
       overline: 'Profile',
       title: 'Nithin V',
       detail:
-        'Grounded in backend logic, comfortable in the interface layer, and most at home when a project needs careful implementation rather than noise.',
+        'Grounded in backend systems, comfortable with frontend development, and focused on clean implementation.',
       monogram: 'NV',
     },
     skillGroups: [
       {
         title: 'Core stack',
-        items: ['Python', 'Java', 'React', 'JavaScript', 'Django', 'FastAPI'],
+        items: [
+          { name: 'Python', level: 75 },
+          { name: 'Java', level: 60 },
+          { name: 'React', level: 30 },
+          { name: 'JavaScript', level: 60 },
+          { name: 'Django', level: 50 },
+          { name: 'FastAPI', level: 60 },
+          { name: 'C', level: 50 }
+        ],
       },
       {
         title: 'Frontend',
-        items: ['HTML', 'CSS', 'React'],
+        items: [
+          { name: 'HTML', level: 85 },
+          { name: 'CSS', level: 80 },
+          { name: 'React', level: 40 }
+        ],
       },
       {
         title: 'Data and tools',
-        items: ['PostgreSQL', 'MongoDB', 'Oracle SQL', 'Docker', 'Flask'],
+        items: [
+          { name: 'PostgreSQL', level: 75 },
+          { name: 'MongoDB', level: 50 },
+          { name: 'Oracle SQL', level: 70 },
+          { name: 'Docker', level: 50 },
+          { name: 'Flask', level: 55 }
+        ],
       },
       {
         title: 'Supporting work',
-        items: ['MATLAB', 'C', 'Testing', 'Debugging'],
+        items: [
+          { name: 'MATLAB', level: 35 },
+          { name: 'Testing', level: 60 },
+          { name: 'Debugging', level: 75 }
+        ],
       },
     ],
   },
@@ -112,7 +134,7 @@ export const portfolio = {
     kicker: 'Experience',
     title: 'Work',
     intro:
-      'Two internships shaped the practical side of the resume: one centered on application delivery, the other on automation and testing.',
+      'Practical internships focused on application delivery, automation, and reliable testing.',
     roles: [
       {
         company: 'Dyashin Technosoft Pvt. Ltd.',
@@ -122,11 +144,11 @@ export const portfolio = {
         end: '2025-10',
         focus: 'Java, Spring Boot, React',
         summary:
-          'Worked on application development with a clear split between backend logic and frontend delivery.',
+          'Developed applications matching backend logic with frontend delivery.',
         bullets: [
-          'Built and maintained applications using Java, Spring Boot, and React.',
-          'Integrated frontend interfaces with backend APIs and contributed to overall system structure.',
-          'Improved deployment flow, debugging, and day-to-day code reliability.',
+          'Built and maintained systems using Java, Spring Boot, and React.',
+          'Integrated frontend interfaces with robust backend APIs.',
+          'Streamlined deployment, debugging, and code reliability.',
         ],
         tools: ['Java', 'Spring Boot', 'React'],
       },
@@ -138,11 +160,11 @@ export const portfolio = {
         end: '2024-04',
         focus: 'Automation, QA, embedded systems',
         summary:
-          'Worked closer to automation systems, testing flow, and the kind of debugging that shows up in production environments.',
+          'Focused on automation, testing workflows, and production-level debugging.',
         bullets: [
-          'Developed and debugged robotic control code to improve automation and system stability.',
-          'Worked with embedded systems and testing frameworks to improve performance.',
-          'Contributed to QA and process integration, reducing operational errors.',
+          'Developed robotic control code to enhance automation stability.',
+          'Optimized performance using embedded systems and testing frameworks.',
+          'Improved QA processes to reduce operational errors.',
         ],
         tools: ['Testing', 'Automation', 'Embedded systems'],
       },
@@ -153,14 +175,14 @@ export const portfolio = {
     kicker: 'Projects',
     title: 'Project detail',
     intro:
-      'The resume lists one substantial project, so this section goes deeper on how it works rather than padding the page with filler.',
+      'A deep dive into a core project, highlighting architecture, deployment, and practical problem-solving.',
     featured: {
       name: 'Biometric Voice Authentication System',
       shortName: 'Bio.VAN',
       start: '2025-11',
       end: '2026-02',
       description:
-        'A voice authentication system built around speaker recognition, embedding search, and a backend flow designed for efficient deployment.',
+        'Voice authentication system using speaker recognition, fast embedding search, and an efficient backend flow.',
       stack: ['Python', 'FastAPI', 'Milvus', 'SpeechBrain', 'Docker'],
       github: 'https://github.com/Nithin-joshua/Bio.VAN',
       labels: [
@@ -169,9 +191,9 @@ export const portfolio = {
         { title: 'Backend', text: 'FastAPI with Milvus for retrieval and matching.' },
       ],
       bullets: [
-        'Built speaker recognition using ECAPA-TDNN through SpeechBrain.',
-        'Developed the backend with FastAPI and Milvus, using cosine similarity and encrypted embeddings.',
-        'Kept preprocessing light and the architecture modular so the system could be deployed without unnecessary overhead.',
+        'Implemented speaker recognition with ECAPA-TDNN and SpeechBrain.',
+        'Built FastAPI backend with Milvus for fast similarity search on encrypted embeddings.',
+        'Optimized architecture for lightweight preprocessing and modular deployment.',
       ],
       steps: ['Voice sample', 'Embedding', 'Similarity search', 'Authentication'],
     },
@@ -181,7 +203,7 @@ export const portfolio = {
     kicker: 'Education',
     title: 'Education',
     intro:
-      'Both degrees come from the same college, with the MCA building on the computer science and electronics foundation from the undergraduate work.',
+      'A solid foundation in computer science and electronics, advancing through a Master\'s degree.',
     entries: [
       {
         degree: 'Master of Computer Applications (MCA)',
@@ -204,7 +226,7 @@ export const portfolio = {
     kicker: 'Achievements',
     title: 'Milestones',
     intro:
-      'Key academic and professional highlights that demonstrate a commitment to deep learning and standardized excellence.',
+      'Key milestones reflecting a commitment to academic excellence and technical growth.',
     entries: [
       {
         title: 'UGC-NET December 2025',
@@ -218,7 +240,7 @@ export const portfolio = {
     kicker: 'Certificates',
     title: 'Certifications',
     intro:
-      'The certifications stay close to programming fundamentals and applied Python work, which fits the rest of the resume well.',
+      'Core certifications strengthening programming fundamentals and applied Python knowledge.',
     entries: [
       {
         name: 'Python Certificate Course',
@@ -239,7 +261,7 @@ export const portfolio = {
     kicker: 'Contact',
     titleLines: ['Thanks', 'for visiting'],
     note:
-      'If you want to talk about development work, backend systems, or an internship role, send a note. I keep things straightforward.',
+      'Open to discussing development work, backend systems, or internship opportunities. Let\'s connect.',
     methods: [
       {
         label: 'Email',

@@ -1,4 +1,4 @@
-﻿// This file focuses on the featured project and lays out its main technical decisions.
+// This file focuses on the featured project and lays out its main technical decisions.
 import SectionShell from './SectionShell';
 import formatDateRange from '../utils/formatDateRange';
 
@@ -22,6 +22,19 @@ function ProjectsSection({ projects }) {
           <p className="project-media-date">
             {formatDateRange(featured.start, featured.end)}
           </p>
+
+          <div className="project-video-wrapper">
+            <video 
+              src="/project_preview.mp4"
+              autoPlay={true}
+              loop={true}
+              muted={true}
+              controls={true}
+              playsInline={true}
+              preload="auto"
+              className="project-video"
+            />
+          </div>
 
           <div className="project-step-list">
             {featured.steps.map((step) => (

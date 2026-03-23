@@ -1,4 +1,4 @@
-﻿// This file presents the summary, identity notes, and grouped skills.
+// This file presents the summary, identity notes, and grouped skills.
 import SectionShell from './SectionShell';
 
 function AboutSection({ about }) {
@@ -37,23 +37,26 @@ function AboutSection({ about }) {
 
             <div className="identity-monogram">{about.identity.monogram}</div>
           </div>
-
-          <div className="skill-groups">
-            {about.skillGroups.map((group) => (
-              <div key={group.title} className="panel skill-group">
-                <p className="skill-group-title">{group.title}</p>
-
-                <div className="skill-pill-list">
-                  {group.items.map((item) => (
-                    <span key={item} className="skill-pill">
-                      {item}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
+      </div>
+
+      <div className="skill-groups full-width-skills">
+        {about.skillGroups.map((group) => (
+          <div key={group.title} className="panel skill-group">
+            <p className="skill-group-title">{group.title}</p>
+
+            <div className="skill-bar-list">
+              {group.items.map((item) => (
+                <div key={item.name} className="skill-bar-item">
+                  <span className="skill-bar-label">{item.name}</span>
+                  <div className="skill-bar-track">
+                    <div className="skill-bar-fill" style={{ width: `${item.level}%` }}></div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
       </div>
     </SectionShell>
   );
