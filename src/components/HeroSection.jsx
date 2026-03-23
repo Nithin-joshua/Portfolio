@@ -12,11 +12,6 @@ function HeroSection({ hero, links }) {
       className={`hero-section reveal ${isVisible ? 'is-visible' : ''}`}
     >
       <div className="hero-top">
-        <div className="hero-side-note">
-          <span className="hero-dot-row">...</span>
-          <p>{hero.smallNote}</p>
-        </div>
-
         <div className="hero-copy">
           <h1 className="hero-title">
             {hero.titleLines.map((line) => (
@@ -59,15 +54,6 @@ function HeroSection({ hero, links }) {
               </a>
             ))}
           </div>
-        </div>
-
-        <div className="hero-meta">
-          {hero.meta.map((item) => (
-            <div key={item.label} className="hero-meta-item">
-              <p className="meta-label">{item.label}</p>
-              <p className="meta-value">{item.value}</p>
-            </div>
-          ))}
         </div>
       </div>
 

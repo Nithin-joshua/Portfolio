@@ -20,7 +20,7 @@ export const portfolio = {
   ],
   navigation: [
     { id: 'hero', label: 'Home' },
-    { id: 'about', label: 'About' },
+    { id: 'skills', label: 'Skills' },
     { id: 'experience', label: 'Work' },
     { id: 'projects', label: 'Projects' },
     { id: 'education', label: 'Education' },
@@ -29,12 +29,7 @@ export const portfolio = {
   ],
   hero: {
     id: 'hero',
-    smallNote: 'Portfolio',
     titleLines: ['Nithin V'],
-    meta: [
-      { label: 'Location', value: 'Bangalore, Karnataka' },
-      { label: 'Focus', value: 'Backend and frontend development' },
-    ],
     intro:
       'I specialize in architecting reliable backend systems and clean, functional interfaces. Currently exploring the intersection of biometric security and scalable distributed architecture.',
     primaryAction: {
@@ -46,11 +41,11 @@ export const portfolio = {
       target: 'contact',
     },
     board: {
-      sectionTabs: ['About', 'Projects', 'Work', 'Contact'],
-      cardLabel: 'Short profile',
+      sectionTabs: ['Skills', 'Projects', 'Work', 'Contact'],
+      cardLabel: 'Identity',
       cardTitle: 'NV',
       cardText:
-        'An MCA student focused on bridging the gap between raw data and usable systems. From voice authentication pipelines to reactive frontend dashboards, I build tools that work under pressure.',
+        'I bridge backend logic and user interfaces, prioritizing reliability before scaling outward. My focus is on structural clarity, efficient data flow, and smart debugging to keep applications running smoothly.',
       featureLabel: 'Featured build',
       featureTitle: 'Bio.VAN',
       featureText:
@@ -59,36 +54,21 @@ export const portfolio = {
       featureNote: 'More projects on the way...',
       featureAction: 'Project details',
       stats: [
-        { label: 'Current study', value: 'MCA' },
-        { label: 'Recent stack', value: 'Python, FastAPI, Java' },
-        { label: 'Based in', value: 'Bangalore' },
+        { label: 'Degree', value: 'MCA' },
+        { label: 'Focus', value: 'Fullstack, AI/ML, Automations' },
+        { label: 'Stack', value: 'Python, FastAPI, Java' },
+        { label: 'Location', value: 'Bangalore, Karnataka' },
       ],
       quote:
         'Software should be invisible—it just needs to work, scale, and stay out of the way of the user.',
     },
   },
-  about: {
-    id: 'about',
-    kicker: 'About',
-    title: 'Built around steady work',
+  skills: {
+    id: 'skills',
+    kicker: 'Skills',
+    title: 'Tool stack and expertise',
     intro:
-      'A focus on clean architecture and practical solutions, moving from backend stability to seamless user experiences.',
-    paragraphs: [
-      'I bridge backend logic and user interfaces, prioritizing reliability before scaling outward.',
-      'My focus is on structural clarity, efficient data flow, and smart debugging to keep applications running smoothly.',
-    ],
-    quickFacts: [
-      { label: 'Based in', value: 'Bangalore, Karnataka' },
-      { label: 'Current degree', value: 'Master of Computer Applications' },
-      { label: 'Core tools', value: 'Python, Java, React, FastAPI' },
-    ],
-    identity: {
-      overline: 'Profile',
-      title: 'Nithin V',
-      detail:
-        'Grounded in backend systems, comfortable with frontend development, and focused on clean implementation.',
-      monogram: 'NV',
-    },
+      'A collection of core technologies, frameworks, and supporting tools I use to build and maintain applications.',
     skillGroups: [
       {
         title: 'Core stack',

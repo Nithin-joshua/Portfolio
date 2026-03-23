@@ -96,7 +96,6 @@ a:hover {
 
 .site-shell {
   position: relative;
-  overflow: clip;
 }
 
 .page-ring {
@@ -131,7 +130,7 @@ a:hover {
 .app-inner {
   width: var(--page-width);
   margin: 0 auto;
-  padding: 12px 0 48px;
+  padding: 12px 0 0; /* Changed from 100px */
   position: relative;
   z-index: 1;
 }
@@ -233,10 +232,9 @@ a:hover {
 }
 
 .hero-top {
-  display: grid;
-  grid-template-columns: minmax(0, 0.9fr) minmax(0, 2fr) minmax(0, 0.95fr);
-  gap: 20px;
-  align-items: start;
+  display: flex;
+  justify-content: center;
+  padding: 60px 0 40px;
 }
 
 .hero-side-note {
@@ -260,6 +258,7 @@ a:hover {
   display: grid;
   justify-items: center;
   text-align: center;
+  margin-bottom: 40px;
 }
 
 .hero-title {
@@ -551,7 +550,7 @@ a:hover {
 
 .preview-stats {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 12px;
   margin-top: 18px;
 }
@@ -907,7 +906,7 @@ a:hover {
 }
 
 .contact-section {
-  padding-top: 48px;
+  padding: 48px 0 60px;
 }
 
 .contact-panel {
@@ -940,9 +939,21 @@ a:hover {
   color: var(--color-text);
 }
 
-.footer-note {
-  margin-top: 16px;
+.site-footer {
+  width: 100%;
+  margin-top: 100px;
+  padding: 80px 0 120px;
+  border-top: 1px solid var(--color-border-strong);
   text-align: center;
+  background: var(--color-bg);
+  position: relative;
+  z-index: 100;
+}
+
+.footer-note {
+  color: #ffffff;
+  font-family: 'Fira Code', monospace;
+  font-size: 1rem;
 }
 
 .achievements-list {
@@ -1043,8 +1054,7 @@ a:hover {
     width: 100%;
   }
 
-  .preview-stats,
-  .hero-meta {
+  .preview-stats {
     grid-template-columns: 1fr;
   }
 
@@ -1058,6 +1068,7 @@ a:hover {
   .project-media,
   .contact-panel {
     padding: 16px;
+    align-items: start;
   }
 
   .hero-title {
@@ -1098,11 +1109,6 @@ a:hover {
   .secondary-button {
     width: 100%;
     text-align: center;
-  }
-
-  .hero-meta {
-    grid-template-columns: 1fr;
-    gap: 12px;
   }
 
   .stat-card,
