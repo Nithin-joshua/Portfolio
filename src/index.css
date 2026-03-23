@@ -438,9 +438,34 @@ a:hover {
 .certification-name,
 .contact-value,
 .footer-note {
-  margin: 0;
-  color: var(--color-muted);
   line-height: 1.8;
+}
+
+.project-card-note {
+  margin: auto 0 0;
+  padding-top: 14px;
+  color: var(--color-muted);
+  font-family: 'Fira Code', monospace;
+  font-size: 0.8rem;
+  opacity: 0.7;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.project-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.project-tag-pill {
+  padding: 4px 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-pill);
+  font-family: 'Fira Code', monospace;
+  font-size: 0.72rem;
+  color: var(--color-text);
 }
 
 .preview-arrow {
@@ -474,6 +499,8 @@ a:hover {
   background:
     radial-gradient(circle at 28% 22%, rgba(169, 220, 255, 0.4), transparent 22%),
     linear-gradient(145deg, rgba(107, 166, 255, 0.34), rgba(221, 184, 255, 0.2) 42%, rgba(255, 255, 255, 0.04) 88%);
+  display: flex;
+  flex-direction: column;
 }
 
 .preview-orbit,

@@ -1,4 +1,4 @@
-﻿// This file renders the opening section with the oversized headline and preview board.
+// This file renders the opening section with the oversized headline and preview board.
 import useRevealOnScroll from '../hooks/useRevealOnScroll';
 import scrollToSection from '../utils/scrollToSection';
 
@@ -92,11 +92,7 @@ function HeroSection({ hero, links }) {
               <div>
                 <p className="panel-kicker">{hero.board.cardLabel}</p>
                 <h2 className="preview-title">
-                  {hero.titleLines.map((line) => (
-                    <span key={line} className="preview-title-line">
-                      {line}
-                    </span>
-                  ))}
+                  {hero.board.cardTitle}
                 </h2>
                 <p className="preview-description">{hero.board.cardText}</p>
               </div>
@@ -124,6 +120,18 @@ function HeroSection({ hero, links }) {
               <p className="panel-kicker">{hero.board.featureLabel}</p>
               <h3 className="project-card-title">{hero.board.featureTitle}</h3>
               <p className="project-card-text">{hero.board.featureText}</p>
+              
+              {hero.board.featureTags && (
+                <div className="project-card-tags">
+                  {hero.board.featureTags.map(tag => (
+                    <span key={tag} className="project-tag-pill">{tag}</span>
+                  ))}
+                </div>
+              )}
+
+              {hero.board.featureNote && (
+                <p className="project-card-note">{hero.board.featureNote}</p>
+              )}
             </div>
           </div>
 

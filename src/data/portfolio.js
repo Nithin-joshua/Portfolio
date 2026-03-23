@@ -29,15 +29,14 @@ export const portfolio = {
   ],
   hero: {
     id: 'hero',
-    smallNote: 'Website for Nithin V',
+    smallNote: 'Portfolio',
     titleLines: ['Nithin V'],
     meta: [
-      { label: 'Name', value: 'Nithin V' },
       { label: 'Location', value: 'Bangalore, Karnataka' },
       { label: 'Focus', value: 'Backend and frontend development' },
     ],
     intro:
-      'I build practical backend systems and user interfaces, focusing on clean code, reliability, and maintainability.',
+      'I specialize in architecting reliable backend systems and clean, functional interfaces. Currently exploring the intersection of biometric security and scalable distributed architecture.',
     primaryAction: {
       label: 'View projects',
       target: 'projects',
@@ -49,13 +48,15 @@ export const portfolio = {
     board: {
       sectionTabs: ['About', 'Projects', 'Work', 'Contact'],
       cardLabel: 'Short profile',
-      cardTitle: 'Nithin V',
+      cardTitle: 'NV',
       cardText:
-        'MCA student with hands-on experience in Python, Java, FastAPI, and React.',
+        'An MCA student focused on bridging the gap between raw data and usable systems. From voice authentication pipelines to reactive frontend dashboards, I build tools that work under pressure.',
       featureLabel: 'Featured build',
       featureTitle: 'Bio.VAN',
       featureText:
         'Voice authentication using speaker embeddings and a lightweight backend pipeline.',
+      featureTags: ['Python', 'FastAPI', 'AI'],
+      featureNote: 'More projects on the way...',
       featureAction: 'Project details',
       stats: [
         { label: 'Current study', value: 'MCA' },
@@ -63,7 +64,7 @@ export const portfolio = {
         { label: 'Based in', value: 'Bangalore' },
       ],
       quote:
-        'Clear structure, practical decisions, and systems that can be maintained.',
+        'Software should be invisible—it just needs to work, scale, and stay out of the way of the user.',
     },
   },
   about: {
@@ -259,6 +260,10 @@ export const portfolio = {
       {
         name: 'Python for Data Science Certificate Course',
         issuer: 'Swayam',
+      },
+      {
+        name: 'DSA Mastery with Java',
+        issuer: 'ExcelR',
       },
     ],
   },
