@@ -3,7 +3,10 @@ import useRevealOnScroll from '../hooks/useRevealOnScroll';
 import scrollToSection from '../utils/scrollToSection';
 
 function HeroSection({ hero, links }) {
-  const [sectionRef, isVisible] = useRevealOnScroll({ threshold: 0.08 });
+  const [sectionRef, isVisible] = useRevealOnScroll({ 
+    threshold: 0.08,
+    once: false // Re-trigger when scrolling back
+  });
 
   return (
     <section
