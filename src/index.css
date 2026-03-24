@@ -284,8 +284,9 @@ a:hover {
   white-space: nowrap;
   border-right: 4px solid var(--color-pill);
   width: 0;
+  padding-right: 4px; /* Space for the caret */
   animation: 
-    typing 2s steps(20, end) forwards,
+    typing 2s steps(8, end) forwards,
     blink-caret 0.75s step-end infinite;
   transition: transform 400ms cubic-bezier(0.2, 1, 0.3, 1), color 400ms ease;
   cursor: default;
@@ -293,7 +294,7 @@ a:hover {
 
 @keyframes typing {
   from { width: 0 }
-  to { width: 100% }
+  to { width: 8.2ch } /* Precisely match 'Nithin V' length + caret space */
 }
 
 @keyframes blink-caret {
