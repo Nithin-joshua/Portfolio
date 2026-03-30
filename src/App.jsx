@@ -27,6 +27,7 @@ function App() {
           brand={portfolio.brand}
           navigation={portfolio.navigation}
           activeSectionId={activeSectionId}
+          resume={portfolio.resume}
         />
 
         <main className="page-content">

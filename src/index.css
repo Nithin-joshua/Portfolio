@@ -215,12 +215,29 @@ a:hover {
   gap: 8px;
 }
 
+.header-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
 .nav-button {
   padding: 10px 16px;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-pill);
   background: transparent;
   color: var(--color-muted);
+}
+
+.nav-resume-button {
+  padding: 10px 16px;
+  border-radius: var(--radius-pill);
+  background: var(--color-pill);
+  color: var(--color-pill-text);
+  font-weight: 600;
+  text-decoration: none;
 }
 
 .nav-button.is-active {
@@ -267,6 +284,33 @@ a:hover {
   justify-items: center;
   text-align: center;
   margin-bottom: 40px;
+}
+
+.hero-availability-row {
+  margin-bottom: 16px;
+}
+
+.availability-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(183, 255, 211, 0.24);
+  background: rgba(115, 255, 173, 0.08);
+  color: #cbffd9;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.8rem;
+}
+
+.hero-headline {
+  width: min(52rem, 100%);
+  margin: 0 0 16px;
+  color: var(--color-text);
+  font-family: 'Fira Code', monospace;
+  font-size: clamp(1rem, 2.6vw, 1.2rem);
+  letter-spacing: 0.01em;
+  line-height: 1.7;
 }
 
 .hero-title {
@@ -488,6 +532,47 @@ a:hover {
   font-size: 0.8rem;
   opacity: 0.7;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+.project-card-subfeature {
+  margin: auto 0 0;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: grid;
+  gap: 10px;
+}
+
+.project-card-subfeature-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.project-inline-status {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  background: rgba(128, 187, 255, 0.12);
+  border: 1px solid rgba(128, 187, 255, 0.18);
+  color: #e0eeff;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.7rem;
+}
+
+.project-card-subtitle {
+  margin: 0;
+  font-family: 'Fira Code', monospace;
+  font-size: 1rem;
+  line-height: 1.25;
+}
+
+.project-card-subtext {
+  margin: 0;
+  color: var(--color-muted);
+  line-height: 1.7;
+  font-size: 0.88rem;
 }
 
 .project-card-tags {
@@ -930,6 +1015,54 @@ a:hover {
   margin-top: 20px;
 }
 
+.project-card-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.compact-project-card {
+  padding: 18px;
+}
+
+.project-progress-block {
+  margin-top: 18px;
+}
+
+.project-progress-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.project-status-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 12px;
+  border-radius: var(--radius-pill);
+  background: rgba(128, 187, 255, 0.12);
+  border: 1px solid rgba(128, 187, 255, 0.2);
+  color: #d7e9ff;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.76rem;
+}
+
+.project-progress-track {
+  height: 10px;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+
+.project-progress-fill {
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, rgba(128, 187, 255, 0.95), rgba(217, 171, 255, 0.8));
+}
+
 .education-grid,
 .certification-grid {
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1107,6 +1240,11 @@ a:hover {
     width: 100%;
   }
 
+  .header-actions {
+    width: 100%;
+    justify-content: center;
+  }
+
   .nav-button {
     padding: 8px 12px;
     font-size: 0.85rem;
@@ -1118,6 +1256,10 @@ a:hover {
   }
 
   .preview-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .project-card-grid {
     grid-template-columns: 1fr;
   }
 
@@ -1186,6 +1328,11 @@ a:hover {
   .brand-text {
     display: none;
   }
+
+  .nav-resume-button {
+    width: 100%;
+    text-align: center;
+  }
 }
 
 @media (orientation: landscape) and (max-height: 500px) {
@@ -1198,3 +1345,4 @@ a:hover {
     margin-bottom: 12px;
   }
 }
+

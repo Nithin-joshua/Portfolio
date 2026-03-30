@@ -1,7 +1,7 @@
-﻿// This file renders the fixed navigation used to move smoothly through the page.
+// This file renders the fixed navigation used to move smoothly through the page.
 import scrollToSection from '../utils/scrollToSection';
 
-function SiteHeader({ brand, navigation, activeSectionId }) {
+function SiteHeader({ brand, navigation, activeSectionId, resume }) {
   return (
     <header className="site-header">
       <button
@@ -13,18 +13,30 @@ function SiteHeader({ brand, navigation, activeSectionId }) {
         <span className="brand-text">Portfolio</span>
       </button>
 
-      <nav className="header-nav" aria-label="Primary navigation">
-        {navigation.map((item) => (
-          <button
-            key={item.id}
-            type="button"
-            className={`nav-button ${activeSectionId === item.id ? 'is-active' : ''}`}
-            onClick={() => scrollToSection(item.id)}
+      <div className="header-actions">
+        <nav className="header-nav" aria-label="Primary navigation">
+          {navigation.map((item) => (
+            <button
+              key={item.id}
+              type="button"
+              className={`nav-button ${activeSectionId === item.id ? 'is-active' : ''}`}
+              onClick={() => scrollToSection(item.id)}
+            >
+              {item.label}
+            </button>
+          ))}
+        </nav>
+
+        {resume?.url && (
+          <a
+            className="nav-resume-button"
+            href={resume.url}
+            download={resume.downloadName}
           >
-            {item.label}
-          </button>
-        ))}
-      </nav>
+            {resume.label}
+          </a>
+        )}
+      </div>
     </header>
   );
 }

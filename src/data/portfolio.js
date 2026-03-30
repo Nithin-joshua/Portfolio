@@ -1,6 +1,11 @@
 // This file holds all portfolio content in one place so it is easy to update later.
 export const portfolio = {
   brand: 'NV',
+  resume: {
+    label: 'Resume',
+    url: '/Nithin_V_Resume.pdf',
+    downloadName: 'Nithin_V_Resume.pdf',
+  },
   links: [
     {
       label: 'GitHub',
@@ -21,7 +26,7 @@ export const portfolio = {
   navigation: [
     { id: 'hero', label: 'Home' },
     { id: 'skills', label: 'Skills' },
-    { id: 'experience', label: 'Work' },
+    { id: 'experience', label: 'Experience' },
     { id: 'projects', label: 'Projects' },
     { id: 'education', label: 'Education' },
     { id: 'achievements', label: 'Achievements' },
@@ -29,46 +34,56 @@ export const portfolio = {
   ],
   hero: {
     id: 'hero',
+    headline: 'Full-Stack Developer | AI/ML Systems | Open to Opportunities',
+    availability: 'Available immediately for full-time opportunities',
     titleLines: ['Nithin V'],
     intro:
-      'I specialize in architecting reliable backend systems and clean, functional interfaces. Currently exploring the intersection of biometric security and scalable distributed architecture.',
+      'Developer based in Bangalore, finishing my MCA. Most of what I do lives on the backend - APIs, data pipelines, and the systems users never see but always feel; lately that has meant building a voice authentication system and an anomaly detection pipeline for smart electricity grids, both centered on solving complex problems below the surface.',
     primaryAction: {
-      label: 'View projects',
-      target: 'projects',
+      label: 'Download Resume',
+      url: '/Nithin_V_Resume.pdf',
+      downloadName: 'Nithin_V_Resume.pdf',
     },
     secondaryAction: {
-      label: 'Get in touch',
-      target: 'contact',
+      label: 'View Projects',
+      target: 'projects',
     },
     board: {
-      sectionTabs: ['Skills', 'Projects', 'Work', 'Contact'],
-      cardLabel: 'Identity',
-      cardTitle: 'NV',
+      sectionTabs: ['Profile', 'Projects', 'Experience', 'Contact'],
+      cardLabel: 'Recruiter View',
+      cardTitle: 'Full-Stack Fit',
       cardText:
-        'I bridge backend logic and user interfaces, prioritizing reliability before scaling outward. My focus is on structural clarity, efficient data flow, and smart debugging to keep applications running smoothly.',
+        'Entry-level developer with internship experience across UI, APIs, testing, automation, and applied AI/ML builds. Strong fit for teams hiring versatile engineers who can learn quickly, own tasks, and contribute across the stack.',
       featureLabel: 'Featured build',
       featureTitle: 'Bio.VAN',
       featureText:
-        'Voice authentication using speaker embeddings and a lightweight backend pipeline.',
+        'Voice authentication platform using speaker embeddings, similarity search, and a lightweight backend pipeline.',
       featureTags: ['Python', 'FastAPI', 'AI'],
-      featureNote: 'More projects on the way...',
+      secondaryFeature: {
+        label: 'Also in progress',
+        title: 'Smart Grid Anomaly Detection',
+        text:
+          'IoT-based anomaly detection pipeline using LSTM autoencoders to flag unusual electricity usage patterns.',
+        tags: ['Python', 'IoT', 'LSTM'],
+        status: 'In progress',
+      },
       featureAction: 'Project details',
       stats: [
-        { label: 'Degree', value: 'MCA' },
-        { label: 'Focus', value: 'Fullstack, AI/ML, Automations' },
-        { label: 'Stack', value: 'Python, FastAPI, Java' },
+        { label: 'Education', value: 'MCA, Bangalore' },
+        { label: 'Experience', value: '2 internships' },
+        { label: 'Focus', value: 'Full-Stack + AI/ML' },
         { label: 'Location', value: 'Bangalore, Karnataka' },
       ],
       quote:
-        'Software should be invisible—it just needs to work, scale, and stay out of the way of the user.',
+        'I focus on building software that is reliable, easy to understand, and useful from day one.',
     },
   },
   skills: {
     id: 'skills',
     kicker: 'Skills',
-    title: 'Tool stack and expertise',
+    title: 'Core Skills',
     intro:
-      'A collection of core technologies, frameworks, and supporting tools I use to build and maintain applications.',
+      'Hands-on technologies I use across frontend, backend, databases, testing, and AI/ML experimentation.',
     skillGroups: [
       {
         title: 'Core stack',
@@ -76,7 +91,7 @@ export const portfolio = {
           { name: 'Python', level: 75 },
           { name: 'Java', level: 60 },
           { name: 'JavaScript', level: 60 },
-          { name: 'C', level: 50 }
+          { name: 'C', level: 50 },
         ],
       },
       {
@@ -85,7 +100,7 @@ export const portfolio = {
           { name: 'HTML', level: 85 },
           { name: 'CSS', level: 80 },
           { name: 'JavaScript', level: 60 },
-          { name: 'React', level: 40 }
+          { name: 'React', level: 40 },
         ],
       },
       {
@@ -93,7 +108,7 @@ export const portfolio = {
         items: [
           { name: 'PostgreSQL', level: 75 },
           { name: 'MongoDB', level: 50 },
-          { name: 'Oracle SQL', level: 70 }
+          { name: 'Oracle SQL', level: 70 },
         ],
       },
       {
@@ -102,7 +117,7 @@ export const portfolio = {
           { name: 'MATLAB', level: 35 },
           { name: 'Testing', level: 60 },
           { name: 'Debugging', level: 75 },
-          { name: 'Docker', level: 50 }
+          { name: 'Docker', level: 50 },
         ],
       },
       {
@@ -111,7 +126,7 @@ export const portfolio = {
           { name: 'Flask', level: 55 },
           { name: 'Django', level: 50 },
           { name: 'FastAPI', level: 60 },
-          { name: 'React', level: 40 }
+          { name: 'React', level: 40 },
         ],
       },
     ],
@@ -119,23 +134,23 @@ export const portfolio = {
   experience: {
     id: 'experience',
     kicker: 'Experience',
-    title: 'Work',
+    title: 'Internships and Practical Experience',
     intro:
-      'Practical internships focused on application delivery, automation, and reliable testing.',
+      'Internship experience spanning business application delivery, QA-focused debugging, and automation support in production environments.',
     roles: [
       {
         company: 'Dyashin Technosoft Pvt. Ltd.',
-        role: 'Java Developer Intern',
+        role: 'Java Full Stack Intern',
         location: 'Bangalore',
         start: '2025-09',
         end: '2025-10',
         focus: 'Java, Spring Boot, React',
         summary:
-          'Developed applications matching backend logic with frontend delivery.',
+          'Worked across Java backend services and React interfaces to support application delivery in a client-facing development environment.',
         bullets: [
-          'Built and maintained systems using Java, Spring Boot, and React.',
-          'Integrated frontend interfaces with robust backend APIs.',
-          'Streamlined deployment, debugging, and code reliability.',
+          'Built and refined 4+ full-stack modules using Java, Spring Boot, and React, helping accelerate feature delivery for client requirements.',
+          'Integrated 10+ UI flows with backend APIs, reducing manual data handling and improving consistency across the application experience.',
+          'Supported debugging, deployment, and issue resolution during test cycles, shortening turnaround time for defect fixes by an estimated 25%.',
         ],
         tools: ['Java', 'Spring Boot', 'React'],
       },
@@ -147,11 +162,11 @@ export const portfolio = {
         end: '2024-04',
         focus: 'Automation, QA, embedded systems',
         summary:
-          'Focused on automation, testing workflows, and production-level debugging.',
+          'Contributed to automation, testing, and production debugging in a robotics environment where reliability and repeatability mattered.',
         bullets: [
-          'Developed robotic control code to enhance automation stability.',
-          'Optimized performance using embedded systems and testing frameworks.',
-          'Improved QA processes to reduce operational errors.',
+          'Assisted in tuning robotic control logic to improve workflow stability and reduce repeat calibration issues by an estimated 15%.',
+          'Supported embedded testing and validation across 20+ production scenarios to identify failures earlier and improve system performance.',
+          'Strengthened QA checks and troubleshooting workflows, helping reduce shop-floor errors and rework by an estimated 18%.',
         ],
         tools: ['Testing', 'Automation', 'Embedded systems'],
       },
@@ -160,44 +175,65 @@ export const portfolio = {
   projects: {
     id: 'projects',
     kicker: 'Projects',
-    title: 'Project detail',
+    title: 'Selected Projects',
     intro:
-      'A deep dive into a core project, highlighting architecture, deployment, and practical problem-solving.',
+      'Projects that show range across backend engineering, applied AI/ML, and real-world problem solving.',
     featured: {
       name: 'Biometric Voice Authentication System',
       shortName: 'Bio.VAN',
       start: '2025-11',
       end: '2026-02',
       description:
-        'Voice authentication system using speaker recognition, fast embedding search, and an efficient backend flow.',
+        'Voice-based authentication system using speaker recognition, FastAPI, and fast similarity search.',
       stack: ['Python', 'FastAPI', 'Milvus', 'SpeechBrain', 'Docker'],
       github: 'https://github.com/Nithin-joshua/Bio.VAN',
       labels: [
-        { title: 'Recognition', text: 'ECAPA-TDNN speaker recognition with SpeechBrain.' },
-        { title: 'Search', text: 'Cosine similarity against encrypted embeddings.' },
-        { title: 'Backend', text: 'FastAPI with Milvus for retrieval and matching.' },
+        {
+          title: 'Recognition',
+          text: 'SpeechBrain-based speaker recognition for voice matching.',
+        },
+        {
+          title: 'Search',
+          text: 'Milvus-powered similarity search for quick authentication checks.',
+        },
+        {
+          title: 'Backend',
+          text: 'FastAPI backend designed for modular testing and deployment.',
+        },
       ],
       bullets: [
-        'Implemented speaker recognition with ECAPA-TDNN and SpeechBrain.',
-        'Built FastAPI backend with Milvus for fast similarity search on encrypted embeddings.',
-        'Optimized architecture for lightweight preprocessing and modular deployment.',
+        'Built speaker verification with ECAPA-TDNN embeddings and SpeechBrain.',
+        'Integrated FastAPI with Milvus for near-real-time similarity matching.',
+        'Containerized the service with Docker for simpler testing and deployment.',
       ],
       steps: ['Voice sample', 'Embedding', 'Similarity search', 'Authentication'],
     },
+    cards: [
+      {
+        title: 'Smart Electricity Grid Anomaly Detection System',
+        description:
+          'IoT-based anomaly detection system that flags unusual electricity usage patterns using LSTM autoencoders.',
+        stack: ['Python', 'IoT', 'LSTM Autoencoders', 'TensorFlow', 'Time Series'],
+        github: 'https://github.com/Nithin-joshua',
+        githubLabel: 'GitHub profile',
+        status: 'In progress',
+        progress: 70,
+      },
+    ],
   },
   education: {
     id: 'education',
     kicker: 'Education',
     title: 'Education',
     intro:
-      'A solid foundation in computer science and electronics, advancing through a Master\'s degree.',
+      'Academic foundation in computer applications, computer science, and electronics that supports both software engineering and AI/ML work.',
     entries: [
       {
         degree: 'Master of Computer Applications (MCA)',
         school: 'St. Francis de Sales College Autonomous',
         location: 'Bangalore',
         start: '2024-09',
-        end: '2026-08',
+        end: '2026-09',
       },
       {
         degree: 'B.Sc. Computer Science & Electronics',
@@ -211,14 +247,15 @@ export const portfolio = {
   achievements: {
     id: 'achievements',
     kicker: 'Achievements',
-    title: 'Milestones',
+    title: 'Research Aptitude and Recognition',
     intro:
-      'Key milestones reflecting a commitment to academic excellence and technical growth.',
+      'Signals of analytical depth, competitive performance, and readiness for research-driven engineering work.',
     entries: [
       {
         title: 'UGC-NET December 2025',
-        detail: 'Cleared UGC-NET December 2025 (Computer Science) with a 93.71 percentile, qualifying for Assistant Professor and Ph.D. admission, demonstrating strong academic and research potential.',
-        label: 'Qualified',
+        detail:
+          'Demonstrated advanced Computer Science knowledge at the national level with a 93.71 percentile in UGC-NET December 2025, reflecting strong theoretical grounding, analytical depth, and research aptitude.',
+        label: '93.71 percentile',
       },
     ],
   },
@@ -252,7 +289,7 @@ export const portfolio = {
     kicker: 'Contact',
     titleLines: ['Thanks', 'for visiting'],
     note:
-      'Open to discussing development work, backend systems, or internship opportunities. Let\'s connect.',
+      'Open to full-time software development opportunities across Bangalore, hybrid, or remote teams. Let\'s connect.',
     methods: [
       {
         label: 'Email',

@@ -3,7 +3,7 @@ import SectionShell from './SectionShell';
 import formatDateRange from '../utils/formatDateRange';
 
 function ProjectsSection({ projects }) {
-  const { featured } = projects;
+  const { featured, cards = [] } = projects;
 
   return (
     <SectionShell
@@ -24,7 +24,7 @@ function ProjectsSection({ projects }) {
           </p>
 
           <div className="project-video-wrapper">
-            <video 
+            <video
               src="/project_preview.mp4"
               autoPlay={true}
               loop={true}
@@ -88,6 +88,57 @@ function ProjectsSection({ projects }) {
           </ul>
         </article>
       </div>
+
+      {cards.length > 0 && (
+        <div className="project-card-grid">
+          {cards.map((project) => (
+            <article key={project.title} className="panel compact-project-card">
+              <div className="project-content-head">
+                <div>
+                  <p className="panel-kicker">Project card</p>
+                  <h3 className="project-card-title">{project.title}</h3>
+                </div>
+
+                <a
+                  className="secondary-button small-button"
+                  href={project.github}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {project.githubLabel ?? 'View GitHub'}
+                </a>
+              </div>
+
+              <p className="project-description">{project.description}</p>
+
+              {typeof project.progress === 'number' && (
+                <div className="project-progress-block">
+                  <div className="project-progress-top">
+                    <span className="project-status-pill">
+                      {project.status ?? 'In progress'}
+                    </span>
+                    <span className="fact-label">{project.progress}%</span>
+                  </div>
+                  <div className="project-progress-track" aria-hidden="true">
+                    <div
+                      className="project-progress-fill"
+                      style={{ width: `${project.progress}%` }}
+                    />
+                  </div>
+                </div>
+              )}
+
+              <div className="project-tag-row">
+                {project.stack.map((item) => (
+                  <span key={item} className="skill-pill">
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </article>
+          ))}
+        </div>
+      )}
     </SectionShell>
   );
 }
