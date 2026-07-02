@@ -30,12 +30,11 @@ export const portfolio = {
   ],
   navigation: [
     { id: 'hero', label: 'Home' },
-    { id: 'skills', label: 'Skills' },
     { id: 'experience', label: 'Experience' },
     { id: 'projects', label: 'Projects' },
+    { id: 'skills', label: 'Skills' },
+    { id: 'credentials', label: 'Credentials' },
     { id: 'publications', label: 'Publications' },
-    { id: 'education', label: 'Education' },
-    { id: 'achievements', label: 'Achievements' },
     { id: 'contact', label: 'Contact' },
   ],
   hero: {
@@ -61,27 +60,11 @@ export const portfolio = {
       cardText:
         'Versatile developer with internship experience across UI/UX (Next.js/React), backend APIs (FastAPI/Spring Boot), databases (PostgreSQL/SQLAlchemy), testing, and applied AI/ML pipelines (LLMs/SpeechBrain/LSTM).',
       featureLabel: 'Featured build',
-      featureTitle: 'Bio.VAN',
+      featureTitle: 'DocIntel Platform',
       featureText:
-        'Voice authentication platform using speaker embeddings, similarity search, and a lightweight backend pipeline.',
-      featureTags: ['Python', 'FastAPI', 'AI'],
-      secondaryFeature: {
-        label: 'Also featured',
-        title: 'DocIntel Platform',
-        text:
-          'Enterprise AI document processing platform automating OCR, classification, and structured data generation.',
-        tags: ['FastAPI', 'LLMs', 'Next.js'],
-        status: 'Active',
-      },
+        'Enterprise AI document processing platform automating OCR, classification, and structured data generation.',
+      featureTags: ['FastAPI', 'LLMs', 'Next.js'],
       featureAction: 'Project details',
-      stats: [
-        { label: 'Education', value: 'MCA, Bangalore' },
-        { label: 'Experience', value: '3 internships' },
-        { label: 'Focus', value: 'Full-Stack + AI/ML' },
-        { label: 'Location', value: 'Bangalore, Karnataka' },
-      ],
-      quote:
-        'I focus on building software that is reliable, clean, easy to understand, and useful from day one.',
     },
   },
   skills: {
@@ -190,6 +173,7 @@ export const portfolio = {
       },
     ],
   },
+
   projects: {
     id: 'projects',
     kicker: 'Projects',
@@ -199,13 +183,13 @@ export const portfolio = {
     list: [
       {
         name: 'Biometric Voice Authentication System',
-        shortName: 'Bio.VAN',
+        shortName: 'Bio.V',
         start: '2025-11',
         end: '2026-02',
         description:
           'Voice-based authentication system using speaker recognition, FastAPI, and fast similarity search.',
         stack: ['Python', 'FastAPI', 'Milvus', 'SpeechBrain', 'Docker'],
-        github: 'https://github.com/Nithin-joshua/Bio.VAN',
+        github: 'https://github.com/Nithin-joshua/Bio.V',
         videoUrl: '/project_preview.mp4',
         steps: ['Voice sample', 'Embedding', 'Similarity search', 'Authentication'],
         labels: [
@@ -411,3 +395,4 @@ export const portfolio = {
     ],
   },
 };
+

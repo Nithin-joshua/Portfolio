@@ -1,26 +1,7 @@
 // This file presents the summary and grouped skills.
-import { useEffect, useRef, useState } from 'react';
 import SectionShell from './SectionShell';
 
 function SkillsSection({ skills }) {
-  const skillsRef = useRef(null);
-  const [skillsVisible, setSkillsVisible] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setSkillsVisible(entry.isIntersecting);
-      },
-      { threshold: 0.2 }
-    );
-
-    if (skillsRef.current) {
-      observer.observe(skillsRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
-
   return (
     <SectionShell
       id={skills.id}
@@ -28,7 +9,7 @@ function SkillsSection({ skills }) {
       title={skills.title}
       intro={skills.intro}
     >
-      <div className="skill-groups full-width-skills" ref={skillsRef}>
+      <div className="skill-groups full-width-skills">
         {skills.skillGroups.map((group) => (
           <div 
             key={group.title} 
@@ -36,14 +17,11 @@ function SkillsSection({ skills }) {
           >
             <p className="skill-group-title">{group.title}</p>
 
-            <div className="skill-bar-list">
+            <div className="project-tag-row" style={{ marginTop: '1rem' }}>
               {group.items.map((item) => (
-                <div key={item.name} className="skill-bar-item">
-                  <span className="skill-bar-label">{item.name}</span>
-                  <div className="skill-bar-track">
-                    <div className="skill-bar-fill" style={{ width: skillsVisible ? `${item.level}%` : '0%' }}></div>
-                  </div>
-                </div>
+                <span key={item.name} className="skill-pill">
+                  {item.name}
+                </span>
               ))}
             </div>
           </div>

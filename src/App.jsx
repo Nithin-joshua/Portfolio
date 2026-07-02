@@ -1,12 +1,10 @@
 import SiteHeader from './components/SiteHeader';
 import HeroSection from './components/HeroSection';
-import SkillsSection from './components/SkillsSection';
 import ExperienceSection from './components/ExperienceSection';
 import ProjectsSection from './components/ProjectsSection';
+import SkillsSection from './components/SkillsSection';
+import CredentialsSection from './components/CredentialsSection';
 import PublicationsSection from './components/PublicationsSection';
-import EducationSection from './components/EducationSection';
-import AchievementsSection from './components/AchievementsSection';
-import CertificationsSection from './components/CertificationsSection';
 import ContactSection from './components/ContactSection';
 import SiteFooter from './components/SiteFooter';
 import { portfolio } from './data/portfolio';
@@ -32,13 +30,15 @@ function App() {
 
         <main className="page-content">
           <HeroSection hero={portfolio.hero} links={portfolio.links} />
-          <SkillsSection skills={portfolio.skills} />
           <ExperienceSection experience={portfolio.experience} />
           <ProjectsSection projects={portfolio.projects} />
+          <SkillsSection skills={portfolio.skills} />
+          <CredentialsSection
+            education={portfolio.education}
+            achievements={portfolio.achievements}
+            certifications={portfolio.certifications}
+          />
           <PublicationsSection publications={portfolio.publications} />
-          <EducationSection education={portfolio.education} />
-          <AchievementsSection achievements={portfolio.achievements} />
-          <CertificationsSection certifications={portfolio.certifications} />
           <ContactSection contact={portfolio.contact} />
         </main>
 

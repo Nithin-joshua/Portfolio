@@ -113,10 +113,6 @@ function HeroSection({ hero, links }) {
 
                 <span className="preview-arrow">-&gt;</span>
               </div>
-
-              <div className="preview-quote">
-                <p>{hero.board.quote}</p>
-              </div>
             </div>
 
             <div className="preview-project-card">
@@ -135,46 +131,7 @@ function HeroSection({ hero, links }) {
                   ))}
                 </div>
               )}
-
-              {hero.board.secondaryFeature && (
-                <div className="project-card-subfeature">
-                  <div className="project-card-subfeature-head">
-                    <p className="panel-kicker">{hero.board.secondaryFeature.label}</p>
-                    {hero.board.secondaryFeature.status && (
-                      <span className="project-inline-status">
-                        {hero.board.secondaryFeature.status}
-                      </span>
-                    )}
-                  </div>
-
-                  <h4 className="project-card-subtitle">
-                    {hero.board.secondaryFeature.title}
-                  </h4>
-                  <p className="project-card-subtext">
-                    {hero.board.secondaryFeature.text}
-                  </p>
-
-                  {hero.board.secondaryFeature.tags && (
-                    <div className="project-card-tags">
-                      {hero.board.secondaryFeature.tags.map((tag) => (
-                        <span key={tag} className="project-tag-pill">
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              )}
             </div>
-          </div>
-
-          <div className="preview-stats">
-            {hero.board.stats.map((stat) => (
-              <div key={stat.label} className="stat-card">
-                <p className="stat-label">{stat.label}</p>
-                <p className="stat-value">{stat.value}</p>
-              </div>
-            ))}
           </div>
         </div>
       </div>
