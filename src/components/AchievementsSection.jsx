@@ -1,5 +1,5 @@
-// This file renders the achievements section using compact panels.
 import SectionShell from './SectionShell';
+import { privateLinks } from '../data/private_links_wrapper';
 
 function AchievementsSection({ achievements }) {
   return (
@@ -10,15 +10,33 @@ function AchievementsSection({ achievements }) {
       intro={achievements.intro}
     >
       <div className="achievements-list">
-        {achievements.entries.map((entry) => (
-          <article key={entry.title} className="panel achievement-card">
-            <div className="achievement-head">
-              <span className="panel-kicker">{entry.label}</span>
-              <h3 className="achievement-title">{entry.title}</h3>
-            </div>
-            <p className="achievement-detail">{entry.detail}</p>
-          </article>
-        ))}
+        {achievements.entries.map((entry) => {
+          const isUgcNet = entry.title.includes('UGC-NET');
+          const link = isUgcNet ? privateLinks.achievements.ugcNet : '';
+
+          return (
+            <article key={entry.title} className="panel achievement-card">
+              <div className="achievement-head">
+                <div className="achievement-meta-row">
+                  <span className="panel-kicker">{entry.label}</span>
+                  {link && (
+                    <a
+                      href={link}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="doc-preview-link"
+                      title="View Certificate"
+                    >
+                      📄 Preview
+                    </a>
+                  )}
+                </div>
+                <h3 className="achievement-title">{entry.title}</h3>
+              </div>
+              <p className="achievement-detail">{entry.detail}</p>
+            </article>
+          );
+        })}
       </div>
     </SectionShell>
   );

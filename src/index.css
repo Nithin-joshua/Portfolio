@@ -1552,3 +1552,40 @@ a:hover {
   color: var(--color-muted);
 }
 
+/* --- Document Preview Badges --- */
+.card-top-row,
+.achievement-meta-row,
+.publication-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.publication-meta-right {
+  display: flex;
+  align-items: center;
+}
+
+.doc-preview-link {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.82rem;
+  color: var(--color-blue) !important;
+  background: rgba(128, 187, 255, 0.08);
+  border: 1px solid rgba(128, 187, 255, 0.25);
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease, transform 180ms ease;
+}
+
+.doc-preview-link:hover {
+  background: rgba(128, 187, 255, 0.16);
+  border-color: rgba(128, 187, 255, 0.55);
+  color: var(--color-text) !important;
+  transform: translateY(-1px);
+}
+
