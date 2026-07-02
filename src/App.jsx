@@ -1,9 +1,9 @@
-// This file assembles the single-page portfolio experience.
 import SiteHeader from './components/SiteHeader';
 import HeroSection from './components/HeroSection';
 import SkillsSection from './components/SkillsSection';
 import ExperienceSection from './components/ExperienceSection';
 import ProjectsSection from './components/ProjectsSection';
+import PublicationsSection from './components/PublicationsSection';
 import EducationSection from './components/EducationSection';
 import AchievementsSection from './components/AchievementsSection';
 import CertificationsSection from './components/CertificationsSection';
@@ -35,6 +35,7 @@ function App() {
           <SkillsSection skills={portfolio.skills} />
           <ExperienceSection experience={portfolio.experience} />
           <ProjectsSection projects={portfolio.projects} />
+          <PublicationsSection publications={portfolio.publications} />
           <EducationSection education={portfolio.education} />
           <AchievementsSection achievements={portfolio.achievements} />
           <CertificationsSection certifications={portfolio.certifications} />

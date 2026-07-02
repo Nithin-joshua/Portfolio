@@ -1,9 +1,27 @@
-// This file focuses on the featured project and lays out its main technical decisions.
+import { useState, useEffect } from 'react';
 import SectionShell from './SectionShell';
 import formatDateRange from '../utils/formatDateRange';
 
 function ProjectsSection({ projects }) {
-  const { featured, cards = [] } = projects;
+  const { list = [] } = projects;
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeStepIndex, setActiveStepIndex] = useState(0);
+
+  const activeProject = list[activeIndex] || list[0];
+
+  useEffect(() => {
+    setActiveStepIndex(0);
+  }, [activeIndex]);
+
+  useEffect(() => {
+    if (!activeProject?.steps?.length) return;
+    const timer = setInterval(() => {
+      setActiveStepIndex((prev) => (prev + 1) % activeProject.steps.length);
+    }, 2500);
+    return () => clearInterval(timer);
+  }, [activeIndex, activeProject?.steps?.length]);
+
+  if (!activeProject) return null;
 
   return (
     <SectionShell
@@ -12,60 +30,104 @@ function ProjectsSection({ projects }) {
       title={projects.title}
       intro={projects.intro}
     >
+      {/* Project Selector Tabs */}
+      <div className="project-tabs" role="tablist" aria-label="Projects list">
+        {list.map((proj, idx) => (
+          <button
+            key={proj.name}
+            role="tab"
+            aria-selected={activeIndex === idx}
+            type="button"
+            className={`project-tab-button ${activeIndex === idx ? 'is-active' : ''}`}
+            onClick={() => setActiveIndex(idx)}
+          >
+            <span className="project-tab-dot" />
+            <span className="project-tab-text">{proj.shortName}</span>
+          </button>
+        ))}
+      </div>
+
       <div className="project-feature">
+        {/* Left Side: Media and Steps workflow */}
         <div className="panel project-media">
           <div className="project-glow project-glow-one" />
           <div className="project-glow project-glow-two" />
 
-          <p className="panel-kicker">{featured.shortName}</p>
-          <h3 className="project-media-title">{featured.name}</h3>
+          <p className="panel-kicker">{activeProject.shortName}</p>
+          <h3 className="project-media-title">{activeProject.name}</h3>
           <p className="project-media-date">
-            {formatDateRange(featured.start, featured.end)}
+            {formatDateRange(activeProject.start, activeProject.end)}
           </p>
 
-          <div className="project-video-wrapper">
-            <video
-              src="/project_preview.mp4"
-              autoPlay={true}
-              loop={true}
-              muted={true}
-              controls={true}
-              playsInline={true}
-              preload="auto"
-              className="project-video"
-            />
-          </div>
-
-          <div className="project-step-list">
-            {featured.steps.map((step) => (
-              <div key={step} className="project-step">
-                {step}
+          {activeProject.videoUrl ? (
+            <div className="project-video-wrapper">
+              <video
+                src={activeProject.videoUrl}
+                autoPlay={true}
+                loop={true}
+                muted={true}
+                controls={true}
+                playsInline={true}
+                preload="auto"
+                className="project-video"
+              />
+            </div>
+          ) : (
+            <div className="project-visual-placeholder">
+              <div className="placeholder-ring" />
+              <div className="placeholder-core">
+                <span className="tech-badge">{activeProject.stack[0]}</span>
               </div>
-            ))}
+            </div>
+          )}
+
+          {/* Step Pipeline Flow */}
+          <div className="project-step-list">
+            <p className="step-pipeline-title">System Pipeline & Workflow</p>
+            <div className="step-flow-container">
+              {activeProject.steps.map((step, idx) => (
+                <div
+                  key={step}
+                  className={`project-step ${activeStepIndex === idx ? 'step-active' : ''}`}
+                  onClick={() => setActiveStepIndex(idx)}
+                  role="button"
+                  tabIndex={0}
+                >
+                  <div className="step-number">{idx + 1}</div>
+                  <div className="step-name">{step}</div>
+                  {idx < activeProject.steps.length - 1 && (
+                    <div className="step-connector" />
+                  )}
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
+        {/* Right Side: Project Content Details */}
         <article className="panel project-content">
           <div className="project-content-head">
             <div>
-              <p className="panel-kicker">Project overview</p>
-              <h3 className="project-name">{featured.name}</h3>
+              <p className="panel-kicker">Project Overview</p>
+              <h3 className="project-name">{activeProject.name}</h3>
             </div>
 
-            <a
-              className="secondary-button small-button"
-              href={featured.github}
-              target="_blank"
-              rel="noreferrer"
-            >
-              View GitHub
-            </a>
+            {activeProject.github && (
+              <a
+                className="secondary-button small-button"
+                href={activeProject.github}
+                target="_blank"
+                rel="noreferrer"
+              >
+                View GitHub
+              </a>
+            )}
           </div>
 
-          <p className="project-description">{featured.description}</p>
+          <p className="project-description">{activeProject.description}</p>
 
           <div className="project-tag-row">
-            {featured.stack.map((item) => (
+            {activeProject.stack.map((item) => (
               <span key={item} className="skill-pill">
                 {item}
               </span>
@@ -73,7 +135,7 @@ function ProjectsSection({ projects }) {
           </div>
 
           <div className="project-label-grid">
-            {featured.labels.map((item) => (
+            {activeProject.labels.map((item) => (
               <div key={item.title} className="project-label-card">
                 <p className="fact-label">{item.title}</p>
                 <p className="project-label-text">{item.text}</p>
@@ -82,63 +144,12 @@ function ProjectsSection({ projects }) {
           </div>
 
           <ul className="role-list project-list">
-            {featured.bullets.map((bullet) => (
+            {activeProject.bullets.map((bullet) => (
               <li key={bullet}>{bullet}</li>
             ))}
           </ul>
         </article>
       </div>
-
-      {cards.length > 0 && (
-        <div className="project-card-grid">
-          {cards.map((project) => (
-            <article key={project.title} className="panel compact-project-card">
-              <div className="project-content-head">
-                <div>
-                  <p className="panel-kicker">Project card</p>
-                  <h3 className="project-card-title">{project.title}</h3>
-                </div>
-
-                <a
-                  className="secondary-button small-button"
-                  href={project.github}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  {project.githubLabel ?? 'View GitHub'}
-                </a>
-              </div>
-
-              <p className="project-description">{project.description}</p>
-
-              {typeof project.progress === 'number' && (
-                <div className="project-progress-block">
-                  <div className="project-progress-top">
-                    <span className="project-status-pill">
-                      {project.status ?? 'In progress'}
-                    </span>
-                    <span className="fact-label">{project.progress}%</span>
-                  </div>
-                  <div className="project-progress-track" aria-hidden="true">
-                    <div
-                      className="project-progress-fill"
-                      style={{ width: `${project.progress}%` }}
-                    />
-                  </div>
-                </div>
-              )}
-
-              <div className="project-tag-row">
-                {project.stack.map((item) => (
-                  <span key={item} className="skill-pill">
-                    {item}
-                  </span>
-                ))}
-              </div>
-            </article>
-          ))}
-        </div>
-      )}
     </SectionShell>
   );
 }

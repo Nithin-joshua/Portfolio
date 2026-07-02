@@ -8,6 +8,11 @@ export const portfolio = {
   },
   links: [
     {
+      label: 'Website',
+      shortLabel: 'Web',
+      url: 'https://nithinsprofile.vercel.app/',
+    },
+    {
       label: 'GitHub',
       shortLabel: 'GitHub',
       url: 'https://github.com/Nithin-joshua',
@@ -28,6 +33,7 @@ export const portfolio = {
     { id: 'skills', label: 'Skills' },
     { id: 'experience', label: 'Experience' },
     { id: 'projects', label: 'Projects' },
+    { id: 'publications', label: 'Publications' },
     { id: 'education', label: 'Education' },
     { id: 'achievements', label: 'Achievements' },
     { id: 'contact', label: 'Contact' },
@@ -38,7 +44,7 @@ export const portfolio = {
     availability: 'Available immediately for full-time opportunities',
     titleLines: ['Nithin V'],
     intro:
-      'Developer based in Bangalore, finishing my MCA. Most of what I do lives on the backend - APIs, data pipelines, and the systems users never see but always feel; lately that has meant building a voice authentication system and an anomaly detection pipeline for smart electricity grids, both centered on solving complex problems below the surface.',
+      'Developer based in Bangalore, finishing my MCA. I design and build end-to-end full-stack applications, delivering robust backend systems, data pipelines, and intuitive interfaces; lately that has meant engineering an enterprise-grade AI document processing platform and a voice authentication system, both focused on solving complex problems with high performance and clean architecture.',
     primaryAction: {
       label: 'Download Resume',
       url: '/Nithin_V_Resume.pdf',
@@ -53,29 +59,29 @@ export const portfolio = {
       cardLabel: 'Recruiter View',
       cardTitle: 'Full-Stack Fit',
       cardText:
-        'Entry-level developer with internship experience across UI, APIs, testing, automation, and applied AI/ML builds. Strong fit for teams hiring versatile engineers who can learn quickly, own tasks, and contribute across the stack.',
+        'Versatile developer with internship experience across UI/UX (Next.js/React), backend APIs (FastAPI/Spring Boot), databases (PostgreSQL/SQLAlchemy), testing, and applied AI/ML pipelines (LLMs/SpeechBrain/LSTM).',
       featureLabel: 'Featured build',
       featureTitle: 'Bio.VAN',
       featureText:
         'Voice authentication platform using speaker embeddings, similarity search, and a lightweight backend pipeline.',
       featureTags: ['Python', 'FastAPI', 'AI'],
       secondaryFeature: {
-        label: 'Also in progress',
-        title: 'Smart Grid Anomaly Detection',
+        label: 'Also featured',
+        title: 'DocIntel Platform',
         text:
-          'IoT-based anomaly detection pipeline using LSTM autoencoders to flag unusual electricity usage patterns.',
-        tags: ['Python', 'IoT', 'LSTM'],
-        status: 'In progress',
+          'Enterprise AI document processing platform automating OCR, classification, and structured data generation.',
+        tags: ['FastAPI', 'LLMs', 'Next.js'],
+        status: 'Active',
       },
       featureAction: 'Project details',
       stats: [
         { label: 'Education', value: 'MCA, Bangalore' },
-        { label: 'Experience', value: '2 internships' },
+        { label: 'Experience', value: '3 internships' },
         { label: 'Focus', value: 'Full-Stack + AI/ML' },
         { label: 'Location', value: 'Bangalore, Karnataka' },
       ],
       quote:
-        'I focus on building software that is reliable, easy to understand, and useful from day one.',
+        'I focus on building software that is reliable, clean, easy to understand, and useful from day one.',
     },
   },
   skills: {
@@ -83,50 +89,45 @@ export const portfolio = {
     kicker: 'Skills',
     title: 'Core Skills',
     intro:
-      'Hands-on technologies I use across frontend, backend, databases, testing, and AI/ML experimentation.',
+      'Hands-on technologies I use across frontend, backend, databases, and DevOps practices.',
     skillGroups: [
       {
-        title: 'Core stack',
+        title: 'Programming Languages',
         items: [
-          { name: 'Python', level: 75 },
-          { name: 'Java', level: 60 },
-          { name: 'JavaScript', level: 60 },
-          { name: 'C', level: 50 },
+          { name: 'Python', level: 85 },
+          { name: 'Java', level: 75 },
+          { name: 'JavaScript', level: 70 },
+          { name: 'C', level: 60 },
         ],
       },
       {
         title: 'Frontend',
         items: [
-          { name: 'HTML', level: 85 },
-          { name: 'CSS', level: 80 },
-          { name: 'JavaScript', level: 60 },
-          { name: 'React', level: 40 },
+          { name: 'HTML', level: 90 },
+          { name: 'CSS', level: 85 },
+          { name: 'React', level: 70 },
+          { name: 'Tailwind CSS', level: 80 },
+          { name: 'Next.js', level: 75 },
         ],
       },
       {
-        title: 'Data and tools',
+        title: 'Backend',
         items: [
-          { name: 'PostgreSQL', level: 75 },
-          { name: 'MongoDB', level: 50 },
-          { name: 'Oracle SQL', level: 70 },
+          { name: 'FastAPI', level: 85 },
+          { name: 'Django', level: 75 },
         ],
       },
       {
-        title: 'Supporting work',
+        title: 'Databases',
         items: [
-          { name: 'MATLAB', level: 35 },
-          { name: 'Testing', level: 60 },
-          { name: 'Debugging', level: 75 },
-          { name: 'Docker', level: 50 },
+          { name: 'PostgreSQL', level: 80 },
+          { name: 'MongoDB', level: 65 },
         ],
       },
       {
-        title: 'Frameworks',
+        title: 'DevOps',
         items: [
-          { name: 'Flask', level: 55 },
-          { name: 'Django', level: 50 },
-          { name: 'FastAPI', level: 60 },
-          { name: 'React', level: 40 },
+          { name: 'Docker', level: 75 },
         ],
       },
     ],
@@ -136,8 +137,25 @@ export const portfolio = {
     kicker: 'Experience',
     title: 'Internships and Practical Experience',
     intro:
-      'Internship experience spanning business application delivery, QA-focused debugging, and automation support in production environments.',
+      'Internship experience spanning business application delivery, full-stack development, and process automation in production environments.',
     roles: [
+      {
+        company: 'Asista Software Solutions Pvt Ltd',
+        role: 'Software Developer Intern',
+        location: 'Bangalore',
+        start: '2026-05',
+        end: 'Present',
+        focus: 'FastAPI, PostgreSQL, Next.js, Docker, AI',
+        summary:
+          'Contributed to the development of an enterprise-grade, AI-powered Accounts Payable (AP) Automation System.',
+        bullets: [
+          'Contributed to the development of an AI-powered Accounts Payable (AP) Automation System.',
+          'Developed backend APIs using FastAPI and managed PostgreSQL databases with SQLAlchemy.',
+          'Built frontend components using Next.js and TypeScript.',
+          'Integrated AI-based invoice data extraction and used Docker for containerized development.',
+        ],
+        tools: ['FastAPI', 'PostgreSQL', 'Next.js', 'TypeScript', 'Docker', 'AI/LLMs'],
+      },
       {
         company: 'Dyashin Technosoft Pvt. Ltd.',
         role: 'Java Full Stack Intern',
@@ -178,46 +196,116 @@ export const portfolio = {
     title: 'Selected Projects',
     intro:
       'Projects that show range across backend engineering, applied AI/ML, and real-world problem solving.',
-    featured: {
-      name: 'Biometric Voice Authentication System',
-      shortName: 'Bio.VAN',
-      start: '2025-11',
-      end: '2026-02',
-      description:
-        'Voice-based authentication system using speaker recognition, FastAPI, and fast similarity search.',
-      stack: ['Python', 'FastAPI', 'Milvus', 'SpeechBrain', 'Docker'],
-      github: 'https://github.com/Nithin-joshua/Bio.VAN',
-      labels: [
-        {
-          title: 'Recognition',
-          text: 'SpeechBrain-based speaker recognition for voice matching.',
-        },
-        {
-          title: 'Search',
-          text: 'Milvus-powered similarity search for quick authentication checks.',
-        },
-        {
-          title: 'Backend',
-          text: 'FastAPI backend designed for modular testing and deployment.',
-        },
-      ],
-      bullets: [
-        'Built speaker verification with ECAPA-TDNN embeddings and SpeechBrain.',
-        'Integrated FastAPI with Milvus for near-real-time similarity matching.',
-        'Containerized the service with Docker for simpler testing and deployment.',
-      ],
-      steps: ['Voice sample', 'Embedding', 'Similarity search', 'Authentication'],
-    },
-    cards: [
+    list: [
       {
-        title: 'Smart Electricity Grid Anomaly Detection System',
+        name: 'Biometric Voice Authentication System',
+        shortName: 'Bio.VAN',
+        start: '2025-11',
+        end: '2026-02',
         description:
-          'IoT-based anomaly detection system that flags unusual electricity usage patterns using LSTM autoencoders.',
-        stack: ['Python', 'IoT', 'LSTM Autoencoders', 'TensorFlow', 'Time Series'],
+          'Voice-based authentication system using speaker recognition, FastAPI, and fast similarity search.',
+        stack: ['Python', 'FastAPI', 'Milvus', 'SpeechBrain', 'Docker'],
+        github: 'https://github.com/Nithin-joshua/Bio.VAN',
+        videoUrl: '/project_preview.mp4',
+        steps: ['Voice sample', 'Embedding', 'Similarity search', 'Authentication'],
+        labels: [
+          {
+            title: 'Recognition',
+            text: 'SpeechBrain-based speaker recognition for voice matching.',
+          },
+          {
+            title: 'Search',
+            text: 'Milvus-powered similarity search for quick authentication checks using cosine similarity and encrypted embeddings.',
+          },
+          {
+            title: 'Backend',
+            text: 'FastAPI backend designed for modular testing, optimized with lightweight preprocessing and modular architecture.',
+          },
+        ],
+        bullets: [
+          'Built speaker verification with ECAPA-TDNN embeddings and SpeechBrain.',
+          'Developed backend with FastAPI + Milvus, using cosine similarity and encrypted embeddings.',
+          'Optimized with lightweight preprocessing and modular architecture for efficient deployment.',
+        ],
+      },
+      {
+        name: 'AI Document Intelligent Platform',
+        shortName: 'DocIntel',
+        start: '2026-06',
+        end: 'Present',
+        description:
+          'Engineered an enterprise-grade AI document processing platform using FastAPI, PostgreSQL, React/Next.js, Docker, and LLMs.',
+        stack: ['Python', 'FastAPI', 'PostgreSQL', 'React/Next.js', 'Docker', 'LLMs'],
         github: 'https://github.com/Nithin-joshua',
-        githubLabel: 'GitHub profile',
-        status: 'In progress',
-        progress: 70,
+        videoUrl: '',
+        steps: ['Document Ingestion', 'OCR & Extraction', 'Confidence Scoring', 'Human Review & Approval'],
+        labels: [
+          {
+            title: 'Extraction',
+            text: 'Automated OCR-based extraction, document classification, and structured data generation.',
+          },
+          {
+            title: 'Workflow',
+            text: 'Designed a modular workflow supporting document ingestion, human review, approval workflows, and audit logging.',
+          },
+          {
+            title: 'API',
+            text: 'Built scalable REST APIs and integrated asynchronous background processing for high-volume document workflows.',
+          },
+        ],
+        bullets: [
+          'Engineered an enterprise-grade AI document processing platform using FastAPI, PostgreSQL, React/Next.js, Docker, and LLMs.',
+          'Automated OCR-based extraction, document classification, structured data generation, confidence scoring, and rule-based validation.',
+          'Designed a modular workflow supporting document ingestion, human review, approval workflows, audit logging, and analytics dashboards.',
+          'Built scalable REST APIs and integrated asynchronous background processing for efficient handling of high-volume document workflows.',
+        ],
+      },
+      {
+        name: 'Smart Electricity Grid Anomaly Detection System',
+        shortName: 'SmartGrid',
+        start: '2026-03',
+        end: 'Present',
+        description:
+          'IoT-based anomaly detection system that flags unusual electricity usage patterns using LSTM autoencoders and TensorFlow Lite.',
+        stack: ['Python', 'IoT', 'LSTM Autoencoders', 'TensorFlow Lite', 'MQTT', 'InfluxDB', 'Grafana', 'Docker'],
+        github: 'https://github.com/Nithin-joshua/Smart-Electricity-Grid-Anomaly-Detection-System',
+        videoUrl: '',
+        steps: ['Data Streaming', 'LSTM Autoencoder', 'Anomaly Detection', 'Grafana Alerting'],
+        labels: [
+          {
+            title: 'Core Engine',
+            text: 'Detects energy theft and abnormal consumption patterns in real time using an LSTM Autoencoder and TensorFlow Lite.',
+          },
+          {
+            title: 'Simulation',
+            text: 'Simulates 50 smart electricity meters with sub-5-second anomaly detection.',
+          },
+          {
+            title: 'Monitoring',
+            text: 'Leveraged MQTT for data streaming, InfluxDB and Grafana for monitoring, and Docker Compose for portable deployment.',
+          },
+        ],
+        bullets: [
+          'Built an IoT-based Smart Grid Anomaly Detection System that simulates 50 smart electricity meters and detects energy theft and abnormal consumption patterns in real time.',
+          'Utilized LSTM Autoencoders and TensorFlow Lite with sub-5-second anomaly detection latency.',
+          'Leveraged MQTT for data streaming, InfluxDB and Grafana for monitoring, and Docker Compose for portable deployment.',
+        ],
+      },
+    ],
+  },
+  publications: {
+    id: 'publications',
+    kicker: 'Publications',
+    title: 'Research & Publications',
+    intro: 'Academic publications contributing to research in Large Language Models and intelligent language processing.',
+    entries: [
+      {
+        title: 'Large Language Processing and Comparative Analysis with Traditional Machine Learning Models',
+        authors: 'Co-Author',
+        publishedIn: 'Role of Green Smart Technology for Sustainable Future (TGST-2026)',
+        isbn: '978-93-6163-972-2',
+        detail:
+          'Co-Author of the research paper comparing Large Language Models against traditional machine learning approaches. Published in the Role of Green Smart Technology for Sustainable Future (TGST-2026) Conference Proceedings (ISBN: 978-93-6163-972-2).',
       },
     ],
   },
@@ -233,7 +321,7 @@ export const portfolio = {
         school: 'St. Francis de Sales College Autonomous',
         location: 'Bangalore',
         start: '2024-09',
-        end: '2026-09',
+        end: '2026-08',
       },
       {
         degree: 'B.Sc. Computer Science & Electronics',
@@ -254,7 +342,7 @@ export const portfolio = {
       {
         title: 'UGC-NET December 2025',
         detail:
-          'Demonstrated advanced Computer Science knowledge at the national level with a 93.71 percentile in UGC-NET December 2025, reflecting strong theoretical grounding, analytical depth, and research aptitude.',
+          'Qualified UGC-NET in Computer Science & Applications with a 93.71 percentile, demonstrating academic proficiency and earning eligibility for Assistant Professor positions and Ph.D. admission across recognized Indian universities.',
         label: '93.71 percentile',
       },
     ],
@@ -264,7 +352,7 @@ export const portfolio = {
     kicker: 'Certificates',
     title: 'Certifications',
     intro:
-      'Core certifications strengthening programming fundamentals and applied Python knowledge.',
+      'Core certifications strengthening programming fundamentals and applied technology knowledge.',
     entries: [
       {
         name: 'Python Certificate Course',
@@ -281,6 +369,10 @@ export const portfolio = {
       {
         name: 'DSA Mastery with Java',
         issuer: 'ExcelR',
+      },
+      {
+        name: 'PHP & SQL',
+        issuer: 'IIT Bombay',
       },
     ],
   },
@@ -310,6 +402,11 @@ export const portfolio = {
         label: 'LinkedIn',
         value: 'linkedin.com/in/nithin-v-b13949198',
         url: 'https://www.linkedin.com/in/nithin-v-b13949198',
+      },
+      {
+        label: 'Website',
+        value: 'nithinsprofile.vercel.app',
+        url: 'https://nithinsprofile.vercel.app/',
       },
     ],
   },
