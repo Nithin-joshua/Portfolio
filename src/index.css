@@ -713,11 +713,17 @@ a:hover {
 }
 
 .about-layout,
-.project-feature,
 .contact-panel {
   display: grid;
   grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr);
   gap: 16px;
+}
+
+.project-feature {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: 16px;
+  align-items: start;
 }
 
 .about-copy-panel,
@@ -1011,7 +1017,7 @@ a:hover {
 }
 
 .project-label-grid {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   margin-top: 20px;
 }
 
