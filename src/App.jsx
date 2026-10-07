@@ -45,6 +45,16 @@ function App() {
 
         <SiteFooter />
       </div>
+
+      {/* Floating Contact Button (Mobile-only <=768px) */}
+      <a
+        href="#contact"
+        className="floating-contact-btn"
+        aria-label="Contact Nithin"
+      >
+        <span className="floating-contact-icon">💬</span>
+        <span className="floating-contact-text">Contact</span>
+      </a>
     </div>
   );
 }

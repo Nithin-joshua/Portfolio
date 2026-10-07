@@ -43,16 +43,20 @@ export const portfolio = {
   ],
   hero: {
     id: 'hero',
-    headline: 'Building Production-Grade Backend & AI Systems',
-    subtitle: 'Full-Stack & Applied AI Engineer • UGC-NET Qualified',
-    availability: 'Available for Full-Time Roles • Bangalore / Remote',
+    headline: 'Backend & AI Systems Engineer',
+    availability: 'Open to roles • Bangalore/Remote',
+    subtext: 'Python, FastAPI, PostgreSQL, Celery. Voice biometrics, invoice pipelines, IoT.',
     intro:
-      'I build practical, production-grade software systems using Python, FastAPI, Django, PostgreSQL, and Docker. Experienced in building voice biometric authentication (Bio.V), 9-stage asynchronous invoice processing pipelines (Celery/FastAPI), and IoT anomaly detection systems.',
+      'I architect and ship production-grade backend services and applied AI systems with FastAPI, Python, PostgreSQL, and Docker.',
     primaryAction: {
-      label: 'Explore Projects',
+      label: 'View Projects',
       target: 'projects',
     },
     secondaryAction: {
+      label: 'Contact',
+      target: 'contact',
+    },
+    resumeAction: {
       label: 'Download Resume',
       url: '/Nithin_V_Resume.pdf',
       downloadName: 'Nithin_V_Resume.pdf',

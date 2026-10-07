@@ -2,6 +2,93 @@ import { useState, useEffect } from 'react';
 import SectionShell from './SectionShell';
 import formatDateRange from '../utils/formatDateRange';
 
+function MobileProjectCard({ proj }) {
+  const [expanded, setExpanded] = useState(false);
+  const maxStack = 4;
+  const visibleStack = proj.stack.slice(0, maxStack);
+  const remainingStackCount = proj.stack.length - maxStack;
+
+  return (
+    <article className="panel mobile-project-card">
+      <div className="mobile-project-header">
+        <div>
+          <span className="panel-kicker">{proj.shortName}</span>
+          <h3 className="mobile-project-title">{proj.name}</h3>
+        </div>
+        {proj.github && (
+          <a
+            href={proj.github}
+            target="_blank"
+            rel="noreferrer"
+            className="mobile-project-link-btn"
+            aria-label="GitHub Repository"
+          >
+            GitHub ↗
+          </a>
+        )}
+      </div>
+
+      <p className="mobile-project-summary">{proj.description}</p>
+
+      {/* Max 4 Tech Chips visible */}
+      <div className="mobile-project-chips">
+        {visibleStack.map((tech) => (
+          <span key={tech} className="tech-badge-chip">
+            {tech}
+          </span>
+        ))}
+        {remainingStackCount > 0 && !expanded && (
+          <span className="tech-badge-chip more-chip">+{remainingStackCount}</span>
+        )}
+      </div>
+
+      <button
+        type="button"
+        className="mobile-project-expand-btn"
+        onClick={() => setExpanded(!expanded)}
+        aria-expanded={expanded}
+      >
+        {expanded ? 'Hide Architecture & Workflow ▲' : 'View Architecture & Workflow ▼'}
+      </button>
+
+      {expanded && (
+        <div className="mobile-project-details">
+          {proj.videoUrl && (
+            <div className="mobile-project-video-wrap">
+              <video
+                src={proj.videoUrl}
+                controls
+                playsInline
+                preload="none"
+                className="mobile-project-video"
+              />
+            </div>
+          )}
+
+          {proj.steps?.length > 0 && (
+            <div className="mobile-project-pipeline">
+              <p className="pipeline-mini-title">Pipeline Workflow</p>
+              <div className="mobile-pipeline-chips">
+                {proj.steps.map((st, i) => (
+                  <span key={st} className="pipeline-step-chip">
+                    {i + 1}. {st}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <ul className="role-list project-list">
+            {proj.bullets.map((b) => (
+              <li key={b}>{b}</li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </article>
+  );
+}
+
 function ProjectsSection({ projects }) {
   const { list = [] } = projects;
   const [activeIndex, setActiveIndex] = useState(0);
@@ -30,8 +117,17 @@ function ProjectsSection({ projects }) {
       title={projects.title}
       intro={projects.intro}
     >
-      {/* Project Selector Tabs */}
-      <div className="project-tabs" role="tablist" aria-label="Projects list">
+      {/* Mobile Single-Column Project Cards (<768px) */}
+      <div className="mobile-projects-container">
+        {list.map((proj) => (
+          <MobileProjectCard key={proj.name} proj={proj} />
+        ))}
+      </div>
+
+      {/* Desktop Interactive Tabbed View (>=768px) */}
+      <div className="desktop-projects-container">
+        {/* Project Selector Tabs */}
+        <div className="project-tabs" role="tablist" aria-label="Projects list">
         {list.map((proj, idx) => (
           <button
             key={proj.name}
@@ -149,6 +245,7 @@ function ProjectsSection({ projects }) {
             ))}
           </ul>
         </article>
+      </div>
       </div>
     </SectionShell>
   );

@@ -19,10 +19,46 @@ function CredentialsSection({ education, achievements, certifications }) {
       title="Education & Credentials"
       intro="My academic background, professional certifications, and recognitions."
     >
-      <div className="credentials-container" style={{ display: 'flex', flexDirection: 'column', gap: '3rem', width: '100%' }}>
+      <div className="credentials-container">
+        {/* Achievements / UGC-NET Recognition */}
+        <div className="credentials-group">
+          <h3 className="credentials-group-title">
+            National Qualifications & Recognitions
+          </h3>
+          <div className="achievements-list">
+            {achievements.entries.map((entry) => {
+              const isUgcNet = entry.title.includes('UGC-NET');
+              const link = isUgcNet ? privateLinks.achievements.ugcNet : '';
+
+              return (
+                <article key={entry.title} className="panel achievement-card featured-credential-card">
+                  <div className="achievement-head">
+                    <div className="achievement-meta-row">
+                      <span className="panel-kicker highlighted-kicker">{entry.label}</span>
+                      {link && (
+                        <a
+                          href={link}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="doc-preview-link"
+                          title="View Certificate"
+                        >
+                          📄 Preview Certificate
+                        </a>
+                      )}
+                    </div>
+                    <h3 className="achievement-title">{entry.title}</h3>
+                  </div>
+                  <p className="achievement-detail">{entry.detail}</p>
+                </article>
+              );
+            })}
+          </div>
+        </div>
+
         {/* Education Sub-group */}
         <div className="credentials-group">
-          <h3 className="credentials-group-title" style={{ fontSize: '1.5rem', fontWeight: 600, marginBottom: '1.5rem', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '0.5rem' }}>
+          <h3 className="credentials-group-title">
             Education
           </h3>
           <div className="education-grid">
@@ -37,45 +73,9 @@ function CredentialsSection({ education, achievements, certifications }) {
           </div>
         </div>
 
-        {/* Achievements Sub-group */}
-        <div className="credentials-group">
-          <h3 className="credentials-group-title" style={{ fontSize: '1.5rem', fontWeight: 600, marginBottom: '1.5rem', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '0.5rem' }}>
-            Achievements
-          </h3>
-          <div className="achievements-list" style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '1.5rem' }}>
-            {achievements.entries.map((entry) => {
-              const isUgcNet = entry.title.includes('UGC-NET');
-              const link = isUgcNet ? privateLinks.achievements.ugcNet : '';
-
-              return (
-                <article key={entry.title} className="panel achievement-card">
-                  <div className="achievement-head">
-                    <div className="achievement-meta-row">
-                      <span className="panel-kicker">{entry.label}</span>
-                      {link && (
-                        <a
-                          href={link}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="doc-preview-link"
-                          title="View Certificate"
-                        >
-                          📄 Preview
-                        </a>
-                      )}
-                    </div>
-                    <h3 className="achievement-title">{entry.title}</h3>
-                  </div>
-                  <p className="achievement-detail">{entry.detail}</p>
-                </article>
-              );
-            })}
-          </div>
-        </div>
-
         {/* Certifications Sub-group */}
         <div className="credentials-group">
-          <h3 className="credentials-group-title" style={{ fontSize: '1.5rem', fontWeight: 600, marginBottom: '1.5rem', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '0.5rem' }}>
+          <h3 className="credentials-group-title">
             Certifications
           </h3>
           <div className="certification-grid">

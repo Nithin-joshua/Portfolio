@@ -16,65 +16,61 @@ function HeroSection({ hero, links }) {
     >
       <div className="hero-top">
         <div className="hero-copy">
-          {hero.availability && (
-            <div className="hero-availability-row">
-              <span className="availability-pill">
-                <span className="live-status-dot" />
-                {hero.availability}
-              </span>
-            </div>
-          )}
-
-          <h1 className="hero-headline-title">
-            {hero.headline || 'Building Production-Grade Backend & AI Systems'}
-          </h1>
-
-          {hero.subtitle && (
-            <p className="hero-role-subtitle">{hero.subtitle}</p>
-          )}
-
-          <p className="hero-intro">{hero.intro}</p>
-
-          <div className="hero-actions">
-            {hero.primaryAction.url ? (
-              <a
-                className="primary-button"
-                href={hero.primaryAction.url}
-                download={hero.primaryAction.downloadName}
-              >
-                {hero.primaryAction.label}
-              </a>
-            ) : (
-              <button
-                type="button"
-                className="primary-button"
-                onClick={() => scrollToSection(hero.primaryAction.target)}
-              >
-                {hero.primaryAction.label}
-              </button>
+          <div className="hero-text-block">
+            {hero.availability && (
+              <div className="hero-availability-row">
+                <span className="availability-pill">
+                  <span className="live-status-dot" />
+                  {hero.availability}
+                </span>
+              </div>
             )}
 
-            <button
-              type="button"
-              className="secondary-button"
-              onClick={() => scrollToSection(hero.secondaryAction.target)}
-            >
-              {hero.secondaryAction.label}
-            </button>
+            <h1 className="hero-headline-title">
+              {hero.headline || 'Backend & AI Systems Engineer'}
+            </h1>
+
+            {hero.subtext && (
+              <p className="hero-subtext">{hero.subtext}</p>
+            )}
+
+            {hero.intro && (
+              <p className="hero-intro desktop-only-text">{hero.intro}</p>
+            )}
           </div>
 
-          <div className="hero-link-row">
-            {links.map((link) => (
-              <a
-                key={link.label}
-                className="link-pill"
-                href={link.url}
-                target={link.url.startsWith('http') ? '_blank' : undefined}
-                rel={link.url.startsWith('http') ? 'noreferrer' : undefined}
+          <div className="hero-cta-block">
+            <div className="hero-actions">
+              <button
+                type="button"
+                className="primary-button hero-cta-btn"
+                onClick={() => scrollToSection(hero.primaryAction?.target || 'projects')}
               >
-                {link.shortLabel}
-              </a>
-            ))}
+                {hero.primaryAction?.label || 'View Projects'}
+              </button>
+
+              <button
+                type="button"
+                className="secondary-button hero-cta-btn"
+                onClick={() => scrollToSection(hero.secondaryAction?.target || 'contact')}
+              >
+                {hero.secondaryAction?.label || 'Contact'}
+              </button>
+            </div>
+
+            <div className="hero-link-row">
+              {links.map((link) => (
+                <a
+                  key={link.label}
+                  className="link-pill"
+                  href={link.url}
+                  target={link.url.startsWith('http') ? '_blank' : undefined}
+                  rel={link.url.startsWith('http') ? 'noreferrer' : undefined}
+                >
+                  {link.shortLabel}
+                </a>
+              ))}
+            </div>
           </div>
         </div>
       </div>
