@@ -65,11 +65,14 @@ function SiteHeader({ logo, navigation, activeSectionId, resume }) {
         </div>
 
         {/* Mobile Hamburger Button (Hidden on desktop) */}
-        <div className="header-right mobile-toggle-wrapper">
+        <div className="mobile-toggle-wrapper">
           <button
             type="button"
             className={`mobile-menu-toggle ${isOpen ? 'is-active' : ''}`}
-            onClick={() => setIsOpen(!isOpen)}
+            onClick={(e) => {
+              e.stopPropagation();
+              setIsOpen((prev) => !prev);
+            }}
             aria-label={isOpen ? 'Close navigation' : 'Open navigation'}
             aria-expanded={isOpen}
           >
