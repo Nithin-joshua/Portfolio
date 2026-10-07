@@ -1,6 +1,10 @@
 // This file holds all portfolio content in one place so it is easy to update later.
 export const portfolio = {
   brand: 'NV',
+  logo: {
+    src: '/logo-transparent.png',
+    alt: 'Nithin V',
+  },
   resume: {
     label: 'Resume',
     url: '/Nithin_V_Resume.pdf',
@@ -39,93 +43,65 @@ export const portfolio = {
   ],
   hero: {
     id: 'hero',
-    headline: 'Full-Stack Developer | AI/ML Systems | Open to Opportunities',
-    availability: 'Available immediately for full-time opportunities',
-    titleLines: ['Nithin V'],
+    headline: 'Building Production-Grade Backend & AI Systems',
+    subtitle: 'Full-Stack & Applied AI Engineer • UGC-NET Qualified',
+    availability: 'Available for Full-Time Roles • Bangalore / Remote',
     intro:
-      'I build practical, production-grade software systems using Python, FastAPI, Django, PostgreSQL, and Docker, and break down complex backend and CS concepts into explanations that stick. I care about why a system is designed a certain way as much as shipping something maintainable and industry-ready — whether I\'m architecting a backend or teaching the concepts behind it.',
+      'I build practical, production-grade software systems using Python, FastAPI, Django, PostgreSQL, and Docker. Experienced in building voice biometric authentication (Bio.V), 9-stage asynchronous invoice processing pipelines (Celery/FastAPI), and IoT anomaly detection systems.',
     primaryAction: {
+      label: 'Explore Projects',
+      target: 'projects',
+    },
+    secondaryAction: {
       label: 'Download Resume',
       url: '/Nithin_V_Resume.pdf',
       downloadName: 'Nithin_V_Resume.pdf',
     },
-    secondaryAction: {
-      label: 'View Projects',
-      target: 'projects',
-    },
     board: {
-      sectionTabs: ['Profile', 'Projects', 'Experience', 'Contact'],
-      cardLabel: 'Recruiter View',
-      cardTitle: 'Full-Stack Fit',
+      sectionTabs: ['Bio.V', 'AP Automation', 'Smart Grid', 'Research'],
+      cardLabel: 'Engineering Focus',
+      cardTitle: 'Scalable Systems & Applied ML',
       cardText:
-        'Versatile developer with internship experience across UI/UX (Next.js/React), backend APIs (FastAPI/Spring Boot), databases (PostgreSQL/SQLAlchemy), testing, and applied AI/ML pipelines (LLMs/SpeechBrain/LSTM).',
-      featureLabel: 'Featured build',
-      featureTitle: 'AP Automation System',
+        'Hands-on expertise across backend microservices (FastAPI/Spring Boot), production databases (PostgreSQL/SQLAlchemy/Milvus), and applied AI/ML pipelines (ECAPA-TDNN, SpeechBrain, Celery async queues).',
+      featureLabel: 'Flagship Architecture',
+      featureTitle: 'Voice Biometric Authentication',
       featureText:
-        'AI-powered Accounts Payable automation system with a 9-stage invoice extraction pipeline end-to-end, async Celery tasks, and rule-based validation.',
-      featureTags: ['FastAPI', 'Celery', 'React', 'Docker'],
-      featureAction: 'Project details',
+        'Bio.V platform combining ECAPA-TDNN speaker verification, RawNet2 anti-spoofing, and Milvus vector similarity search with offline Vosk ASR.',
+      featureTags: ['FastAPI', 'Milvus', 'SpeechBrain', 'Docker'],
+      featureAction: 'View Bio.V Details',
     },
   },
   skills: {
     id: 'skills',
-    kicker: 'Skills',
-    title: 'Core Skills',
+    kicker: 'Technical Stack',
+    title: 'Core Technologies & Architecture',
     intro:
-      'Hands-on technologies I use across frontend, backend, databases, and DevOps practices.',
+      'Production-tested technologies across backend architecture, applied AI/ML, databases, and DevOps.',
     skillGroups: [
       {
-        title: 'Languages',
-        items: [
-          { name: 'Python', level: 90 },
-          { name: 'Java', level: 80 },
-          { name: 'JavaScript', level: 75 },
-          { name: 'C', level: 65 },
-        ],
+        title: 'Backend & Systems',
+        category: 'backend',
+        items: ['FastAPI', 'Python', 'Java', 'Spring Boot', 'Django', 'Celery', 'REST APIs', 'JWT Auth'],
       },
       {
-        title: 'Backend',
-        items: [
-          { name: 'FastAPI', level: 90 },
-          { name: 'Django', level: 80 },
-          { name: 'REST APIs', level: 85 },
-        ],
+        title: 'Applied AI & ML',
+        category: 'ai',
+        items: ['SpeechBrain', 'ECAPA-TDNN', 'RawNet2', 'Vosk ASR', 'TensorFlow Lite', 'LLMs & Prompting', 'RapidOCR'],
       },
       {
-        title: 'Frontend',
-        items: [
-          { name: 'React', level: 80 },
-          { name: 'Next.js', level: 75 },
-          { name: 'HTML5 & CSS3', level: 90 },
-          { name: 'Tailwind CSS', level: 85 },
-        ],
+        title: 'Databases & Storage',
+        category: 'database',
+        items: ['PostgreSQL', 'Milvus Vector DB', 'SQLAlchemy', 'InfluxDB', 'MySQL', 'MongoDB'],
       },
       {
-        title: 'Databases',
-        items: [
-          { name: 'PostgreSQL', level: 85 },
-          { name: 'MySQL', level: 75 },
-          { name: 'MongoDB', level: 70 },
-          { name: 'SQLAlchemy', level: 85 },
-        ],
+        title: 'DevOps & Tooling',
+        category: 'devops',
+        items: ['Docker', 'Docker Compose', 'Git & GitHub', 'Postman', 'Linux / Bash', 'Grafana / MQTT'],
       },
       {
-        title: 'AI & Machine Learning',
-        items: [
-          { name: 'TensorFlow Lite', level: 70 },
-          { name: 'LLMs', level: 80 },
-          { name: 'OCR', level: 80 },
-          { name: 'SpeechBrain', level: 75 },
-        ],
-      },
-      {
-        title: 'DevOps & Tools',
-        items: [
-          { name: 'Docker', level: 80 },
-          { name: 'Git & GitHub', level: 85 },
-          { name: 'Postman', level: 80 },
-          { name: 'VS Code', level: 90 },
-        ],
+        title: 'Frontend & UI',
+        category: 'frontend',
+        items: ['React', 'Next.js', 'JavaScript (ES6+)', 'Tailwind CSS', 'HTML5 & CSS3'],
       },
     ],
   },

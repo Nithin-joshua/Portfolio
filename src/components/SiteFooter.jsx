@@ -7,6 +7,13 @@ function SiteFooter() {
   return (
     <footer className="site-footer">
       <div className="footer-content">
+        <div className="footer-brand">
+          <img
+            src="/logo-transparent.png"
+            alt="Nithin V signature"
+            className="footer-signature-img"
+          />
+        </div>
         <div className="footer-info">
           <span className="footer-info-item">Based in Bangalore</span>
           <span className="footer-info-item">Fullstack & AI/ML</span>

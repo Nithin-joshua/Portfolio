@@ -20,13 +20,14 @@ function App() {
       <div className="page-ring ring-two" />
       <div className="page-ring ring-three" />
 
+      <SiteHeader
+        logo={portfolio.logo}
+        navigation={portfolio.navigation}
+        activeSectionId={activeSectionId}
+        resume={portfolio.resume}
+      />
+
       <div className="app-inner">
-        <SiteHeader
-          brand={portfolio.brand}
-          navigation={portfolio.navigation}
-          activeSectionId={activeSectionId}
-          resume={portfolio.resume}
-        />
 
         <main className="page-content">
           <HeroSection hero={portfolio.hero} links={portfolio.links} />

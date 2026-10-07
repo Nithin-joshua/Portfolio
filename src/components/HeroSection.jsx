@@ -18,19 +18,20 @@ function HeroSection({ hero, links }) {
         <div className="hero-copy">
           {hero.availability && (
             <div className="hero-availability-row">
-              <span className="availability-pill">{hero.availability}</span>
+              <span className="availability-pill">
+                <span className="live-status-dot" />
+                {hero.availability}
+              </span>
             </div>
           )}
 
-          {hero.headline && <p className="hero-headline">{hero.headline}</p>}
-
-          <h1 className="hero-title">
-            {hero.titleLines.map((line) => (
-              <span key={line} className="hero-title-line">
-                {line}
-              </span>
-            ))}
+          <h1 className="hero-headline-title">
+            {hero.headline || 'Building Production-Grade Backend & AI Systems'}
           </h1>
+
+          {hero.subtitle && (
+            <p className="hero-role-subtitle">{hero.subtitle}</p>
+          )}
 
           <p className="hero-intro">{hero.intro}</p>
 
@@ -91,7 +92,7 @@ function HeroSection({ hero, links }) {
               ))}
             </div>
 
-            <div className="preview-corner">NV</div>
+            <div className="preview-corner">ARCH</div>
           </div>
 
           <div className="preview-grid">
