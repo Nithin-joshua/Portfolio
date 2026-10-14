@@ -1,7 +1,9 @@
 /* This file defines the global visual system, layout, and responsive styling for the portfolio. */
-@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Open+Sans:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap');
 
 :root {
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', ui-monospace, monospace;
   --color-bg: #0d0d0e;
   --color-panel: rgba(17, 17, 18, 0.9);
   --color-panel-strong: rgba(12, 12, 13, 0.96);
@@ -61,9 +63,12 @@ body {
     radial-gradient(circle at 78% 18%, rgba(103, 160, 255, 0.08), transparent 26%),
     linear-gradient(180deg, #0a0a0a 0%, #111112 30%, #0d0d0e 100%);
   color: var(--color-text);
-  font-family: 'Open Sans', sans-serif;
-  font-size: clamp(0.95rem, 1.8vw, 1.1rem);
-  line-height: 1.5;
+  font-family: var(--font-sans);
+  font-size: clamp(0.95rem, 1.8vw, 1.05rem);
+  line-height: 1.6;
+  letter-spacing: -0.01em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
   position: relative;
   word-wrap: break-word;
@@ -75,6 +80,8 @@ h1, h2, h3, h4, h5, h6,
 .section-title,
 .contact-title,
 .preview-title {
+  font-family: var(--font-sans);
+  letter-spacing: -0.03em;
   text-wrap: balance;
 }
 
@@ -175,7 +182,10 @@ a:hover {
 }
 
 .page-content {
-  display: grid;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 0;
   gap: 0;
 }
 
@@ -232,7 +242,43 @@ a:hover {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  pointer-events: none;
+  pointer-events: auto;
+}
+
+.header-resume-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-size: 0.84rem;
+  font-weight: 600;
+  text-decoration: none;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.header-resume-cta:hover {
+  background: #ffffff;
+  color: #111111;
+  border-color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(255, 255, 255, 0.2);
+}
+
+.header-resume-arrow {
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+
+.header-resume-cta:hover .header-resume-arrow {
+  transform: translateY(1px);
 }
 
 .brand-standalone-btn {
@@ -247,19 +293,87 @@ a:hover {
   transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* --- Signature Logo with Internal Light Blue Shimmer Beam --- */
+.signature-brand-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+}
+
 .standalone-signature-logo {
-  height: 58px;
+  height: 56px;
   width: auto;
-  max-width: 220px;
+  max-width: 225px;
   object-fit: contain;
   display: block;
-  filter: drop-shadow(0 4px 16px rgba(255, 255, 255, 0.15)) drop-shadow(0 2px 6px rgba(0, 0, 0, 0.7));
+  padding: 2px 0;
+  filter: drop-shadow(0 0 12px rgba(147, 197, 253, 0.4)) drop-shadow(0 2px 6px rgba(0, 0, 0, 0.7));
   transition: transform 0.25s ease, filter 0.25s ease;
+}
+
+/* Light blue radiant light beam flowing inside the cursive text strokes */
+.signature-light-beam {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  -webkit-mask-image: url('/logo-transparent.png');
+  mask-image: url('/logo-transparent.png');
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  background: linear-gradient(
+    115deg,
+    transparent 0%,
+    transparent 32%,
+    rgba(14, 165, 233, 0.4) 42%,
+    rgba(56, 189, 248, 0.95) 48%,
+    #ffffff 50%,
+    rgba(56, 189, 248, 0.95) 52%,
+    rgba(14, 165, 233, 0.4) 58%,
+    transparent 68%,
+    transparent 100%
+  );
+  background-size: 300% 100%;
+  animation: signatureLightFlow 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  mix-blend-mode: normal;
+  opacity: 0.95;
+}
+
+@keyframes signatureLightFlow {
+  0% {
+    background-position: 130% 0;
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  50% {
+    background-position: -30% 0;
+    opacity: 1;
+  }
+  55% {
+    background-position: -30% 0;
+    opacity: 0;
+  }
+  100% {
+    background-position: 130% 0;
+    opacity: 0;
+  }
 }
 
 .brand-standalone-btn:hover .standalone-signature-logo {
   transform: scale(1.06) translateY(-1px);
-  filter: drop-shadow(0 6px 22px rgba(255, 255, 255, 0.28)) drop-shadow(0 2px 8px rgba(0, 0, 0, 0.9));
+  filter: drop-shadow(0 0 18px rgba(147, 197, 253, 0.75)) drop-shadow(0 0 32px rgba(56, 189, 248, 0.5));
+}
+
+.brand-standalone-btn:hover .signature-light-beam {
+  animation-duration: 2.2s;
+  opacity: 1;
 }
 
 .brand-standalone-btn:active .standalone-signature-logo {
@@ -294,7 +408,7 @@ a:hover {
   border-radius: var(--radius-pill);
   background: transparent;
   color: var(--color-muted);
-  font-family: 'Open Sans', sans-serif;
+  font-family: var(--font-sans);
   font-size: 0.88rem;
   font-weight: 500;
   cursor: pointer;
@@ -376,34 +490,50 @@ a:hover {
   justify-items: center;
   text-align: center;
   margin-bottom: 40px;
+  width: 100%;
+}
+
+.hero-text-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  max-width: min(58rem, 100%);
+  margin: 0 auto;
 }
 
 .hero-availability-row {
-  margin-bottom: 16px;
+  margin-bottom: 18px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
 
 .availability-pill {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 8px 14px;
+  padding: 6px 16px;
   border-radius: var(--radius-pill);
-  border: 1px solid rgba(183, 255, 211, 0.24);
-  background: rgba(115, 255, 173, 0.08);
-  color: #cbffd9;
-  font-family: 'Fira Code', monospace;
-  font-size: 0.8rem;
+  border: 1px solid rgba(52, 211, 153, 0.28);
+  background: rgba(16, 185, 129, 0.08);
+  color: #6ee7b7;
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
 }
 
 .live-status-dot {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: #39e58c;
-  box-shadow: 0 0 10px #39e58c;
+  background: #34d399;
+  box-shadow: 0 0 10px #34d399;
   animation: pulse-dot 2s infinite ease-in-out;
   display: inline-block;
-  margin-right: 4px;
+  margin-right: 2px;
 }
 
 @keyframes pulse-dot {
@@ -418,22 +548,22 @@ a:hover {
 }
 
 .hero-headline-title {
-  margin: 0 0 16px;
-  font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: clamp(2.1rem, 5.5vw, 4.2rem);
+  margin: 0 auto 16px;
+  font-family: var(--font-sans);
+  font-size: clamp(2.4rem, 6vw, 4.4rem);
   font-weight: 800;
-  line-height: 1.15;
-  letter-spacing: -0.03em;
-  color: #ffffff; /* Solid crisp white: avoids mobile dark-mode text-fill glitch */
+  line-height: 1.12;
+  letter-spacing: -0.035em;
+  color: #ffffff;
   text-shadow: 0 2px 24px rgba(255, 255, 255, 0.12);
-  max-width: min(56rem, 100%);
-  text-wrap: balance;
+  max-width: min(54rem, 100%);
+  text-align: center;
 }
 
 .hero-role-subtitle {
   display: inline-block;
   margin: 0 0 20px;
-  font-family: 'Fira Code', monospace;
+  font-family: var(--font-mono);
   font-size: clamp(0.92rem, 2vw, 1.12rem);
   color: #93c5fd;
   font-weight: 600;
@@ -444,17 +574,83 @@ a:hover {
   border-radius: var(--radius-pill);
 }
 
+.hero-subtext {
+  font-family: var(--font-sans);
+  font-size: clamp(0.94rem, 1.8vw, 1.1rem);
+  line-height: 1.6;
+  color: #94a3b8;
+  margin: 0 auto 14px;
+  max-width: min(46rem, 100%);
+  text-align: center;
+  font-weight: 500;
+}
+
 .preview-title-line,
 .contact-title-line {
   display: block;
 }
 
 .hero-intro {
-  width: min(38rem, 100%);
-  margin: 18px 0 0;
-  color: #d1d5db; /* High-contrast readable off-white */
-  font-size: 1rem;
-  line-height: 1.8;
+  width: min(40rem, 100%);
+  margin: 0 auto;
+  color: #cbd5e1;
+  font-size: 1.05rem;
+  line-height: 1.75;
+  text-align: center;
+}
+
+.hero-cta-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.hero-metrics-bar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin: 36px auto 0;
+  padding: 16px 24px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(8px);
+  width: min(52rem, 100%);
+}
+
+.hero-metric-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 4px;
+}
+
+.hero-metric-value {
+  font-family: var(--font-sans);
+  font-size: clamp(1.4rem, 2.5vw, 1.9rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #ffffff;
+  background: linear-gradient(135deg, #ffffff 40%, #93c5fd 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-metric-label {
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  color: #94a3b8;
+  font-weight: 500;
+  text-wrap: balance;
+  line-height: 1.35;
+}
+
+.hero-resume-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .hero-actions,
@@ -533,15 +729,25 @@ a:hover {
 .table-note,
 .preview-tab,
 .preview-name,
-.preview-corner,
-.role-date,
-.role-location,
-.education-location {
+.preview-corner {
   margin: 0;
   color: var(--color-muted);
-  font-family: 'Fira Code', monospace;
+  font-family: var(--font-mono);
   font-size: 0.78rem;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.role-date,
+.role-location,
+.education-location,
+.project-media-date {
+  margin: 0;
+  color: #94a3b8;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  letter-spacing: -0.01em;
+  font-weight: 500;
 }
 
 .meta-value,
@@ -753,7 +959,10 @@ a:hover {
   margin: 10px 0 8px;
   color: var(--color-text);
   font-size: 1.5rem;
-  line-height: 1.2;
+  line-height: 1.25;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  letter-spacing: -0.025em;
 }
 
 .project-card-title,
@@ -763,7 +972,8 @@ a:hover {
 .section-title,
 .project-media-title,
 .certification-name {
-  font-family: 'Fira Code', monospace;
+  font-family: var(--font-sans);
+  letter-spacing: -0.025em;
 }
 
 .preview-stats {
@@ -794,15 +1004,17 @@ a:hover {
   grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
   gap: 18px;
   align-items: end;
-  margin-bottom: 16px;
+  margin-bottom: 24px;
 }
 
 .section-title,
 .contact-title {
   margin: 0;
-  font-size: clamp(2.4rem, 7vw, 4rem);
-  line-height: 0.92;
-  letter-spacing: -0.07em;
+  font-family: var(--font-sans);
+  font-size: clamp(2.2rem, 5.5vw, 3.8rem);
+  line-height: 1.1;
+  letter-spacing: -0.035em;
+  font-weight: 800;
 }
 
 .about-layout,
@@ -938,9 +1150,10 @@ a:hover {
 }
 
 .skill-bento-title {
-  font-family: 'Open Sans', sans-serif;
-  font-size: 1.12rem;
+  font-family: var(--font-sans);
+  font-size: 1.15rem;
   font-weight: 700;
+  letter-spacing: -0.015em;
   color: #f5f5f5;
   margin: 0;
 }
@@ -1077,6 +1290,164 @@ a:hover {
   transition: width 2.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* --- Glassmorphic Fan-Out Internship Deck --- */
+.experience-deck-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.deck-hint-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 0 4px;
+}
+
+.deck-hint-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: #94a3b8;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 6px 16px;
+  border-radius: var(--radius-pill);
+}
+
+.deck-sparkle {
+  color: #93c5fd;
+  font-size: 0.85rem;
+}
+
+.deck-nav-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.deck-nav-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.95rem;
+}
+
+.deck-nav-btn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-1px);
+}
+
+.deck-nav-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.experience-deck-container {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  overflow-x: auto;
+  overflow-y: visible;
+  padding: 24px 8px 36px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  scroll-behavior: smooth;
+  scroll-snap-type: x proximity;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-x pan-y;
+  cursor: grab;
+}
+
+.experience-deck-container:active {
+  cursor: grabbing;
+}
+
+.experience-deck-container::-webkit-scrollbar {
+  display: none;
+}
+
+.experience-deck-track {
+  display: flex;
+  align-items: stretch;
+  justify-content: flex-start;
+  position: relative;
+  margin: 0 auto;
+  padding: 10px 40px;
+  width: max-content;
+  min-width: max-content;
+  transition: padding 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), margin 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.experience-deck-container.is-separated .experience-deck-track,
+.experience-deck-container:hover .experience-deck-track {
+  margin: 0 !important;
+  padding: 10px 24px !important;
+}
+
+.deck-glass-card {
+  position: relative;
+  width: clamp(330px, 31vw, 385px);
+  min-width: 325px;
+  flex-shrink: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.45);
+  border-radius: 24px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  padding: 26px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 0 -45px;
+  transform: rotate(calc(var(--r, 0) * 1deg));
+  transform-origin: center bottom;
+  z-index: var(--z, 1);
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1),
+              margin 0.5s cubic-bezier(0.2, 0.8, 0.2, 1),
+              box-shadow 0.3s ease,
+              border-color 0.3s ease,
+              background 0.3s ease;
+  scroll-snap-align: center;
+  cursor: pointer;
+}
+
+/* On deck hover or separated state: straighten and separate cards */
+.experience-deck-container:hover .deck-glass-card,
+.experience-deck-container.is-separated .deck-glass-card {
+  transform: rotate(0deg);
+  margin: 0 14px;
+  z-index: 2;
+}
+
+/* On specific card hover: elevate & highlight */
+.experience-deck-container .deck-glass-card:hover,
+.experience-deck-container .deck-glass-card.is-active-card {
+  transform: rotate(0deg) translateY(-10px) scale(1.02);
+  z-index: 40 !important;
+  border-color: rgba(147, 197, 253, 0.45);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.65), 0 0 25px rgba(147, 197, 253, 0.18);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.04) 100%);
+}
+
+.mobile-role-expand-btn {
+  display: none !important;
+}
+
 .role-cards {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1208,9 +1579,11 @@ a:hover {
 
 .project-media-title {
   margin: 12px 0 10px;
-  font-family: 'Fira Code', monospace;
-  font-size: 2rem;
-  line-height: 1.05;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 1.9rem;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
 }
 
 .project-media-date {
@@ -1304,104 +1677,210 @@ a:hover {
   margin-top: 8px;
 }
 
+/* --- Unified Contact Section & Directional Clip-Path Links Grid --- */
 .contact-section {
-  padding: 48px 0 60px;
-}
-
-.contact-panel {
-  align-items: end;
-}
-
-.contact-copy-block {
-  display: grid;
-  gap: 18px;
-}
-
-.contact-methods {
-  display: grid;
-  gap: 12px;
-}
-
-.contact-link {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  padding: 16px 18px;
-  border-radius: 24px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(255, 255, 255, 0.04);
-}
-
-.contact-value {
-  text-align: right;
-  color: var(--color-text);
-}
-
-.site-footer {
-  width: 100%;
-  margin: 48px auto 0;
-  padding: 40px 16px 48px;
-  border-top: 1px solid var(--color-border-strong);
-  text-align: center;
+  padding: 40px 0 220px;
   position: relative;
-  z-index: 100;
-  background: var(--color-bg);
+  width: 100%;
 }
 
-@media (min-width: 769px) {
-  .site-footer {
-    padding: 36px 0 44px;
+.contact-unified-wrapper {
+  max-width: 1080px;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contact-header-block {
+  text-align: center;
+  margin-bottom: 20px;
+  max-width: 680px;
+}
+
+.contact-main-title {
+  font-family: var(--font-sans);
+  font-size: clamp(1.8rem, 3.5vw, 2.3rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #ffffff;
+  margin: 4px 0 8px;
+  line-height: 1.2;
+}
+
+.contact-lead-note {
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--color-muted);
+  margin: 0 auto;
+}
+
+.footer-clip-links {
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 20px;
+  overflow: hidden;
+  background: rgba(14, 14, 16, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+.clip-row-2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.clip-row-4 {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.clip-row-2 > .footer-clip-box:not(:last-child),
+.clip-row-4 > .footer-clip-box:not(:last-child) {
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+@media (max-width: 960px) {
+  .clip-row-4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+  .clip-row-4 > .footer-clip-box:nth-child(1),
+  .clip-row-4 > .footer-clip-box:nth-child(2) {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  }
+  .clip-row-4 > .footer-clip-box:nth-child(odd) {
+    border-right: 1px solid rgba(255, 255, 255, 0.08) !important;
+  }
+  .clip-row-4 > .footer-clip-box:nth-child(even) {
+    border-right: none !important;
   }
 }
 
-.footer-content {
+.footer-clip-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 86px;
+  padding: 12px 16px;
+  text-decoration: none;
+  cursor: pointer;
+  overflow: hidden;
+  background: transparent;
+  border: none;
+  width: 100%;
+}
+
+.clip-box-content {
+  position: absolute;
+  inset: 0;
   display: flex;
   flex-direction: column;
-  gap: 14px;
   align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 14px;
+  text-align: center;
+  transition: transform 0.2s ease;
+  box-sizing: border-box;
 }
 
-.footer-brand {
+.clip-box-icon {
   display: flex;
-  justify-content: center;
   align-items: center;
-  margin-bottom: 4px;
-}
-
-.footer-signature-img {
-  height: 48px;
-  width: auto;
-  max-width: 170px;
-  object-fit: contain;
-  opacity: 1;
-  filter: drop-shadow(0 2px 12px rgba(255, 255, 255, 0.25));
-  transition: opacity 0.25s ease, transform 0.25s ease;
-}
-
-.footer-signature-img:hover {
-  transform: scale(1.05);
-}
-
-.footer-info {
-  display: flex;
-  gap: 20px;
   justify-content: center;
-  flex-wrap: wrap;
+  flex-shrink: 0;
 }
 
-.footer-info-item {
-  color: #d1d5db;
-  font-family: 'Fira Code', monospace;
+.clip-box-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  text-align: center;
+  width: 100%;
+}
+
+.clip-box-base {
+  color: #94a3b8;
+  background: rgba(255, 255, 255, 0.015);
+}
+
+.clip-box-base .clip-box-icon {
+  color: #cbd5e1;
+}
+
+.clip-box-base .clip-box-title {
+  color: #f8fafc;
+  font-family: var(--font-sans);
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  margin: 0;
+}
+
+.clip-box-base .clip-box-subtitle {
+  color: #64748b;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  line-height: 1.2;
+  margin: 0;
+}
+
+/* Directional Sweep Overlay */
+.clip-box-overlay {
+  background: #ffffff;
+  color: #09090b;
+  pointer-events: none;
+}
+
+.clip-box-overlay .clip-box-icon {
+  color: #09090b;
+}
+
+.clip-box-overlay .clip-box-icon svg {
+  fill: #09090b;
+}
+
+.clip-box-overlay .clip-box-title {
+  color: #09090b;
+  font-family: var(--font-sans);
+  font-size: 1.05rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  margin: 0;
+}
+
+.clip-box-overlay .clip-box-subtitle {
+  color: #475569;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-weight: 600;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.clip-box-arrow {
+  position: absolute;
+  top: 14px;
+  right: 16px;
   font-size: 0.85rem;
+  font-weight: 800;
+  color: #09090b;
 }
 
-.footer-note {
-  color: #ffffff;
-  font-family: 'Fira Code', monospace;
-  font-size: 0.95rem;
-  font-weight: 500;
-}
+
 
 .achievements-list {
   display: grid;
@@ -1416,8 +1895,10 @@ a:hover {
 
 .achievement-title {
   margin: 4px 0 0;
-  font-family: 'Fira Code', monospace;
-  font-size: 1.4rem;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 1.35rem;
+  letter-spacing: -0.02em;
   color: var(--color-text);
 }
 
@@ -1786,9 +2267,15 @@ a:hover {
   }
 
   .standalone-signature-logo {
-    height: 36px !important;
+    height: 44px !important;
     width: auto !important;
-    max-width: 140px !important;
+    max-width: 175px !important;
+  }
+
+  .mobile-drawer-logo {
+    height: 46px !important;
+    width: auto !important;
+    max-width: 180px !important;
   }
 
   /* --- Hero Section (Portrait <= 768px) --- */
@@ -1901,6 +2388,23 @@ a:hover {
     justify-content: center;
   }
 
+  .hero-metrics-bar {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-top: 24px;
+    padding: 14px 16px;
+    border-radius: 16px;
+    width: 100%;
+  }
+
+  .hero-metric-value {
+    font-size: 1.35rem;
+  }
+
+  .hero-metric-label {
+    font-size: 0.72rem;
+  }
+
   .hero-board {
     margin-top: 32px;
     padding: 16px;
@@ -1911,9 +2415,206 @@ a:hover {
     gap: 16px;
   }
 
-  /* --- Experience Section --- */
+  /* --- Experience Section: Mobile Compact Fanned Deck --- */
   .experience-layout {
     grid-template-columns: 1fr;
+  }
+
+  .experience-deck-container {
+    display: flex;
+    justify-content: flex-start !important;
+    align-items: center;
+    overflow-x: auto !important;
+    overflow-y: visible !important;
+    padding: 24px 8px 32px !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-x pan-y;
+    width: 100%;
+    cursor: grab;
+  }
+
+  .experience-deck-container:active {
+    cursor: grabbing;
+  }
+
+  .experience-deck-track {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start !important;
+    margin: 0 auto !important;
+    padding: 10px 24px !important;
+    gap: 0 !important;
+    width: max-content !important;
+    min-width: max-content !important;
+    transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  /* Compact glass card on mobile: allows all fanned cards to be viewed together */
+  .deck-glass-card {
+    position: relative;
+    width: 195px !important;
+    min-width: 195px !important;
+    max-width: 205px !important;
+    padding: 16px 14px !important;
+    border-radius: 18px !important;
+    margin: 0 -44px !important;
+    transform: rotate(calc(var(--r, 0) * 1deg)) !important;
+    transform-origin: center bottom !important;
+    z-index: var(--z, 1) !important;
+    transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1),
+                margin 0.5s cubic-bezier(0.2, 0.8, 0.2, 1),
+                box-shadow 0.3s ease,
+                border-color 0.3s ease,
+                background 0.3s ease !important;
+    backdrop-filter: blur(14px) !important;
+    -webkit-backdrop-filter: blur(14px) !important;
+    cursor: pointer;
+    scroll-snap-align: center;
+  }
+
+  /* On hover, active tap, or separated state: straighten and separate into horizontally scrollable cards */
+  .experience-deck-container:hover .deck-glass-card,
+  .experience-deck-container:active .deck-glass-card,
+  .experience-deck-container.is-separated .deck-glass-card {
+    transform: rotate(0deg) !important;
+    margin: 0 8px !important;
+    z-index: 2 !important;
+  }
+
+  .experience-deck-container:hover .experience-deck-track,
+  .experience-deck-container:active .experience-deck-track,
+  .experience-deck-container.is-separated .experience-deck-track {
+    margin: 0 !important;
+    justify-content: flex-start !important;
+    padding: 10px 16px !important;
+  }
+
+  .experience-deck-container .deck-glass-card:hover,
+  .experience-deck-container .deck-glass-card.is-active-card {
+    transform: rotate(0deg) translateY(-8px) scale(1.02) !important;
+    z-index: 50 !important;
+    border-color: rgba(147, 197, 253, 0.5) !important;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7), 0 0 20px rgba(147, 197, 253, 0.2) !important;
+  }
+
+  /* When a card is expanded on mobile: widen card to read full details */
+  .deck-glass-card.is-card-expanded {
+    width: 285px !important;
+    min-width: 285px !important;
+    max-width: 320px !important;
+    transform: rotate(0deg) translateY(-4px) !important;
+    z-index: 60 !important;
+  }
+
+  .deck-glass-card .role-title {
+    font-size: 1.05rem !important;
+    line-height: 1.25;
+  }
+
+  .deck-glass-card .panel-kicker {
+    font-size: 0.72rem;
+    margin-bottom: 2px;
+  }
+
+  .deck-glass-card .role-date {
+    font-size: 0.75rem;
+  }
+
+  .deck-glass-card .role-location {
+    font-size: 0.72rem;
+  }
+
+  .deck-glass-card .role-summary {
+    font-size: 0.84rem;
+    line-height: 1.45;
+    margin-top: 8px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .deck-glass-card.is-card-expanded .role-summary {
+    display: block !important;
+    -webkit-line-clamp: unset !important;
+  }
+
+  .deck-glass-card .role-badges {
+    margin-top: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  .deck-glass-card .role-badges .skill-pill {
+    font-size: 0.68rem;
+    padding: 3px 8px;
+  }
+
+  /* Bullets hidden by default on mobile, shown when expanded */
+  .role-bullets-wrapper {
+    display: none;
+  }
+
+  .is-card-expanded .role-bullets-wrapper {
+    display: block;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .desktop-toggle-btn {
+    display: none !important;
+  }
+
+  .mobile-role-expand-btn {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    min-height: 38px;
+    width: 100%;
+    margin-top: 10px;
+    padding: 8px 12px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    color: #93c5fd;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease;
+  }
+
+  .mobile-role-expand-btn:active {
+    background: rgba(255, 255, 255, 0.14);
+    border-color: rgba(147, 197, 253, 0.4);
+  }
+
+  .deck-hint-bar {
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  .deck-hint-badge {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-pill);
+    padding: 6px 12px;
+    font-size: 0.74rem;
+    color: #cbd5e1;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    text-align: left;
   }
 
   .role-cards {
@@ -2184,6 +2885,51 @@ a:hover {
     word-break: break-all;
   }
 
+  .contact-section {
+    padding: 32px 0 calc(180px + env(safe-area-inset-bottom, 32px));
+  }
+
+  /* --- Footer Clip Links (Mobile) --- */
+  .footer-clip-links {
+    border-radius: 18px;
+  }
+
+  .clip-row-2,
+  .clip-row-4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .clip-row-2 > .footer-clip-box:nth-child(1),
+  .clip-row-4 > .footer-clip-box:nth-child(odd) {
+    border-right: 1px solid rgba(255, 255, 255, 0.08) !important;
+  }
+
+  .clip-row-4 > .footer-clip-box:nth-child(1),
+  .clip-row-4 > .footer-clip-box:nth-child(2) {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  }
+
+  .footer-clip-box {
+    min-height: 84px;
+    padding: 12px 10px;
+  }
+
+  .clip-box-base .clip-box-title,
+  .clip-box-overlay .clip-box-title {
+    font-size: 0.94rem;
+  }
+
+  .clip-box-base .clip-box-subtitle,
+  .clip-box-overlay .clip-box-subtitle {
+    font-size: 0.68rem;
+    max-width: 100%;
+    overflow: visible;
+    text-overflow: clip;
+    white-space: normal;
+    line-height: 1.25;
+    word-break: break-word;
+  }
+
 }
 
 /* ==========================================================================
@@ -2222,8 +2968,8 @@ a:hover {
   }
 
   .standalone-signature-logo {
-    height: 32px !important;
-    max-width: 120px !important;
+    height: 38px !important;
+    max-width: 150px !important;
   }
 
   .hero-top {
@@ -2513,10 +3259,13 @@ a:hover {
 }
 
 .publication-title {
-  font-size: 1.5rem;
-  font-family: 'Fira Code', monospace;
-  line-height: 1.2;
+  font-size: 1.45rem;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.3;
   margin-bottom: 8px;
+  color: var(--color-text);
 }
 
 .publication-venue {

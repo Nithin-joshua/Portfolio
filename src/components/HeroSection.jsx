@@ -49,6 +49,17 @@ function HeroSection({ hero, links }) {
                 {hero.primaryAction?.label || 'View Projects'}
               </button>
 
+              {hero.resumeAction && (
+                <a
+                  className="secondary-button hero-cta-btn hero-resume-btn"
+                  href={hero.resumeAction.url}
+                  download={hero.resumeAction.downloadName}
+                >
+                  <span>📄</span>
+                  {hero.resumeAction.label}
+                </a>
+              )}
+
               <button
                 type="button"
                 className="secondary-button hero-cta-btn"
@@ -59,18 +70,31 @@ function HeroSection({ hero, links }) {
             </div>
 
             <div className="hero-link-row">
-              {links.map((link) => (
-                <a
-                  key={link.label}
-                  className="link-pill"
-                  href={link.url}
-                  target={link.url.startsWith('http') ? '_blank' : undefined}
-                  rel={link.url.startsWith('http') ? 'noreferrer' : undefined}
-                >
-                  {link.shortLabel}
-                </a>
-              ))}
+              {links
+                .filter((link) => link.shortLabel !== 'Web')
+                .map((link) => (
+                  <a
+                    key={link.label}
+                    className="link-pill"
+                    href={link.url}
+                    target={link.url.startsWith('http') ? '_blank' : undefined}
+                    rel={link.url.startsWith('http') ? 'noreferrer' : undefined}
+                  >
+                    {link.shortLabel}
+                  </a>
+                ))}
             </div>
+
+            {hero.metrics && (
+              <div className="hero-metrics-bar">
+                {hero.metrics.map((metric) => (
+                  <div key={metric.label} className="hero-metric-item">
+                    <span className="hero-metric-value">{metric.value}</span>
+                    <span className="hero-metric-label">{metric.label}</span>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </div>

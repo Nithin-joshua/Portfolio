@@ -6,7 +6,6 @@ import SkillsSection from './components/SkillsSection';
 import CredentialsSection from './components/CredentialsSection';
 import PublicationsSection from './components/PublicationsSection';
 import ContactSection from './components/ContactSection';
-import SiteFooter from './components/SiteFooter';
 import { portfolio } from './data/portfolio';
 import useActiveSection from './hooks/useActiveSection';
 
@@ -28,7 +27,6 @@ function App() {
       />
 
       <div className="app-inner">
-
         <main className="page-content">
           <HeroSection hero={portfolio.hero} links={portfolio.links} />
           <ExperienceSection experience={portfolio.experience} />
@@ -40,10 +38,12 @@ function App() {
             certifications={portfolio.certifications}
           />
           <PublicationsSection publications={portfolio.publications} />
-          <ContactSection contact={portfolio.contact} />
+          <ContactSection
+            contact={portfolio.contact}
+            links={portfolio.links}
+            resume={portfolio.resume}
+          />
         </main>
-
-        <SiteFooter />
       </div>
     </div>
   );

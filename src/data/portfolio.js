@@ -44,16 +44,16 @@ export const portfolio = {
   hero: {
     id: 'hero',
     headline: 'Backend & AI Systems Engineer',
-    availability: 'Open to roles • Bangalore/Remote',
-    subtext: 'Python, FastAPI, PostgreSQL, Celery. Voice biometrics, invoice pipelines, IoT.',
+    availability: 'Available for Roles · Bangalore / Remote',
+    subtext: 'FastAPI · Python · PostgreSQL · Celery · Milvus · Docker · Applied AI',
     intro:
-      'I architect and ship production-grade backend services and applied AI systems with FastAPI, Python, PostgreSQL, and Docker.',
+      'Architecting high-throughput backend services, distributed async pipelines, and applied voice biometric AI systems.',
     primaryAction: {
       label: 'View Projects',
       target: 'projects',
     },
     secondaryAction: {
-      label: 'Contact',
+      label: 'Get in Touch',
       target: 'contact',
     },
     resumeAction: {
@@ -61,6 +61,12 @@ export const portfolio = {
       url: '/Nithin_V_Resume.pdf',
       downloadName: 'Nithin_V_Resume.pdf',
     },
+    metrics: [
+      { value: '15+', label: 'Production Endpoints' },
+      { value: '80%', label: 'Data Entry Automated' },
+      { value: '93.71%', label: 'UGC-NET Qualified (CS)' },
+      { value: '1', label: 'Research Publication' },
+    ],
     board: {
       sectionTabs: ['Bio.V', 'AP Automation', 'Smart Grid', 'Research'],
       cardLabel: 'Engineering Focus',
@@ -124,9 +130,9 @@ export const portfolio = {
         end: '2026-08',
         focus: 'FastAPI, PostgreSQL, SQLAlchemy, Docker, AI',
         summary:
-          'Contributed to the backend development of an AI-powered Accounts Payable Automation System, delivering 15+ REST API endpoints.',
+          'Engineered backend microservices and applied AI pipelines for enterprise invoice lifecycle automation.',
         bullets: [
-          'Contributed to the backend development of an AI-powered Accounts Payable Automation System, delivering 15+ REST API endpoints using FastAPI, PostgreSQL, and SQLAlchemy.',
+          'Architected and deployed 15+ production REST API endpoints using FastAPI, PostgreSQL, and SQLAlchemy.',
           'Connected 10+ frontend modules to 15+ JWT-secured REST APIs within a Docker-based microservices environment.',
           'Reduced manual data entry by 80% through AI-powered invoice extraction, automated validation, and confidence scoring across invoices, purchase orders, and vendor records.',
         ],
@@ -140,9 +146,9 @@ export const portfolio = {
         end: '2025-10',
         focus: 'Java, Spring Boot, React, REST APIs',
         summary:
-          'Delivered full-stack features and integrated frontend modules with Java backend services.',
+          'Built enterprise web application modules and REST integrations using Java, Spring Boot, and React.',
         bullets: [
-          'Delivered full-stack features using Java, Spring Boot, React, and REST APIs, contributing to 10+ application modules.',
+          'Developed and maintained 10+ full-stack application modules using Spring Boot RESTful controllers and React components.',
           'Linked frontend interfaces with backend services, supporting 10+ REST API integrations for seamless application workflows.',
           'Improved deployment workflows and debugging, reducing issue resolution time by 30% and improving application stability.',
         ],
@@ -187,24 +193,24 @@ export const portfolio = {
         steps: ['Voice sample', 'Embedding', 'Similarity search', 'Authentication'],
         labels: [
           {
-            title: 'Verification',
-            text: 'Built Bio.V using ECAPA-TDNN for speaker verification and RawNet2 for anti-spoofing.',
+            title: 'Neural Architecture',
+            text: 'ECAPA-TDNN 192-dim embeddings paired with RawNet2 anti-spoofing detector.',
           },
           {
-            title: 'ASR',
-            text: 'Implemented challenge-response authentication with offline Vosk ASR for dynamic passphrase verification.',
+            title: 'Liveness & ASR',
+            text: 'Vosk offline speech recognition with dynamic cryptographic challenge passphrases.',
           },
           {
-            title: 'Storage',
-            text: 'Integrated Milvus for voice-embedding similarity search and PostgreSQL for metadata storage.',
+            title: 'Vector Search',
+            text: 'Sub-50ms cosine similarity queries via Milvus Vector DB + PostgreSQL.',
           },
         ],
         bullets: [
-          'Built Bio.V, a voice biometric authentication platform using ECAPA-TDNN for speaker verification and RawNet2 for anti-spoofing.',
-          'Implemented challenge-response authentication with offline Vosk ASR for dynamic passphrase verification.',
-          'Integrated Milvus for voice-embedding similarity search and PostgreSQL for metadata storage.',
-          'Developed with FastAPI, React, Docker, and Docker Compose, including automated testing and API security.',
-          'Added biometric deduplication, adaptive thresholds, re-enrollment, rate limiting, and API-key enforcement.',
+          'Engineered end-to-end voice biometric engine verifying identity and rejecting replay/deepfake spoofing attacks.',
+          'Built dynamic challenge-response protocol requiring random spoken phrases to guarantee proof-of-liveness.',
+          'Integrated high-dimensional Milvus index for ultra-low latency similarity queries across enrolled speaker profiles.',
+          'Containerized microservices stack via Docker & Docker Compose with automated regression test suites.',
+          'Implemented production security controls: biometric deduplication, adaptive cosine thresholds, and rate limiting.',
         ],
       },
       {

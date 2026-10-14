@@ -38,11 +38,14 @@ function SiteHeader({ logo, navigation, activeSectionId, resume }) {
             onClick={() => handleNavClick('hero')}
             aria-label="Nithin V - Back to top"
           >
-            <img
-              src={logo?.src || '/logo-transparent.png'}
-              alt="Nithin V"
-              className="standalone-signature-logo"
-            />
+            <div className="signature-brand-wrapper">
+              <img
+                src={logo?.src || '/logo-transparent.png'}
+                alt="Nithin V"
+                className="standalone-signature-logo"
+              />
+              <div className="signature-light-beam" aria-hidden="true" />
+            </div>
           </button>
         </div>
 
@@ -62,6 +65,19 @@ function SiteHeader({ logo, navigation, activeSectionId, resume }) {
               ))}
             </div>
           </nav>
+        </div>
+
+        {/* Desktop Header Right CTA */}
+        <div className="header-right desktop-nav-right">
+          {resume?.url && (
+            <a
+              href={resume.url}
+              download={resume.downloadName}
+              className="header-resume-cta"
+            >
+              Resume <span className="header-resume-arrow">↓</span>
+            </a>
+          )}
         </div>
 
         {/* Mobile Hamburger Button (Hidden on desktop) */}
@@ -93,11 +109,14 @@ function SiteHeader({ logo, navigation, activeSectionId, resume }) {
       >
         <div className="mobile-menu-inner">
           <div className="mobile-menu-header">
-            <img
-              src={logo?.src || '/logo-transparent.png'}
-              alt="Nithin V"
-              className="mobile-drawer-logo"
-            />
+            <div className="signature-brand-wrapper">
+              <img
+                src={logo?.src || '/logo-transparent.png'}
+                alt="Nithin V"
+                className="mobile-drawer-logo"
+              />
+              <div className="signature-light-beam" aria-hidden="true" />
+            </div>
             <button
               type="button"
               className="mobile-close-btn"
