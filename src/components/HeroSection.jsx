@@ -84,17 +84,6 @@ function HeroSection({ hero, links }) {
                   </a>
                 ))}
             </div>
-
-            {hero.metrics && (
-              <div className="hero-metrics-bar">
-                {hero.metrics.map((metric) => (
-                  <div key={metric.label} className="hero-metric-item">
-                    <span className="hero-metric-value">{metric.value}</span>
-                    <span className="hero-metric-label">{metric.label}</span>
-                  </div>
-                ))}
-              </div>
-            )}
           </div>
         </div>
       </div>

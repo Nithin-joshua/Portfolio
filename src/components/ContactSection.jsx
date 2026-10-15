@@ -26,22 +26,22 @@ const EXIT_KEYFRAMES = {
 function LinkBox({ title, subtitle, icon, href, isAction = false, onClick, download }) {
   const overlayRef = useRef(null);
 
-  const getNearestSide = (e) => {
-    const box = e.currentTarget.getBoundingClientRect();
+  const getNearestSide = (clientX, clientY, currentTarget) => {
+    const box = currentTarget.getBoundingClientRect();
     const proximityToLeft = {
-      proximity: Math.abs(box.left - e.clientX),
+      proximity: Math.abs(box.left - clientX),
       side: 'left',
     };
     const proximityToRight = {
-      proximity: Math.abs(box.right - e.clientX),
+      proximity: Math.abs(box.right - clientX),
       side: 'right',
     };
     const proximityToTop = {
-      proximity: Math.abs(box.top - e.clientY),
+      proximity: Math.abs(box.top - clientY),
       side: 'top',
     };
     const proximityToBottom = {
-      proximity: Math.abs(box.bottom - e.clientY),
+      proximity: Math.abs(box.bottom - clientY),
       side: 'bottom',
     };
 
@@ -55,9 +55,9 @@ function LinkBox({ title, subtitle, icon, href, isAction = false, onClick, downl
     return sortedProximity[0].side;
   };
 
-  const handleMouseEnter = (e) => {
+  const triggerEntrance = (clientX, clientY, currentTarget) => {
     if (!overlayRef.current) return;
-    const side = getNearestSide(e);
+    const side = getNearestSide(clientX, clientY, currentTarget);
 
     overlayRef.current.animate(
       [
@@ -72,9 +72,9 @@ function LinkBox({ title, subtitle, icon, href, isAction = false, onClick, downl
     );
   };
 
-  const handleMouseLeave = (e) => {
+  const triggerExit = (clientX, clientY, currentTarget) => {
     if (!overlayRef.current) return;
-    const side = getNearestSide(e);
+    const side = getNearestSide(clientX, clientY, currentTarget);
 
     overlayRef.current.animate(
       [
@@ -87,6 +87,26 @@ function LinkBox({ title, subtitle, icon, href, isAction = false, onClick, downl
         fill: 'forwards',
       }
     );
+  };
+
+  const handleMouseEnter = (e) => triggerEntrance(e.clientX, e.clientY, e.currentTarget);
+  const handleMouseLeave = (e) => triggerExit(e.clientX, e.clientY, e.currentTarget);
+
+  const handleTouchStart = (e) => {
+    if (e.touches && e.touches[0]) {
+      triggerEntrance(e.touches[0].clientX, e.touches[0].clientY, e.currentTarget);
+    }
+  };
+
+  const handleTouchEnd = (e) => {
+    if (e.changedTouches && e.changedTouches[0]) {
+      const clientX = e.changedTouches[0].clientX;
+      const clientY = e.changedTouches[0].clientY;
+      const target = e.currentTarget;
+      setTimeout(() => {
+        triggerExit(clientX, clientY, target);
+      }, 350);
+    }
   };
 
   const Component = isAction ? 'button' : 'a';
@@ -105,6 +125,9 @@ function LinkBox({ title, subtitle, icon, href, isAction = false, onClick, downl
       {...props}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+      onTouchCancel={handleTouchEnd}
       className="footer-clip-box"
     >
       {/* Resting dark glass layer */}

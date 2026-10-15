@@ -14,9 +14,9 @@ function scrollToSection(sectionId, offset = 96) {
     const viewportHeight = window.innerHeight;
 
     const targetTop =
-      wrapperHeight < viewportHeight
-        ? wrapperTop - (viewportHeight - wrapperHeight) / 2
-        : wrapperTop - 20;
+      wrapperHeight < viewportHeight - 80
+        ? wrapperTop - Math.max(70, (viewportHeight - wrapperHeight) / 2)
+        : wrapperTop - 70;
 
     window.scrollTo({
       top: Math.max(0, targetTop),

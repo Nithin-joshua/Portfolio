@@ -1679,7 +1679,7 @@ a:hover {
 
 /* --- Unified Contact Section & Directional Clip-Path Links Grid --- */
 .contact-section {
-  padding: 40px 0 220px;
+  padding: 48px 0 48px;
   position: relative;
   width: 100%;
 }
@@ -1773,6 +1773,16 @@ a:hover {
   background: transparent;
   border: none;
   width: 100%;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.15s ease;
+}
+
+.footer-clip-box:active {
+  transform: scale(0.97);
+}
+
+.footer-clip-box:active .clip-box-overlay {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%) !important;
 }
 
 .clip-box-content {
@@ -1984,65 +1994,30 @@ a:hover {
   display: none;
   align-items: center;
   justify-content: center;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: 12px;
   cursor: pointer;
   padding: 0;
-  transition: background-color 0.2s ease, border-color 0.2s ease;
+  color: #ffffff;
+  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
 }
 
 .mobile-menu-toggle:hover,
 .mobile-menu-toggle:focus-visible {
-  background: rgba(255, 255, 255, 0.12);
-  border-color: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.35);
 }
 
-.hamburger-box {
-  width: 20px;
-  height: 14px;
-  display: inline-block;
-  position: relative;
+.mobile-menu-toggle:active {
+  transform: scale(0.95);
+  background: rgba(255, 255, 255, 0.22);
 }
 
-.hamburger-inner,
-.hamburger-inner::before,
-.hamburger-inner::after {
-  width: 20px;
-  height: 2px;
-  background-color: #ffffff;
-  border-radius: 2px;
-  position: absolute;
-  transition: transform 0.2s ease, top 0.2s ease, opacity 0.2s ease;
-}
-
-.hamburger-inner {
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.hamburger-inner::before {
-  content: '';
-  top: -6px;
-}
-
-.hamburger-inner::after {
-  content: '';
-  bottom: -6px;
-}
-
-.mobile-menu-toggle.is-active .hamburger-inner {
-  background-color: transparent;
-}
-
-.mobile-menu-toggle.is-active .hamburger-inner::before {
-  top: 0;
-  transform: rotate(45deg);
-}
-
-.mobile-menu-toggle.is-active .hamburger-inner::after {
-  bottom: 0;
-  transform: rotate(-45deg);
+.hamburger-icon-svg {
+  display: block;
+  stroke: #ffffff;
+  transition: transform 0.2s ease;
 }
 
 /* --- Fullscreen / Slide-Down Menu Drawer --- */
@@ -2116,8 +2091,15 @@ a:hover {
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 12px;
   color: #ffffff;
-  font-size: 1.15rem;
+  stroke: #ffffff;
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.18s ease;
+}
+
+.mobile-close-btn:active {
+  transform: scale(0.92);
+  background: rgba(255, 255, 255, 0.14);
 }
 
 .mobile-nav-list {
@@ -2388,26 +2370,10 @@ a:hover {
     justify-content: center;
   }
 
-  .hero-metrics-bar {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-    margin-top: 24px;
-    padding: 14px 16px;
-    border-radius: 16px;
-    width: 100%;
-  }
-
-  .hero-metric-value {
-    font-size: 1.35rem;
-  }
-
-  .hero-metric-label {
-    font-size: 0.72rem;
-  }
-
   .hero-board {
-    margin-top: 32px;
-    padding: 16px;
+    margin-top: 24px;
+    padding: 18px 16px;
+    border-radius: 20px;
   }
 
   .preview-grid {
@@ -2426,7 +2392,7 @@ a:hover {
     align-items: center;
     overflow-x: auto !important;
     overflow-y: visible !important;
-    padding: 24px 8px 32px !important;
+    padding: 24px 8px 28px !important;
     scrollbar-width: none !important;
     -ms-overflow-style: none !important;
     scroll-behavior: smooth;
@@ -2452,15 +2418,15 @@ a:hover {
     transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
   }
 
-  /* Compact glass card on mobile: allows all fanned cards to be viewed together */
+  /* Compact glass card on mobile: comfortable spacing and readable content */
   .deck-glass-card {
     position: relative;
-    width: 195px !important;
-    min-width: 195px !important;
-    max-width: 205px !important;
-    padding: 16px 14px !important;
-    border-radius: 18px !important;
-    margin: 0 -44px !important;
+    width: 205px !important;
+    min-width: 205px !important;
+    max-width: 215px !important;
+    padding: 18px 16px !important;
+    border-radius: 20px !important;
+    margin: 0 -28px !important;
     transform: rotate(calc(var(--r, 0) * 1deg)) !important;
     transform-origin: center bottom !important;
     z-index: var(--z, 1) !important;
@@ -2886,12 +2852,12 @@ a:hover {
   }
 
   .contact-section {
-    padding: 32px 0 calc(180px + env(safe-area-inset-bottom, 32px));
+    padding: 32px 0 calc(36px + env(safe-area-inset-bottom, 16px));
   }
 
   /* --- Footer Clip Links (Mobile) --- */
   .footer-clip-links {
-    border-radius: 18px;
+    border-radius: 20px;
   }
 
   .clip-row-2,
@@ -2910,24 +2876,26 @@ a:hover {
   }
 
   .footer-clip-box {
-    min-height: 84px;
-    padding: 12px 10px;
+    min-height: 94px;
+    padding: 16px 12px;
   }
 
   .clip-box-base .clip-box-title,
   .clip-box-overlay .clip-box-title {
-    font-size: 0.94rem;
+    font-size: 0.96rem;
+    font-weight: 700;
   }
 
   .clip-box-base .clip-box-subtitle,
   .clip-box-overlay .clip-box-subtitle {
-    font-size: 0.68rem;
+    font-size: 0.72rem;
     max-width: 100%;
     overflow: visible;
     text-overflow: clip;
     white-space: normal;
-    line-height: 1.25;
+    line-height: 1.35;
     word-break: break-word;
+    color: #94a3b8;
   }
 
 }
