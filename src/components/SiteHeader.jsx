@@ -25,7 +25,9 @@ function SiteHeader({ logo, navigation, activeSectionId, resume }) {
 
   const handleNavClick = (id) => {
     setIsOpen(false);
-    scrollToSection(id);
+    setTimeout(() => {
+      scrollToSection(id);
+    }, 60);
   };
 
   return (

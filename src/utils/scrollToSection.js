@@ -1,36 +1,22 @@
 // This file keeps section scrolling logic in one place for buttons and navigation.
-function scrollToSection(sectionId, offset = 96) {
+function scrollToSection(sectionId, offset = 80) {
   const sectionElement = document.getElementById(sectionId);
 
   if (!sectionElement) {
     return;
   }
 
-  if (sectionId === 'contact') {
-    const wrapper = sectionElement.querySelector('.contact-unified-wrapper') || sectionElement;
-    const wrapperRect = wrapper.getBoundingClientRect();
-    const wrapperTop = wrapperRect.top + window.scrollY;
-    const wrapperHeight = wrapperRect.height;
-    const viewportHeight = window.innerHeight;
-
-    const targetTop =
-      wrapperHeight < viewportHeight - 80
-        ? wrapperTop - Math.max(70, (viewportHeight - wrapperHeight) / 2)
-        : wrapperTop - 70;
-
-    window.scrollTo({
-      top: Math.max(0, targetTop),
-      behavior: 'smooth',
-    });
-    return;
-  }
+  const header = document.querySelector('.site-header-wrapper');
+  const headerHeight = header ? header.getBoundingClientRect().height : 70;
+  const effectiveOffset = Math.max(headerHeight + 8, offset);
 
   const sectionTop = sectionElement.getBoundingClientRect().top + window.scrollY;
 
   window.scrollTo({
-    top: sectionTop - offset,
+    top: Math.max(0, sectionTop - effectiveOffset),
     behavior: 'smooth',
   });
 }
 
 export default scrollToSection;
+
