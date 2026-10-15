@@ -1679,17 +1679,9 @@ a:hover {
 
 /* --- Unified Contact Section & Directional Clip-Path Links Grid --- */
 .contact-section {
-  min-height: calc(100vh - 80px);
-  min-height: calc(100dvh - 80px);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-top: 48px;
-  padding: 40px 0 64px;
+  padding: 48px 0 56px;
   position: relative;
   width: 100%;
-  box-sizing: border-box;
 }
 
 .contact-unified-wrapper {
@@ -2868,15 +2860,7 @@ a:hover {
   }
 
   .contact-section {
-    min-height: calc(100vh - 70px);
-    min-height: calc(100dvh - 70px);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-top: 24px;
-    padding: 28px 0 calc(36px + env(safe-area-inset-bottom, 16px));
-    box-sizing: border-box;
+    padding: 32px 0 calc(36px + env(safe-area-inset-bottom, 16px));
   }
 
   /* --- Footer Clip Links (Mobile) --- */
