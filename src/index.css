@@ -1679,7 +1679,7 @@ a:hover {
 
 /* --- Unified Contact Section & Directional Clip-Path Links Grid --- */
 .contact-section {
-  padding: 48px 0 56px;
+  padding: 40px 0 clamp(72px, 10vh, 100px);
   position: relative;
   width: 100%;
 }
@@ -2860,7 +2860,21 @@ a:hover {
   }
 
   .contact-section {
-    padding: 32px 0 calc(36px + env(safe-area-inset-bottom, 16px));
+    padding: 28px 0 clamp(64px, 12vh, 96px);
+  }
+
+  .contact-header-block {
+    margin-bottom: 14px;
+  }
+
+  .contact-main-title {
+    font-size: 1.7rem;
+    margin: 2px 0 6px;
+  }
+
+  .contact-lead-note {
+    font-size: 0.88rem;
+    line-height: 1.4;
   }
 
   /* --- Footer Clip Links (Mobile) --- */
@@ -2884,8 +2898,8 @@ a:hover {
   }
 
   .footer-clip-box {
-    min-height: 94px;
-    padding: 16px 12px;
+    min-height: 76px;
+    padding: 12px 10px;
   }
 
   .clip-box-base .clip-box-title,
