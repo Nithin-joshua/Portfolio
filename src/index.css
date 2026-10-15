@@ -2024,6 +2024,7 @@ a:hover {
 
 .hamburger-icon-svg {
   display: block;
+  margin: auto;
   stroke: #ffffff;
   transition: transform 0.2s ease;
 }
@@ -2223,11 +2224,18 @@ a:hover {
     display: none !important;
   }
 
-  .mobile-toggle-wrapper,
-  .mobile-menu-toggle {
+  .mobile-toggle-wrapper {
     display: flex !important;
     align-items: center;
     justify-content: flex-end;
+    pointer-events: auto !important;
+  }
+
+  .mobile-menu-toggle {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center;
     pointer-events: auto !important;
   }
 
@@ -2945,9 +2953,18 @@ a:hover {
     display: none !important;
   }
 
-  .mobile-toggle-wrapper,
+  .mobile-toggle-wrapper {
+    display: flex !important;
+    align-items: center;
+    justify-content: flex-end;
+    pointer-events: auto !important;
+  }
+
   .mobile-menu-toggle {
     display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center;
     pointer-events: auto !important;
   }
 
