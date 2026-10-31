@@ -1,19 +1,12 @@
 // This file renders the focused hero section fitting within the 1280x800 fold.
-import useRevealOnScroll from '../hooks/useRevealOnScroll';
 import scrollToSection from '../utils/scrollToSection';
 import StrokeText from './StrokeText';
 
 function HeroSection({ hero, links }) {
-  const [sectionRef, isVisible] = useRevealOnScroll({
-    threshold: 0.08,
-    once: false,
-  });
-
   return (
     <section
       id={hero.id}
-      ref={sectionRef}
-      className={`hero-section reveal ${isVisible ? 'is-visible' : ''}`}
+      className="hero-section is-visible"
     >
       <div className="hero-top">
         <div className="hero-copy">

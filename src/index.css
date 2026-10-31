@@ -81,7 +81,7 @@
 
 html {
   font-size: 16.5px;
-  scroll-behavior: smooth;
+  background-color: #0a0a0a;
   overflow-x: clip;
   scrollbar-width: none;
   -ms-overflow-style: none;
@@ -2549,14 +2549,8 @@ a:hover {
 }
 
 .reveal {
-  opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 700ms ease, transform 700ms ease;
-}
-
-.reveal.is-visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: none;
 }
 
 /* ==========================================================================

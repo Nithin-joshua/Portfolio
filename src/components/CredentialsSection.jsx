@@ -144,7 +144,7 @@ function CredentialsSection({ education, achievements, certifications }) {
                   draggable={true}
                   zoomOnClick={true}
                   peek={true}
-                  intro={true}
+                  intro={false}
                 />
               </div>
             </div>

@@ -2,7 +2,7 @@
 import useRevealOnScroll from '../hooks/useRevealOnScroll';
 
 function SectionShell({ id, kicker, title, intro, children }) {
-  const [sectionRef, isVisible] = useRevealOnScroll({ threshold: 0.12 });
+  const [sectionRef, isVisible] = useRevealOnScroll({ threshold: 0, rootMargin: '300px 0px 300px 0px' });
 
   return (
     <section

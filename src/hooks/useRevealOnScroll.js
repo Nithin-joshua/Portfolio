@@ -1,11 +1,11 @@
-﻿// This file reveals elements when they enter the viewport for a softer scroll rhythm.
+// This file reveals elements when they approach the viewport with zero blank delay.
 import { useEffect, useRef, useState } from 'react';
 
 function useRevealOnScroll(options = {}) {
   const {
     once = true,
-    rootMargin = '0px 0px -10% 0px',
-    threshold = 0.2,
+    rootMargin = '300px 0px 300px 0px',
+    threshold = 0,
   } = options;
   const elementRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -17,14 +17,20 @@ function useRevealOnScroll(options = {}) {
       return undefined;
     }
 
+    // Check if element is already in or near viewport on mount
+    const rect = currentElement.getBoundingClientRect();
+    if (rect.top <= window.innerHeight + 300 && rect.bottom >= -300) {
+      setIsVisible(true);
+      if (once) return undefined;
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
-
-          // When the element only needs to animate once, we can stop observing after it shows up.
           if (once) {
             observer.unobserve(entry.target);
+            observer.disconnect();
           }
         } else if (!once) {
           setIsVisible(false);

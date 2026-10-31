@@ -170,7 +170,7 @@ function LinkBox({ title, subtitle, icon, href, isAction = false, onClick, downl
 }
 
 function ContactSection({ contact, links = [], resume }) {
-  const [sectionRef, isVisible] = useRevealOnScroll({ threshold: 0.1 });
+  const [sectionRef, isVisible] = useRevealOnScroll({ threshold: 0, rootMargin: '300px 0px 300px 0px' });
 
   const githubUrl =
     links.find((l) => l.shortLabel === 'GitHub')?.url ||
