@@ -151,7 +151,19 @@ function LinkBox({ title, subtitle, icon, href, isAction = false, onClick, downl
           <span className="clip-box-title">{title}</span>
           {subtitle && <span className="clip-box-subtitle">{subtitle}</span>}
         </div>
-        <span className="clip-box-arrow">{isAction ? '↑' : '↗'}</span>
+        <span className="clip-box-arrow" aria-hidden="true">
+          {isAction ? (
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="12" y1="19" x2="12" y2="5" />
+              <polyline points="5 12 12 5 19 12" />
+            </svg>
+          ) : (
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="7" y1="17" x2="17" y2="7" />
+              <polyline points="7 7 17 7 17 17" />
+            </svg>
+          )}
+        </span>
       </div>
     </Component>
   );
@@ -186,7 +198,6 @@ function ContactSection({ contact, links = [], resume }) {
     >
       <div className="contact-unified-wrapper">
         <div className="contact-header-block">
-          <p className="section-kicker">{contact?.kicker || 'Contact & Portals'}</p>
           <h2 className="contact-main-title">Let&apos;s Connect</h2>
           <p className="contact-lead-note">
             {contact?.note ||

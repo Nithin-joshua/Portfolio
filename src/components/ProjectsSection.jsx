@@ -4,17 +4,11 @@ import formatDateRange from '../utils/formatDateRange';
 
 function MobileProjectCard({ proj }) {
   const [expanded, setExpanded] = useState(false);
-  const maxStack = 4;
-  const visibleStack = proj.stack.slice(0, maxStack);
-  const remainingStackCount = proj.stack.length - maxStack;
 
   return (
     <article className="panel mobile-project-card">
       <div className="mobile-project-header">
-        <div>
-          <span className="panel-kicker">{proj.shortName}</span>
-          <h3 className="mobile-project-title">{proj.name}</h3>
-        </div>
+        <h3 className="mobile-project-title">{proj.name}</h3>
         {proj.github && (
           <a
             href={proj.github}
@@ -23,23 +17,19 @@ function MobileProjectCard({ proj }) {
             className="mobile-project-link-btn"
             aria-label="GitHub Repository"
           >
-            GitHub ↗
+            GitHub
           </a>
         )}
       </div>
 
       <p className="mobile-project-summary">{proj.description}</p>
 
-      {/* Max 4 Tech Chips visible */}
       <div className="mobile-project-chips">
-        {visibleStack.map((tech) => (
+        {proj.stack.map((tech) => (
           <span key={tech} className="tech-badge-chip">
             {tech}
           </span>
         ))}
-        {remainingStackCount > 0 && !expanded && (
-          <span className="tech-badge-chip more-chip">+{remainingStackCount}</span>
-        )}
       </div>
 
       <button
@@ -48,7 +38,7 @@ function MobileProjectCard({ proj }) {
         onClick={() => setExpanded(!expanded)}
         aria-expanded={expanded}
       >
-        {expanded ? 'Hide Architecture & Workflow ▲' : 'View Architecture & Workflow ▼'}
+        {expanded ? 'Hide Architecture & Workflow' : 'View Architecture & Workflow'}
       </button>
 
       {expanded && (
@@ -128,94 +118,58 @@ function ProjectsSection({ projects }) {
       <div className="desktop-projects-container">
         {/* Project Selector Tabs */}
         <div className="project-tabs" role="tablist" aria-label="Projects list">
-        {list.map((proj, idx) => (
-          <button
-            key={proj.name}
-            role="tab"
-            aria-selected={activeIndex === idx}
-            type="button"
-            className={`project-tab-button ${activeIndex === idx ? 'is-active' : ''}`}
-            onClick={() => setActiveIndex(idx)}
-          >
-            <span className="project-tab-dot" />
-            <span className="project-tab-text">{proj.shortName}</span>
-          </button>
-        ))}
-      </div>
+          {list.map((proj, idx) => (
+            <button
+              key={proj.name}
+              role="tab"
+              aria-selected={activeIndex === idx}
+              type="button"
+              className={`project-tab-button ${activeIndex === idx ? 'is-active' : ''}`}
+              onClick={() => setActiveIndex(idx)}
+            >
+              <span className="project-tab-dot" />
+              <span className="project-tab-text">{proj.shortName}</span>
+            </button>
+          ))}
+        </div>
 
-      <div className="project-feature">
-        {/* Left Side: Media and Steps workflow */}
-        <div className="panel project-media">
+        {/* Unified Flagship Project Showcase Panel */}
+        <div className="panel project-showcase-panel">
           <div className="project-glow project-glow-one" />
           <div className="project-glow project-glow-two" />
 
-          <p className="panel-kicker">{activeProject.shortName}</p>
-          <h3 className="project-media-title">{activeProject.name}</h3>
-          <p className="project-media-date">
-            {formatDateRange(activeProject.start, activeProject.end)}
-          </p>
-
-          {activeProject.videoUrl ? (
-            <div className="project-video-wrapper">
-              <video
-                src={activeProject.videoUrl}
-                autoPlay={true}
-                loop={true}
-                muted={true}
-                controls={true}
-                playsInline={true}
-                preload="auto"
-                className="project-video"
-              />
-            </div>
-          ) : (
-            <div className="project-visual-placeholder">
-              <div className="placeholder-ring" />
-              <div className="placeholder-core">
-                <span className="tech-badge">{activeProject.stack[0]}</span>
-              </div>
-            </div>
-          )}
-
-          {/* Step Pipeline Flow */}
-          <div className="project-step-list">
-            <p className="step-pipeline-title">System Pipeline & Workflow</p>
-            <div className="step-flow-container">
-              {activeProject.steps.map((step, idx) => (
-                <div
-                  key={step}
-                  className={`project-step ${activeStepIndex === idx ? 'step-active' : ''}`}
-                  onClick={() => setActiveStepIndex(idx)}
-                  role="button"
-                  tabIndex={0}
-                >
-                  <div className="step-number">{idx + 1}</div>
-                  <div className="step-name">{step}</div>
-                  {idx < activeProject.steps.length - 1 && (
-                    <div className="step-connector" />
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Right Side: Project Content Details */}
-        <article className="panel project-content">
-          <div className="project-content-head">
-            <div>
-              <p className="panel-kicker">Project Overview</p>
+          {/* 1. Project Header & Actions */}
+          <div className="project-showcase-head">
+            <div className="project-title-group">
               <h3 className="project-name">{activeProject.name}</h3>
+              <p className="project-media-date">
+                {formatDateRange(activeProject.start, activeProject.end)}
+              </p>
             </div>
 
             {activeProject.github && (
               <a
-                className="secondary-button small-button"
+                className="secondary-button small-button project-github-cta"
                 href={activeProject.github}
                 target="_blank"
                 rel="noreferrer"
+                aria-label="View source code on GitHub"
               >
-                View GitHub
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                  className="btn-icon"
+                >
+                  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+                </svg>
+                <span>View GitHub</span>
               </a>
             )}
           </div>
@@ -230,6 +184,55 @@ function ProjectsSection({ projects }) {
             ))}
           </div>
 
+          {/* 2. Interactive Media & Pipeline Workflow Grid */}
+          <div className="project-media-flow-grid">
+            <div className="project-media-visual-wrap">
+              {activeProject.videoUrl ? (
+                <div className="project-video-wrapper">
+                  <video
+                    src={activeProject.videoUrl}
+                    autoPlay={true}
+                    loop={true}
+                    muted={true}
+                    controls={true}
+                    playsInline={true}
+                    preload="auto"
+                    className="project-video"
+                  />
+                </div>
+              ) : (
+                <div className="project-visual-placeholder">
+                  <div className="placeholder-ring" />
+                  <div className="placeholder-core">
+                    <span className="tech-badge">{activeProject.stack[0]}</span>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            <div className="project-step-list">
+              <p className="step-pipeline-title">System Pipeline & Workflow</p>
+              <div className="step-flow-container">
+                {activeProject.steps.map((step, idx) => (
+                  <div
+                    key={step}
+                    className={`project-step ${activeStepIndex === idx ? 'step-active' : ''}`}
+                    onClick={() => setActiveStepIndex(idx)}
+                    role="button"
+                    tabIndex={0}
+                  >
+                    <div className="step-number">{idx + 1}</div>
+                    <div className="step-name">{step}</div>
+                    {idx < activeProject.steps.length - 1 && (
+                      <div className="step-connector" />
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* 3. System Architecture & Core Innovations (3 Equal Columns) */}
           <div className="project-label-grid">
             {activeProject.labels.map((item) => (
               <div key={item.title} className="project-label-card">
@@ -239,13 +242,16 @@ function ProjectsSection({ projects }) {
             ))}
           </div>
 
-          <ul className="role-list project-list">
-            {activeProject.bullets.map((bullet) => (
-              <li key={bullet}>{bullet}</li>
-            ))}
-          </ul>
-        </article>
-      </div>
+          {/* 4. Engineering Highlights & Deliverables */}
+          <div className="project-highlights-block">
+            <p className="highlights-subtitle">Key Highlights & Production Deliverables</p>
+            <ul className="role-list project-list">
+              {activeProject.bullets.map((bullet) => (
+                <li key={bullet}>{bullet}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
       </div>
     </SectionShell>
   );

@@ -1,4 +1,6 @@
+import { useMemo } from 'react';
 import SectionShell from './SectionShell';
+import Folder from './Folder';
 import { privateLinks } from '../data/private_links_wrapper';
 import formatDateRange from '../utils/formatDateRange';
 
@@ -12,12 +14,32 @@ const mapCertKey = (name) => {
 };
 
 function CredentialsSection({ education, achievements, certifications }) {
+  const certEntries = certifications?.entries || [];
+
+  const folderItems = useMemo(() => {
+    return certEntries.map((entry) => {
+      const key = mapCertKey(entry.name);
+      const link = key ? privateLinks.certifications[key] : '';
+      return {
+        ...entry,
+        title: entry.name,
+        issuer: entry.issuer,
+        authority: entry.authority,
+        credential: entry.credential,
+        status: entry.status,
+        summary: entry.summary,
+        skills: entry.skills,
+        link,
+      };
+    });
+  }, [certEntries]);
+
   return (
     <SectionShell
       id="credentials"
       kicker="Credentials"
       title="Education & Credentials"
-      intro="My academic background, professional certifications, and recognitions."
+      intro="Academic foundation, national qualifications, and certified domain competencies."
     >
       <div className="credentials-container">
         {/* Achievements / UGC-NET Recognition */}
@@ -31,10 +53,16 @@ function CredentialsSection({ education, achievements, certifications }) {
               const link = isUgcNet ? privateLinks.achievements.ugcNet : '';
 
               return (
-                <article key={entry.title} className="panel achievement-card featured-credential-card">
+                <article key={entry.title} className="achievement-card featured-credential-card">
                   <div className="achievement-head">
                     <div className="achievement-meta-row">
-                      <span className="panel-kicker highlighted-kicker">{entry.label}</span>
+                      <div className="achievement-badge-wrap">
+                        <span className="credential-badge">
+                          <span className="badge-pulse-dot" aria-hidden="true" />
+                          {entry.label}
+                        </span>
+                        <span className="credential-sub-badge">National Level Qualification</span>
+                      </div>
                       {link && (
                         <a
                           href={link}
@@ -43,7 +71,22 @@ function CredentialsSection({ education, achievements, certifications }) {
                           className="doc-preview-link"
                           title="View Certificate"
                         >
-                          📄 Preview Certificate
+                          <svg
+                            width="14"
+                            height="14"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            aria-hidden="true"
+                            className="doc-preview-icon"
+                          >
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                            <polyline points="14 2 14 8 20 8" />
+                          </svg>
+                          <span>Preview Certificate</span>
                         </a>
                       )}
                     </div>
@@ -63,9 +106,9 @@ function CredentialsSection({ education, achievements, certifications }) {
           </h3>
           <div className="education-grid">
             {education.entries.map((entry) => (
-              <article key={`${entry.degree}-${entry.start}`} className="panel education-card">
-                <p className="panel-kicker">{formatDateRange(entry.start, entry.end)}</p>
+              <article key={`${entry.degree}-${entry.start}`} className="education-card">
                 <h3 className="education-degree">{entry.degree}</h3>
+                <p className="education-date">{formatDateRange(entry.start, entry.end)}</p>
                 <p className="education-school">{entry.school}</p>
                 <p className="education-location">{entry.location}</p>
               </article>
@@ -73,36 +116,38 @@ function CredentialsSection({ education, achievements, certifications }) {
           </div>
         </div>
 
-        {/* Certifications Sub-group */}
+        {/* Certifications Sub-group with <Folder /> Component */}
         <div className="credentials-group">
           <h3 className="credentials-group-title">
-            Certifications
+            {certifications.title || 'Certifications'}
           </h3>
-          <div className="certification-grid">
-            {certifications.entries.map((entry) => {
-              const key = mapCertKey(entry.name);
-              const link = key ? privateLinks.certifications[key] : '';
+          <p className="certifications-normal-desc">
+            {certifications.intro || 'Core certifications strengthening programming fundamentals and applied technology knowledge.'}
+          </p>
 
-              return (
-                <article key={entry.name} className="panel certification-card">
-                  <div className="card-top-row">
-                    <p className="panel-kicker">{entry.issuer}</p>
-                    {link && (
-                      <a
-                        href={link}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="doc-preview-link"
-                        title="View Certificate"
-                      >
-                        📄 Preview
-                      </a>
-                    )}
-                  </div>
-                  <h3 className="certification-name">{entry.name}</h3>
-                </article>
-              );
-            })}
+          {/* Centered Showcase */}
+          <div className="certifications-single-showcase">
+            <div className="certifications-folder-stage">
+              <div className="folder-stage-backdrop" aria-hidden="true" />
+              <div className="folder-stage-canvas-wrap">
+                <Folder
+                  label="Certifications"
+                  items={folderItems}
+                  mode="flap"
+                  variant="glass"
+                  color="#2563eb"
+                  paperColor="#ffffff"
+                  theme="dark"
+                  layout="spread"
+                  size={1.3}
+                  defaultOpen={true}
+                  draggable={true}
+                  zoomOnClick={true}
+                  peek={true}
+                  intro={true}
+                />
+              </div>
+            </div>
           </div>
         </div>
       </div>

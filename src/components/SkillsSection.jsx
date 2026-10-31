@@ -1,5 +1,6 @@
-// This file presents the modern Tech Stack Bento cards.
+// This file presents the modern Interactive Physics Skills Folders.
 import SectionShell from './SectionShell';
+import FolderFloat from './FolderFloat';
 
 function SkillsSection({ skills }) {
   return (
@@ -9,27 +10,23 @@ function SkillsSection({ skills }) {
       title={skills.title}
       intro={skills.intro}
     >
-      <div className="skills-bento-grid">
+      <div className="skills-folders-container">
         {skills.skillGroups.map((group) => (
-          <div
-            key={group.title}
-            className={`panel skill-bento-card skill-bento-${group.category || 'general'}`}
-          >
-            <div className="skill-bento-header">
-              <span className="skill-bento-tag">{group.category || 'tech'}</span>
-              <h3 className="skill-bento-title">{group.title}</h3>
-            </div>
-
-            <div className="skill-badge-container">
-              {group.items.map((item) => {
-                const name = typeof item === 'string' ? item : item.name;
-                return (
-                  <span key={name} className="tech-badge-chip">
-                    {name}
-                  </span>
-                );
-              })}
-            </div>
+          <div key={group.title} className="skills-folder-wrapper">
+            <FolderFloat
+              items={group.items}
+              label={group.title}
+              sublabel={`${group.items.length} technologies`}
+              trigger="hover"
+              closeOnSelect={false}
+              physics={true}
+              drift={0.4}
+              width={210}
+              height={148}
+              radius={14}
+              spread={160}
+              lift={26}
+            />
           </div>
         ))}
       </div>

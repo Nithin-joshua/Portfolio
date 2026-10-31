@@ -44,8 +44,8 @@ export const portfolio = {
   hero: {
     id: 'hero',
     headline: 'Backend & AI Systems Engineer',
-    availability: 'Available for Roles · Bangalore / Remote',
-    subtext: 'FastAPI · Python · PostgreSQL · Celery · Milvus · Docker · Applied AI',
+    availability: 'Available for Roles (Bangalore / Remote)',
+    subtext: 'FastAPI, Python, PostgreSQL, Celery, Milvus, Docker, Applied AI',
     intro:
       'Architecting high-throughput backend services, distributed async pipelines, and applied voice biometric AI systems.',
     primaryAction: {
@@ -343,22 +343,52 @@ export const portfolio = {
       {
         name: 'Python Certificate Course',
         issuer: 'IIT Bombay',
+        authority: 'IIT Bombay • Govt. of India',
+        credential: 'Certificate of Completion',
+        status: 'Completed & Verified',
+        summary:
+          'Comprehensive training in Python programming, OOP architecture, core data structures, and automation scripting.',
+        skills: ['Python 3', 'OOP Architecture', 'Data Structures'],
       },
       {
         name: 'C Programming Certificate Course',
-        issuer: 'Spoken Tutorial',
+        issuer: 'Spoken Tutorial, IIT Bombay',
+        authority: 'IIT Bombay • Govt. of India',
+        credential: 'Certificate of Completion',
+        status: 'Completed & Verified',
+        summary:
+          'Systems programming covering memory management, pointer arithmetic, structs, file I/O, and algorithm optimization.',
+        skills: ['Systems Programming', 'Pointers & Memory', 'Data Structures'],
       },
       {
-        name: 'Python for Data Science Certificate Course',
-        issuer: 'Swayam',
+        name: 'Python for Data Science',
+        issuer: 'NPTEL / Swayam',
+        authority: 'Ministry of Education • IIT Madras',
+        credential: 'National Academic Certification',
+        status: 'Completed & Verified',
+        summary:
+          'Applied data science curriculum: scientific computing with NumPy, tabular analysis with Pandas, and regression modeling.',
+        skills: ['NumPy & Pandas', 'Data Analysis', 'Regression Modeling'],
       },
       {
         name: 'DSA Mastery with Java',
         issuer: 'ExcelR',
+        authority: 'Industry Technical Certification',
+        credential: 'Certificate of Completion',
+        status: 'Completed & Verified',
+        summary:
+          'Algorithmic problem solving: complexity analysis, trees, graphs, dynamic programming, recursion, and search heuristics.',
+        skills: ['DSA in Java', 'Graphs & Trees', 'Dynamic Programming'],
       },
       {
-        name: 'PHP & SQL',
+        name: 'PHP & SQL Training Course',
         issuer: 'IIT Bombay',
+        authority: 'IIT Bombay • Govt. of India',
+        credential: 'Certificate of Completion',
+        status: 'Completed & Verified',
+        summary:
+          'Relational database architecture, normalized schema design, complex SQL queries, ACID compliance, and backend integrations.',
+        skills: ['Relational DBs', 'Complex SQL', 'ACID Transactions'],
       },
     ],
   },

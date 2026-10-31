@@ -16,8 +16,9 @@ function PublicationsSection({ publications }) {
           return (
             <article key={entry.title} className="panel publication-card">
               <div className="publication-header">
+                <h3 className="publication-title">{entry.title}</h3>
                 <div className="publication-meta">
-                  <span className="panel-kicker">{entry.authors}</span>
+                  <span className="publication-authors">{entry.authors}</span>
                   <div className="publication-meta-right">
                     <span className="publication-isbn">ISBN: {entry.isbn}</span>
                     {link && (
@@ -28,12 +29,26 @@ function PublicationsSection({ publications }) {
                         className="doc-preview-link"
                         style={{ marginLeft: '12px' }}
                       >
-                        📄 View Paper
+                        <svg
+                          width="14"
+                          height="14"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          aria-hidden="true"
+                          className="doc-preview-icon"
+                        >
+                          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                          <polyline points="14 2 14 8 20 8" />
+                        </svg>
+                        <span>View Paper</span>
                       </a>
                     )}
                   </div>
                 </div>
-                <h3 className="publication-title">{entry.title}</h3>
                 <p className="publication-venue">
                   Published in: <strong>{entry.publishedIn}</strong>
                 </p>

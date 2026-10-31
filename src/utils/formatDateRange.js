@@ -1,4 +1,4 @@
-﻿// This file formats simple year-month strings into readable date ranges.
+// This file formats simple year-month strings into readable date ranges.
 const monthNames = [
   'Jan',
   'Feb',
@@ -35,7 +35,7 @@ function formatDateRange(start, end) {
   const endText = formatSingleDate(end);
 
   if (startText && endText) {
-    return `${startText} - ${endText}`;
+    return `${startText} – ${endText}`;
   }
 
   return startText || endText;

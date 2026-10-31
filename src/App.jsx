@@ -27,7 +27,7 @@ function App() {
       />
 
       <div className="app-inner">
-        <main className="page-content">
+        <main id="main-content" className="page-content">
           <HeroSection hero={portfolio.hero} links={portfolio.links} />
           <ExperienceSection experience={portfolio.experience} />
           <ProjectsSection projects={portfolio.projects} />

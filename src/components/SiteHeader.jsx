@@ -69,18 +69,8 @@ function SiteHeader({ logo, navigation, activeSectionId, resume }) {
           </nav>
         </div>
 
-        {/* Desktop Header Right CTA */}
-        <div className="header-right desktop-nav-right">
-          {resume?.url && (
-            <a
-              href={resume.url}
-              download={resume.downloadName}
-              className="header-resume-cta"
-            >
-              Resume <span className="header-resume-arrow">↓</span>
-            </a>
-          )}
-        </div>
+        {/* Desktop Header Right spacer for centered dock */}
+        <div className="header-right desktop-nav-right" aria-hidden="true" />
 
         {/* Mobile Hamburger Button (Hidden on desktop) */}
         <div className="mobile-toggle-wrapper">
@@ -173,7 +163,6 @@ function SiteHeader({ logo, navigation, activeSectionId, resume }) {
                 onClick={() => handleNavClick(item.id)}
               >
                 <span>{item.label}</span>
-                <span className="mobile-nav-arrow">→</span>
               </button>
             ))}
           </nav>
