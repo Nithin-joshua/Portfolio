@@ -257,6 +257,19 @@ export default function FolderFloat({
     [stopPhysics]
   );
 
+  useEffect(() => {
+    if (!open) return undefined;
+    const handleOutside = (e) => {
+      if (anchorRef.current && !anchorRef.current.parentElement?.contains(e.target)) {
+        set(false);
+      }
+    };
+    document.addEventListener('pointerdown', handleOutside);
+    return () => {
+      document.removeEventListener('pointerdown', handleOutside);
+    };
+  }, [open, set]);
+
   const pick = (item, i) => {
     latest.current.onSelect?.(item.value, i);
     clearTimeout(popTimer.current);
@@ -320,6 +333,16 @@ export default function FolderFloat({
 
   const hover = trigger === 'hover';
 
+  const handlePointerEnter = (e) => {
+    if (e.pointerType === 'touch') return;
+    if (hover) set(true);
+  };
+
+  const handlePointerLeave = (e) => {
+    if (e.pointerType === 'touch') return;
+    if (hover && !world.current.drag) set(false);
+  };
+
   return (
     <div
       className={`folder-float${className ? ` ${className}` : ''}`}
@@ -327,14 +350,8 @@ export default function FolderFloat({
       data-live={live ? '' : undefined}
       data-physics={physics ? '' : undefined}
       data-trigger={trigger}
-      onPointerEnter={hover ? () => set(true) : undefined}
-      onPointerLeave={
-        hover
-          ? () => {
-              if (!world.current.drag) set(false);
-            }
-          : undefined
-      }
+      onPointerEnter={hover ? handlePointerEnter : undefined}
+      onPointerLeave={hover ? handlePointerLeave : undefined}
       onKeyDown={e => {
         if (e.key === 'Escape' && open) {
           e.stopPropagation();
@@ -407,7 +424,10 @@ export default function FolderFloat({
           className="folder-float__trigger"
           aria-expanded={open}
           aria-label={`${label}, ${sub}`}
-          onClick={() => set(!open)}
+          onClick={(e) => {
+            e.stopPropagation();
+            set(!open);
+          }}
         />
       </div>
     </div>

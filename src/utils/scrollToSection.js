@@ -23,16 +23,14 @@ function scrollToSection(sectionId, offset = 80) {
 
     let targetTop;
     // Safe clearance from viewport bottom (leaves comfortable breathing room above taskbar/browser chrome)
-    const bottomClearance = Math.min(72, Math.max(48, viewportHeight * 0.12));
+    const bottomClearance = Math.min(80, Math.max(48, viewportHeight * 0.12));
 
     if (wrapperHeight + bottomClearance <= viewportHeight) {
-      // Entire section fits in viewport: align with comfortable top breathing room
+      // Entire section fits in viewport: center with comfortable top breathing room
       targetTop = wrapperTop - Math.max(headerHeight + 12, (viewportHeight - wrapperHeight) / 2);
     } else {
-      // Section is taller than viewport: ensure the entire links grid is fully visible with safe clearance from bottom
+      // Section is taller than viewport: ensure the entire links grid sits cleanly above the viewport bottom
       targetTop = (linksTop + linksHeight) - viewportHeight + bottomClearance;
-      // But don't scroll past the section heading if grid alone is very tall
-      targetTop = Math.max(wrapperTop - headerHeight - 12, targetTop);
     }
 
     targetTop = Math.min(targetTop, maxScroll);

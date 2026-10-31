@@ -113,6 +113,7 @@ function ExperienceSection({ experience }) {
       clearTimeout(scrollSettleTimer.current);
       // Only auto-fold if the user had previously scrolled away through the cards and returned to start
       if (!isInteracting.current && hasScrolledAway.current) {
+        if (typeof window !== 'undefined' && window.innerWidth <= 768) return;
         scrollSettleTimer.current = setTimeout(() => {
           if (scrollRef.current && scrollRef.current.scrollLeft <= 25) {
             hasScrolledAway.current = false;
@@ -170,6 +171,7 @@ function ExperienceSection({ experience }) {
 
     // Only if the user actually dragged back to near origin, return to fan mode
     if (moved && scrollRef.current && scrollRef.current.scrollLeft <= 25) {
+      if (typeof window !== 'undefined' && window.innerWidth <= 768) return;
       clearTimeout(scrollSettleTimer.current);
       scrollSettleTimer.current = setTimeout(() => {
         if (scrollRef.current && scrollRef.current.scrollLeft <= 25) {
@@ -215,6 +217,7 @@ function ExperienceSection({ experience }) {
 
     // Only if user actively swiped back to near origin, return to fan mode
     if (moved && scrollRef.current && scrollRef.current.scrollLeft <= 25) {
+      if (typeof window !== 'undefined' && window.innerWidth <= 768) return;
       clearTimeout(scrollSettleTimer.current);
       scrollSettleTimer.current = setTimeout(() => {
         if (scrollRef.current && scrollRef.current.scrollLeft <= 25) {

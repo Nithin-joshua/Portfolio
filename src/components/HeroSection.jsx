@@ -30,7 +30,7 @@ function HeroSection({ hero, links }) {
                 fillDelay={0.15}
                 stagger={0.035}
                 ease="power2.out"
-                trigger="mount"
+                trigger="loop"
                 fillMode="wipe"
                 wipeFrom="left"
                 fontSize={64}
