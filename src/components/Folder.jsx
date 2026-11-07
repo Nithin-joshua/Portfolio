@@ -1317,8 +1317,8 @@ const Folder = ({
       const hovering = !drag && hover >= 0 && state.items[hover] ? state.items[hover] : null;
       const lead =
         hovering && hovering.place === 'inside' && phase === 'open' ? place(hovering.rank, inside, 'open', s) : null;
-      const focusScale = geometry.book ? 1.25 : 1.18;
-      const focusY = geometry.book ? geometry.tabH + geometry.h / 2 : geometry.tabH + geometry.h * 0.44;
+      const focusScale = geometry.book ? 1.15 : 1.06;
+      const focusY = geometry.book ? geometry.tabH + geometry.h / 2 : geometry.tabH + geometry.h * 0.42;
 
       state.items.forEach((item, index) => {
         if (item.fresh) {
@@ -1645,9 +1645,16 @@ const Folder = ({
       drag.scale = item.place === 'out' ? item.outS : item.s.value;
       drag.clip = clipBounds();
       state.suppressClick = true;
-      if (state.focus === drag.index) state.focus = -1;
+      if (state.focus === drag.index) {
+        state.focus = -1;
+        setFocusedIndex(-1);
+      }
       item.elevated = item.place === 'out' || !inPocket(item);
       root.dataset.dragging = '';
+      try {
+        const node = itemRefs.current[drag.index];
+        node?.setPointerCapture?.(drag.id);
+      } catch {}
     };
 
     const drop = (drag, cancelled) => {
@@ -1748,7 +1755,6 @@ const Folder = ({
       const target = event.target.closest?.('[data-folder-item]');
       if (target && root.contains(target) && settingsRef.current.draggable) {
         const itemIdx = Number(target.getAttribute('data-folder-item'));
-        if (state.focus === itemIdx) return;
         const [x, y] = toDesk(event.clientX, event.clientY);
         state.deskX = x;
         state.deskY = y;
@@ -1766,11 +1772,6 @@ const Folder = ({
           active: false,
           samples: [[performance.now(), x, y]]
         };
-        try {
-          target.setPointerCapture(event.pointerId);
-        } catch {
-          state.drag.id = event.pointerId;
-        }
       } else {
         state.pressed = true;
       }
@@ -1849,9 +1850,17 @@ const Folder = ({
       interactive: index => settingsRef.current.open || state.items[index]?.place === 'out' || state.focus === index,
       select: index => {
         const s = settingsRef.current;
-        if (!s.open) setOpenRef.current(true);
-        state.focus = index;
-        setFocusedIndex(index);
+        if (!s.open) {
+          setOpenRef.current(true);
+          state.focus = index;
+          setFocusedIndex(index);
+        } else if (state.focus === index) {
+          state.focus = -1;
+          setFocusedIndex(-1);
+        } else {
+          state.focus = index;
+          setFocusedIndex(index);
+        }
         s.onItemClick?.(s.entries[index], index);
         wake();
       },
@@ -1906,7 +1915,8 @@ const Folder = ({
     engineRef.current?.wake();
   });
 
-  const toggle = () => {
+  const toggle = (event) => {
+    if (event?.target?.closest?.('[data-folder-item]')) return;
     if (engineRef.current?.blur()) return;
     if (openOn === 'hover') return;
     setOpen(!isOpen);

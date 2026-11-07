@@ -45,12 +45,7 @@ function App() {
             resume={portfolio.resume}
           />
         </main>
-        <SiteFooter
-          logo={portfolio.logo}
-          navigation={portfolio.navigation}
-          links={portfolio.links}
-          resume={portfolio.resume}
-        />
+        <SiteFooter logo={portfolio.logo} />
       </div>
     </div>
   );
