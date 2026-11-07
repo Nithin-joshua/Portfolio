@@ -142,6 +142,7 @@ function CredentialsSection({ education, achievements, certifications }) {
                   layout="spread"
                   size={1.3}
                   defaultOpen={true}
+                  closeOnOutsideClick={false}
                   draggable={true}
                   zoomOnClick={true}
                   peek={true}

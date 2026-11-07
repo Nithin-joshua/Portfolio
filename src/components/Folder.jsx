@@ -731,11 +731,11 @@ const CertificateCard = ({ item }) => {
         </div>
 
         <div className="folder-cert-footer">
-          <div className="folder-cert-status">
+          <div className="folder-cert-status" title={status}>
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#059669" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
               <polyline points="20 6 9 17 4 12" />
             </svg>
-            <span>{status}</span>
+            <span>{status?.toLowerCase().includes('verified') ? 'Verified' : status}</span>
           </div>
 
           {link && (
@@ -756,7 +756,7 @@ const CertificateCard = ({ item }) => {
                 <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
                 <polyline points="14 2 14 8 20 8" />
               </svg>
-              <span>{link.toLowerCase().includes('.pdf') ? 'Preview PDF ↗' : 'Verify ↗'}</span>
+              <span>{link.toLowerCase().includes('.pdf') ? 'Preview ↗' : 'Verify ↗'}</span>
             </a>
           )}
         </div>
@@ -1161,7 +1161,7 @@ const Folder = ({
     };
 
     const phaseOf = (s, time) => {
-      if (s.open) return 'open';
+      if (s.open || state.focus >= 0) return 'open';
       if (state.receiving || time < state.receiveUntil) return 'receive';
       if (s.peek && state.hovered && !state.drag?.active) return 'peek';
       return 'rest';
@@ -1210,7 +1210,7 @@ const Folder = ({
       ranks.forEach((index, rank) => {
         state.items[index].rank = rank;
       });
-      if (state.focus >= 0 && phase !== 'open' && state.items[state.focus]?.place === 'inside') state.focus = -1;
+      if (state.focus >= 0 && phase === 'rest' && state.items[state.focus]?.place === 'inside') state.focus = -1;
 
       const intro = state.intro;
       if (!state.ready) intro.opening = s.open;
@@ -1683,7 +1683,7 @@ const Folder = ({
         drag.samples.push([now, x, y]);
         while (drag.samples.length > 2 && now - drag.samples[0][0] > 100) drag.samples.shift();
         if (!drag.active) {
-          const threshold = event.pointerType === 'touch' ? 8 : 4;
+          const threshold = event.pointerType === 'touch' ? 24 : 18;
           if (Math.hypot(event.clientX - drag.clientX, event.clientY - drag.clientY) > threshold) startDrag(drag);
         }
         if (drag.active) updateReceiving();
@@ -1728,11 +1728,13 @@ const Folder = ({
       state.suppressClick = false;
       const target = event.target.closest?.('[data-folder-item]');
       if (target && root.contains(target) && settingsRef.current.draggable) {
+        const itemIdx = Number(target.getAttribute('data-folder-item'));
+        if (state.focus === itemIdx) return;
         const [x, y] = toDesk(event.clientX, event.clientY);
         state.deskX = x;
         state.deskY = y;
         state.drag = {
-          index: Number(target.getAttribute('data-folder-item')),
+          index: itemIdx,
           id: event.pointerId,
           clientX: event.clientX,
           clientY: event.clientY,
@@ -1826,6 +1828,7 @@ const Folder = ({
       interactive: index => settingsRef.current.open || state.items[index]?.place === 'out' || state.focus === index,
       select: index => {
         const s = settingsRef.current;
+        if (!s.open) setOpenRef.current(true);
         if (s.zoomOnClick) state.focus = state.focus === index ? -1 : index;
         s.onItemClick?.(s.entries[index], index);
         wake();
@@ -1890,14 +1893,12 @@ const Folder = ({
     if (event.target.closest?.('a, button, [role="button"]:not([data-folder-item])')) {
       return;
     }
+    event.stopPropagation();
     const engine = engineRef.current;
     if (!engine) return;
     if (engine.consumeClick()) {
-      event.stopPropagation();
       return;
     }
-    if (!engine.interactive(index)) return;
-    event.stopPropagation();
     engine.select(index);
   };
 
