@@ -441,6 +441,17 @@ export const portfolio = {
       'Core certifications strengthening programming fundamentals and applied technology knowledge.',
     entries: [
       {
+        name: 'AI Engineer Core Track: LLM Engineering, RAG, QLoRA, Agents',
+        issuer: 'Udemy',
+        authority: 'Ed Donner & Ligency • Udemy',
+        credential: 'Certificate of Completion (UC-c88cd1e0)',
+        status: 'Completed & Verified',
+        summary:
+          'Specialized AI engineering curriculum covering LLM architectures, production RAG pipelines, fine-tuning with QLoRA, autonomous agents, and multi-model deployment.',
+        skills: ['LLM Engineering', 'Advanced RAG', 'QLoRA & Fine-Tuning', 'AI Agents'],
+        link: 'https://www.udemy.com/certificate/UC-c88cd1e0-1148-466d-bf3b-437cf6177515/',
+      },
+      {
         name: 'Python Certificate Course',
         issuer: 'IIT Bombay',
         authority: 'IIT Bombay • Govt. of India',

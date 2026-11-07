@@ -5,6 +5,7 @@ import { privateLinks } from '../data/private_links_wrapper';
 import formatDateRange from '../utils/formatDateRange';
 
 const mapCertKey = (name) => {
+  if (name.includes('AI Engineer') || name.includes('LLM Engineering')) return 'llmEngineering';
   if (name.includes('Python Certificate')) return 'python';
   if (name.includes('C Programming')) return 'cProgramming';
   if (name.includes('Data Science')) return 'pythonForDataScience';
@@ -19,7 +20,7 @@ function CredentialsSection({ education, achievements, certifications }) {
   const folderItems = useMemo(() => {
     return certEntries.map((entry) => {
       const key = mapCertKey(entry.name);
-      const link = key ? privateLinks.certifications[key] : '';
+      const link = entry.link || (key ? privateLinks.certifications[key] : '');
       return {
         ...entry,
         title: entry.name,
