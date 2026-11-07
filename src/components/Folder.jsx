@@ -744,14 +744,19 @@ const CertificateCard = ({ item }) => {
               target="_blank"
               rel="noreferrer"
               className="folder-cert-pdf-link"
-              onClick={(e) => e.stopPropagation()}
+              onPointerDown={(e) => {
+                e.stopPropagation();
+              }}
+              onClick={(e) => {
+                e.stopPropagation();
+              }}
               title={`View ${displayTitle} Certificate`}
             >
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
                 <polyline points="14 2 14 8 20 8" />
               </svg>
-              <span>{link.toLowerCase().includes('.pdf') ? 'Preview PDF ↗' : 'Verify Certificate ↗'}</span>
+              <span>{link.toLowerCase().includes('.pdf') ? 'Preview PDF ↗' : 'Verify ↗'}</span>
             </a>
           )}
         </div>
@@ -1717,6 +1722,9 @@ const Folder = ({
 
     const onDown = event => {
       if (event.button > 0) return;
+      if (event.target.closest?.('a, button, [role="button"]:not([data-folder-item])')) {
+        return;
+      }
       state.suppressClick = false;
       const target = event.target.closest?.('[data-folder-item]');
       if (target && root.contains(target) && settingsRef.current.draggable) {
@@ -1879,6 +1887,9 @@ const Folder = ({
   };
 
   const onItemActivate = (event, index) => {
+    if (event.target.closest?.('a, button, [role="button"]:not([data-folder-item])')) {
+      return;
+    }
     const engine = engineRef.current;
     if (!engine) return;
     if (engine.consumeClick()) {
@@ -1978,6 +1989,7 @@ const Folder = ({
               onClick={event => onItemActivate(event, index)}
               onKeyDown={event => {
                 if (!interactive || (event.key !== 'Enter' && event.key !== ' ')) return;
+                if (event.target.closest?.('a, button')) return;
                 event.preventDefault();
                 event.stopPropagation();
                 engineRef.current?.select(index);
