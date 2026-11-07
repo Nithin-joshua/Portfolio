@@ -42,6 +42,7 @@ function App() {
             contact={portfolio.contact}
             links={portfolio.links}
             resume={portfolio.resume}
+            logo={portfolio.logo}
           />
         </main>
       </div>

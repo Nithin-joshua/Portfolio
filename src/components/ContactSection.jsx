@@ -169,7 +169,7 @@ function LinkBox({ title, subtitle, icon, href, isAction = false, onClick, downl
   );
 }
 
-function ContactSection({ contact, links = [], resume }) {
+function ContactSection({ contact, links = [], resume, logo }) {
   const [sectionRef, isVisible] = useRevealOnScroll({ threshold: 0, rootMargin: '300px 0px 300px 0px' });
 
   const githubUrl =
@@ -279,6 +279,28 @@ function ContactSection({ contact, links = [], resume }) {
                 </svg>
               }
             />
+          </div>
+        </div>
+
+        {/* Footer Bottom: Signature Brand Logo & Rights Notice */}
+        <div className="site-footer-bottom">
+          <button
+            type="button"
+            className="footer-brand-btn"
+            onClick={() => scrollToSection('hero')}
+            aria-label={`${logo?.alt || 'Nithin V'} - Back to top`}
+          >
+            <img
+              src={logo?.src || '/logo-transparent.png'}
+              alt={logo?.alt || 'Nithin V'}
+              className="footer-signature-logo"
+              loading="lazy"
+            />
+          </button>
+          <div className="footer-bottom-meta">
+            <p className="footer-copyright-text">
+              &copy; {new Date().getFullYear()} {logo?.alt || 'Nithin V'}. All rights reserved.
+            </p>
           </div>
         </div>
       </div>
