@@ -189,7 +189,8 @@ export const portfolio = {
           'Multimodal agent for industrial defect inspection, synthesizing computer vision (Qwen2.5-VL / YOLO), standards-based RAG retrieval, and sensor telemetry analysis.',
         stack: ['Python', 'FastAPI', 'LangGraph', 'Qwen2.5-VL', 'YOLO', 'RAG', 'ChromaDB', 'Docker'],
         github: 'https://github.com/Nithin-joshua/sturdy-palm-tree',
-        videoUrl: '',
+        liveUrl: 'https://sturdy-palm-tree-ghs2.onrender.com/',
+        videoUrl: '/multimodal_preview.mp4',
         steps: ['Image & Sensor Ingest', 'Vision Defect Detection', 'RAG Standards Retrieval', 'Risk Report & Review'],
         labels: [
           {

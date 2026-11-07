@@ -1700,6 +1700,14 @@ a:hover {
   gap: 4px;
 }
 
+.project-actions-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.project-live-cta,
 .project-github-cta {
   display: inline-flex;
   align-items: center;
@@ -3579,6 +3587,13 @@ a:hover {
     margin-bottom: 8px;
   }
 
+  .mobile-project-actions {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+
   .mobile-project-title {
     font-size: 1.18rem;
     font-family: var(--font-sans);
@@ -3603,6 +3618,13 @@ a:hover {
     font-size: 0.86rem;
     text-decoration: none;
     white-space: nowrap;
+  }
+
+  .mobile-project-link-btn.live {
+    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+    color: #ffffff;
+    border-color: rgba(147, 197, 253, 0.5);
+    font-weight: 600;
   }
 
   .mobile-project-summary {

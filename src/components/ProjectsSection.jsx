@@ -4,22 +4,36 @@ import formatDateRange from '../utils/formatDateRange';
 
 function MobileProjectCard({ proj }) {
   const [expanded, setExpanded] = useState(false);
+  const liveLink = proj.liveUrl || proj.link || proj.website;
 
   return (
     <article className="panel mobile-project-card">
       <div className="mobile-project-header">
         <h3 className="mobile-project-title">{proj.name}</h3>
-        {proj.github && (
-          <a
-            href={proj.github}
-            target="_blank"
-            rel="noreferrer"
-            className="mobile-project-link-btn"
-            aria-label="GitHub Repository"
-          >
-            GitHub
-          </a>
-        )}
+        <div className="mobile-project-actions">
+          {liveLink && (
+            <a
+              href={liveLink}
+              target="_blank"
+              rel="noreferrer"
+              className="mobile-project-link-btn live"
+              aria-label="Live Demo Website"
+            >
+              Live Demo
+            </a>
+          )}
+          {proj.github && (
+            <a
+              href={proj.github}
+              target="_blank"
+              rel="noreferrer"
+              className="mobile-project-link-btn"
+              aria-label="GitHub Repository"
+            >
+              GitHub
+            </a>
+          )}
+        </div>
       </div>
 
       <p className="mobile-project-summary">{proj.description}</p>
@@ -147,31 +161,61 @@ function ProjectsSection({ projects }) {
               </p>
             </div>
 
-            {activeProject.github && (
-              <a
-                className="secondary-button small-button project-github-cta"
-                href={activeProject.github}
-                target="_blank"
-                rel="noreferrer"
-                aria-label="View source code on GitHub"
-              >
-                <svg
-                  width="14"
-                  height="14"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  aria-hidden="true"
-                  className="btn-icon"
+            <div className="project-actions-group">
+              {(activeProject.liveUrl || activeProject.link || activeProject.website) && (
+                <a
+                  className="primary-button small-button project-live-cta"
+                  href={activeProject.liveUrl || activeProject.link || activeProject.website}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="Visit live website"
                 >
-                  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
-                </svg>
-                <span>View GitHub</span>
-              </a>
-            )}
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    aria-hidden="true"
+                    className="btn-icon"
+                  >
+                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                    <polyline points="15 3 21 3 21 9" />
+                    <line x1="10" y1="14" x2="21" y2="3" />
+                  </svg>
+                  <span>Live Demo</span>
+                </a>
+              )}
+
+              {activeProject.github && (
+                <a
+                  className="secondary-button small-button project-github-cta"
+                  href={activeProject.github}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="View source code on GitHub"
+                >
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    aria-hidden="true"
+                    className="btn-icon"
+                  >
+                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+                  </svg>
+                  <span>View GitHub</span>
+                </a>
+              )}
+            </div>
           </div>
 
           <p className="project-description">{activeProject.description}</p>
