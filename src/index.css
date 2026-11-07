@@ -1960,7 +1960,7 @@ a:hover {
 
 /* --- Unified Contact Section & Directional Clip-Path Links Grid --- */
 .contact-section {
-  padding: clamp(24px, 4vh, 40px) 0 clamp(64px, 10vh, 96px);
+  padding: clamp(24px, 4vh, 40px) 0 var(--space-4);
   position: relative;
   width: 100%;
 }
@@ -2176,39 +2176,55 @@ a:hover {
 }
 
 /* ==========================================================================
-   Footer Bottom: Brand Signature & Rights Notice
+   SITE FOOTER: Professional Master Brand & Grounded Sitemap
    ========================================================================== */
-.site-footer-bottom {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-4);
-  padding: var(--space-8) 0 var(--space-6);
+.site-footer {
+  width: 100%;
   margin-top: var(--space-8);
+  padding-top: var(--space-8);
+  padding-bottom: var(--space-6);
   border-top: 1px solid var(--color-border);
-  text-align: center;
+  position: relative;
   box-sizing: border-box;
 }
 
+.site-footer-inner {
+  max-width: var(--container-max-width, 1200px);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.site-footer-top-row {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
 @media (min-width: 768px) {
-  .site-footer-bottom {
+  .site-footer-top-row {
     flex-direction: row;
     justify-content: space-between;
-    align-items: center;
-    padding: var(--space-8) var(--space-2) var(--space-6);
-    text-align: left;
+    align-items: flex-start;
   }
+}
+
+.site-footer-brand-block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-3);
+  max-width: 380px;
 }
 
 .footer-brand-btn {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   background: transparent;
   border: none;
-  padding: var(--space-2);
-  margin: calc(-1 * var(--space-2));
+  padding: 0;
   border-radius: var(--radius-sm);
   cursor: pointer;
   transition: transform 0.2s ease, opacity 0.2s ease;
@@ -2229,28 +2245,140 @@ a:hover {
 }
 
 .footer-signature-logo {
-  height: 42px;
+  height: 40px;
   width: auto;
-  max-width: 180px;
+  max-width: 170px;
   object-fit: contain;
   display: block;
   filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.4));
 }
 
-.footer-bottom-meta {
+.footer-brand-tagline {
+  font-family: var(--font-sans);
+  font-size: var(--font-size-xs);
+  color: var(--color-muted);
+  line-height: 1.5;
+  margin: 0;
   display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.footer-location-text {
+  color: var(--color-muted);
+  opacity: 0.7;
+  font-size: 0.78rem;
+}
+
+.footer-nav-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(120px, 1fr));
+  gap: var(--space-8);
+}
+
+.footer-nav-col {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.footer-nav-heading {
+  font-family: var(--font-sans);
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  color: var(--color-text);
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+.footer-nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.footer-nav-link {
+  font-family: var(--font-sans);
+  font-size: var(--font-size-xs);
+  color: var(--color-muted);
+  text-decoration: none;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-align: left;
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
+  transition: color 0.15s ease, transform 0.15s ease;
+}
+
+.footer-nav-link:hover {
+  color: var(--color-text);
+  transform: translateX(2px);
+}
+
+.footer-nav-link:focus-visible {
+  outline: 2px solid var(--color-blue);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.site-footer-divider {
+  width: 100%;
+  height: 1px;
+  background: var(--color-border);
+}
+
+.site-footer-bottom-row {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  align-items: flex-start;
+}
+
+@media (min-width: 640px) {
+  .site-footer-bottom-row {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
 }
 
 .footer-copyright-text {
   font-family: var(--font-sans);
   font-size: var(--font-size-xs);
   color: var(--color-muted);
-  line-height: 1.5;
+  line-height: 1.4;
   margin: 0;
-  letter-spacing: normal;
-  text-transform: none;
+}
+
+.footer-back-to-top-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  padding: 6px 14px;
+  color: var(--color-muted);
+  font-family: var(--font-sans);
+  font-size: var(--font-size-xs);
+  cursor: pointer;
+  transition: color 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+}
+
+.footer-back-to-top-btn:hover {
+  color: var(--color-text);
+  border-color: var(--color-border-strong);
+  transform: translateY(-1px);
+}
+
+.footer-back-to-top-btn:focus-visible {
+  outline: 2px solid var(--color-blue);
+  outline-offset: 2px;
 }
 
 .achievements-list {
@@ -2658,7 +2786,7 @@ a:hover {
   }
 
   .contact-section {
-    padding: var(--space-10, 40px) 0 clamp(64px, 10vh, 96px);
+    padding: var(--space-10, 40px) 0 var(--space-4);
   }
 }
 
@@ -2679,7 +2807,7 @@ a:hover {
   }
 
   .contact-section {
-    padding: var(--space-8, 32px) 0 clamp(64px, 10vh, 96px);
+    padding: var(--space-8, 32px) 0 var(--space-4);
   }
 }
 
@@ -2808,7 +2936,7 @@ a:hover {
 
   /* Tablet Contact Grid & Safe Clearance */
   .contact-section {
-    padding: var(--space-6, 24px) 0 clamp(64px, 10vh, 96px);
+    padding: var(--space-6, 24px) 0 var(--space-4);
   }
 
   .contact-header-block {
@@ -3933,7 +4061,7 @@ a:hover {
   }
 
   .contact-section {
-    padding: 12px 0 clamp(64px, 10vh, 96px);
+    padding: 12px 0 var(--space-4);
   }
 
   .contact-header-block {
@@ -4552,7 +4680,7 @@ a:hover {
 
   /* Contact Section in Landscape: 4-col compact grid, clean borders */
   .contact-section {
-    padding: 16px 0 clamp(72px, 18vh, 120px);
+    padding: 16px 0 var(--space-4);
   }
 
   .contact-header-block {

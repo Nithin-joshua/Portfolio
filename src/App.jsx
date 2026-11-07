@@ -6,6 +6,7 @@ import SkillsSection from './components/SkillsSection';
 import CredentialsSection from './components/CredentialsSection';
 import PublicationsSection from './components/PublicationsSection';
 import ContactSection from './components/ContactSection';
+import SiteFooter from './components/SiteFooter';
 import { portfolio } from './data/portfolio';
 import useActiveSection from './hooks/useActiveSection';
 
@@ -42,9 +43,14 @@ function App() {
             contact={portfolio.contact}
             links={portfolio.links}
             resume={portfolio.resume}
-            logo={portfolio.logo}
           />
         </main>
+        <SiteFooter
+          logo={portfolio.logo}
+          navigation={portfolio.navigation}
+          links={portfolio.links}
+          resume={portfolio.resume}
+        />
       </div>
     </div>
   );

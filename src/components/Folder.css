@@ -155,6 +155,13 @@
   cursor: pointer;
 }
 
+.folder-item[data-focused] {
+  box-shadow:
+    0 0 0 1.5px rgba(37, 99, 235, 0.45),
+    0 12px 30px -4px rgba(0, 0, 0, 0.5),
+    0 24px 60px -8px rgba(0, 0, 0, 0.45);
+}
+
 .folder-root[data-draggable] .folder-item {
   cursor: grab;
   touch-action: none;
@@ -389,6 +396,36 @@
   gap: calc(5px * var(--folder-scale));
   padding-bottom: calc(4px * var(--folder-scale));
   border-bottom: 1px solid #e2e8f0;
+  position: relative;
+}
+
+.folder-cert-close-btn {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: calc(16px * var(--folder-scale));
+  height: calc(16px * var(--folder-scale));
+  border-radius: 50%;
+  border: 1px solid #cbd5e1;
+  background: #f1f5f9;
+  color: #475569;
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+  transition: background 0.15s ease, color 0.15s ease, transform 0.15s ease;
+}
+
+.folder-cert-close-btn:hover {
+  background: #fee2e2;
+  color: #dc2626;
+  border-color: #fca5a5;
+  transform: scale(1.08);
+}
+
+.folder-cert-close-btn:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
 }
 
 .folder-cert-seal {

@@ -671,7 +671,7 @@ const DocumentCard = ({ title, description }) => (
   </div>
 );
 
-const CertificateCard = ({ item }) => {
+const CertificateCard = ({ item, isFocused, onClose }) => {
   const {
     title,
     name,
@@ -706,6 +706,24 @@ const CertificateCard = ({ item }) => {
             <span className="folder-cert-authority">{displayAuthority}</span>
             <span className="folder-cert-type">{credential}</span>
           </div>
+          {isFocused && (
+            <button
+              type="button"
+              className="folder-cert-close-btn"
+              onPointerDown={(e) => e.stopPropagation()}
+              onClick={(e) => {
+                e.stopPropagation();
+                onClose?.();
+              }}
+              aria-label="Return to folder"
+              title="Return to folder"
+            >
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
+            </button>
+          )}
         </div>
 
         <div className="folder-cert-body">
@@ -765,7 +783,7 @@ const CertificateCard = ({ item }) => {
   );
 };
 
-const renderItem = item => {
+const renderItem = (item, extraProps = {}) => {
   if (isValidElement(item)) return item;
   if (typeof item === 'string' || typeof item === 'number') return <DocumentCard title={String(item)} />;
   if (item && typeof item === 'object') {
@@ -777,7 +795,7 @@ const renderItem = item => {
       );
     }
     if (item.content) return item.content;
-    return <CertificateCard item={item} />;
+    return <CertificateCard item={item} {...extraProps} />;
   }
   return <DocumentCard />;
 };
@@ -899,6 +917,7 @@ const Folder = ({
   const [labelWidth, setLabelWidth] = useState(0);
   const [outside, setOutside] = useState([]);
   const [gpu, setGpu] = useState(false);
+  const [focusedIndex, setFocusedIndex] = useState(-1);
   const isControlled = open !== undefined;
   const isOpen = isControlled ? Boolean(open) : internalOpen;
   const book = mode === 'book';
@@ -1298,8 +1317,8 @@ const Folder = ({
       const hovering = !drag && hover >= 0 && state.items[hover] ? state.items[hover] : null;
       const lead =
         hovering && hovering.place === 'inside' && phase === 'open' ? place(hovering.rank, inside, 'open', s) : null;
-      const focusScale = clamp(((geometry.tabH + geometry.h) * 1.58) / geometry.docH, 1.85, 2.45);
-      const focusY = geometry.book ? geometry.tabH + geometry.h / 2 : geometry.tabH + geometry.h * 0.28;
+      const focusScale = geometry.book ? 1.25 : 1.18;
+      const focusY = geometry.book ? geometry.tabH + geometry.h / 2 : geometry.tabH + geometry.h * 0.44;
 
       state.items.forEach((item, index) => {
         if (item.fresh) {
@@ -1773,6 +1792,7 @@ const Folder = ({
       const s = settingsRef.current;
       if (state.focus >= 0) {
         state.focus = -1;
+        setFocusedIndex(-1);
         wake();
       }
       if (s.open && s.closeOnOutsideClick) setOpenRef.current(false);
@@ -1782,6 +1802,7 @@ const Folder = ({
       if (event.key !== 'Escape') return;
       if (state.focus >= 0) {
         state.focus = -1;
+        setFocusedIndex(-1);
         wake();
         return;
       }
@@ -1829,13 +1850,15 @@ const Folder = ({
       select: index => {
         const s = settingsRef.current;
         if (!s.open) setOpenRef.current(true);
-        if (s.zoomOnClick) state.focus = state.focus === index ? -1 : index;
+        state.focus = index;
+        setFocusedIndex(index);
         s.onItemClick?.(s.entries[index], index);
         wake();
       },
       blur: () => {
         if (state.focus < 0) return false;
         state.focus = -1;
+        setFocusedIndex(-1);
         wake();
         return true;
       }
@@ -1977,6 +2000,7 @@ const Folder = ({
 
         {entries.map((item, index) => {
           const interactive = isOpen || outside.includes(index);
+          const isFocused = focusedIndex === index;
           return (
             <div
               key={isValidElement(item) && item.key != null ? item.key : index}
@@ -1985,6 +2009,7 @@ const Folder = ({
               }}
               className="folder-layer folder-item"
               data-folder-item={index}
+              data-focused={isFocused ? '' : undefined}
               role={interactive ? 'button' : undefined}
               tabIndex={interactive ? 0 : -1}
               onClick={event => onItemActivate(event, index)}
@@ -1996,7 +2021,10 @@ const Folder = ({
                 engineRef.current?.select(index);
               }}
             >
-              {renderItem(item)}
+              {renderItem(item, {
+                isFocused,
+                onClose: () => engineRef.current?.blur(),
+              })}
             </div>
           );
         })}
