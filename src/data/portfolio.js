@@ -68,7 +68,7 @@ export const portfolio = {
       { value: '1', label: 'Research Publication' },
     ],
     board: {
-      sectionTabs: ['Bio.V', 'AP Automation', 'Smart Grid', 'Research'],
+      sectionTabs: ['Bio.V', 'Multimodal AI', 'Ley-Maga', 'EMS Platform', 'AP Automation', 'Research'],
       cardLabel: 'Engineering Focus',
       cardTitle: 'Scalable Systems & Applied ML',
       cardText:
@@ -91,27 +91,27 @@ export const portfolio = {
       {
         title: 'Backend & Systems',
         category: 'backend',
-        items: ['FastAPI', 'Python', 'Java', 'Spring Boot', 'Django', 'Celery', 'REST APIs', 'JWT Auth'],
+        items: ['FastAPI', 'Python', 'Java', 'Spring Boot', 'NestJS', 'Django', 'Celery', 'REST APIs', 'JWT Auth'],
       },
       {
         title: 'Applied AI & ML',
         category: 'ai',
-        items: ['SpeechBrain', 'ECAPA-TDNN', 'RawNet2', 'Vosk ASR', 'TensorFlow Lite', 'LLMs & Prompting', 'RapidOCR'],
+        items: ['SpeechBrain', 'ECAPA-TDNN', 'Qwen2.5-VL', 'YOLO', 'LangGraph', 'RawNet2', 'Vosk ASR', 'TensorFlow Lite', 'LLMs & Prompting', 'RapidOCR'],
       },
       {
         title: 'Databases & Storage',
         category: 'database',
-        items: ['PostgreSQL', 'Milvus Vector DB', 'SQLAlchemy', 'InfluxDB', 'MySQL', 'MongoDB'],
+        items: ['PostgreSQL', 'Milvus Vector DB', 'Prisma ORM', 'SQLAlchemy', 'InfluxDB', 'MySQL', 'MongoDB'],
       },
       {
         title: 'DevOps & Tooling',
         category: 'devops',
-        items: ['Docker', 'Docker Compose', 'Git & GitHub', 'Postman', 'Linux / Bash', 'Grafana / MQTT'],
+        items: ['Docker', 'Docker Compose', 'Git & GitHub', 'Postman', 'Linux / Bash', 'Grafana / MQTT', 'NodeMCU (ESP8266)'],
       },
       {
-        title: 'Frontend & UI',
+        title: 'Frontend & Mobile',
         category: 'frontend',
-        items: ['React', 'Next.js', 'JavaScript (ES6+)', 'Tailwind CSS', 'HTML5 & CSS3'],
+        items: ['React', 'Next.js', 'TypeScript', 'Kotlin / Android', 'JavaScript (ES6+)', 'Tailwind CSS', 'HTML5 & CSS3'],
       },
     ],
   },
@@ -181,6 +181,39 @@ export const portfolio = {
       'Projects that show range across backend engineering, applied AI/ML, and real-world problem solving.',
     list: [
       {
+        name: 'Multimodal Industrial Inspection Agent',
+        shortName: 'Multimodal AI',
+        start: '2026-10',
+        end: 'Present',
+        description:
+          'Multimodal agent for industrial defect inspection, synthesizing computer vision (Qwen2.5-VL / YOLO), standards-based RAG retrieval, and sensor telemetry analysis.',
+        stack: ['Python', 'FastAPI', 'LangGraph', 'Qwen2.5-VL', 'YOLO', 'RAG', 'ChromaDB', 'Docker'],
+        github: 'https://github.com/Nithin-joshua/sturdy-palm-tree',
+        videoUrl: '',
+        steps: ['Image & Sensor Ingest', 'Vision Defect Detection', 'RAG Standards Retrieval', 'Risk Report & Review'],
+        labels: [
+          {
+            title: 'Vision Backends',
+            text: 'Pluggable multi-model vision inference supporting local Qwen2.5-VL, cloud VLMs, and YOLO with automatic bounding-box localization.',
+          },
+          {
+            title: 'Standards-Based RAG',
+            text: 'Clause chunking and lexical retrieval over industrial standard specifications (Markdown/PDF) to ground compliance scoring.',
+          },
+          {
+            title: 'Deterministic Risk Engine',
+            text: 'Automated decision pipeline evaluating severity thresholds, sensor telemetry conflicts, and automated human-review escalation.',
+          },
+        ],
+        bullets: [
+          'Engineered an end-to-end multimodal agent combining image defect detection, technical standard parsing, and sensor telemetry verification.',
+          'Integrated pluggable vision detectors including local Qwen2.5-VL and Ultralytics YOLO with annotated bounding-box visual feedback.',
+          'Built an automated RAG retrieval pipeline chunking industrial standard documents to cross-reference defect criteria and severity thresholds.',
+          'Implemented multi-sensor telemetry integration, cross-verifying visual defect observations with real-time sensor limits.',
+          'Containerized full-stack FastAPI microservice and interactive report dashboard with Docker and one-click cloud deployment workflows.',
+        ],
+      },
+      {
         name: 'Biometric Voice Authentication System',
         shortName: 'Bio.V',
         start: '2025-11',
@@ -244,6 +277,72 @@ export const portfolio = {
           'Failed jobs land in a dead letter queue (stack trace + retry count logged); admin API to retry (re-dispatch) or delete.',
           'Wrote GST validation: regex GSTIN checks, RCM applicability, CGST/SGST/IGST routing by state code, and HSN-level rate checks against a DB master.',
           'LLM extraction with DB-versioned prompts (rollback without deploy) + conflict resolution between deterministic and LLM values.',
+        ],
+      },
+      {
+        name: 'Ley-Maga: Voice-Controlled Offline Home Automation AI',
+        shortName: 'Ley-Maga',
+        start: '2026-10',
+        end: 'Present',
+        description:
+          'Fully offline edge AI paired with an IoT home automation system to control household appliances and smart devices via local voice commands with zero cloud dependency.',
+        stack: ['Kotlin', 'Android', 'Python', 'NodeMCU (ESP8266)', 'Edge AI', 'Offline Voice NLP', 'IoT', 'C++'],
+        github: 'https://github.com/underdogs-devs/ley-maga',
+        videoUrl: '',
+        steps: ['Voice Command Capture', 'Edge NLP Intent Parsing', 'Local Wi-Fi Dispatch', 'Microcontroller Relay Action'],
+        labels: [
+          {
+            title: 'On-Device Voice AI',
+            text: 'Custom trained offline NLP model running entirely on Android edge hardware, achieving zero-cloud voice intent classification.',
+          },
+          {
+            title: 'IoT Microcontroller Firmware',
+            text: 'ESP8266 / NodeMCU C++ firmware providing robust local network control over smart relays and household appliance interfaces.',
+          },
+          {
+            title: 'Air-Gapped Privacy Architecture',
+            text: '100% private system design ensuring zero voice recordings or home telemetry ever leave the local home network.',
+          },
+        ],
+        bullets: [
+          'Co-developed a fully offline smart home automation platform integrating on-device voice processing with IoT appliance actuation.',
+          'Trained specialized intent recognition machine learning models with augmented edge-case speech datasets for noise-resilient command parsing.',
+          'Engineered native Android control client in Kotlin featuring low-latency audio capture pipelines and local device synchronization.',
+          'Programmed NodeMCU / ESP8266 microcontrollers running custom C++ firmware to execute real-time multi-channel relay switching over local Wi-Fi.',
+          'Eliminated external cloud latency and third-party privacy vulnerabilities through end-to-end local network communication.',
+        ],
+      },
+      {
+        name: 'Employee Management & Onboarding System',
+        shortName: 'Employee Hub',
+        start: '2026-08',
+        end: '2026-10',
+        description:
+          'Enterprise employee lifecycle and onboarding system featuring NestJS backend, Next.js client, AES-256 document encryption, and role-based access control.',
+        stack: ['TypeScript', 'Next.js', 'NestJS', 'Prisma', 'PostgreSQL', 'Docker', 'JWT', 'Tailwind CSS'],
+        github: 'https://github.com/Nithin-joshua/Employee_Onboarding_System',
+        videoUrl: '',
+        steps: ['Candidate Invitation', 'Document Vault & AES-256', 'RBAC Role Verification', 'Workflow Approval'],
+        labels: [
+          {
+            title: 'Document Vault Security',
+            text: 'AES-256 symmetric encryption safeguarding sensitive employee identification records, tax forms, and contracts prior to storage.',
+          },
+          {
+            title: 'RBAC Access Architecture',
+            text: 'Fine-grained JWT authentication and authorization covering HR admins, managers, and new hire role boundaries.',
+          },
+          {
+            title: 'Containerized Microservices',
+            text: 'Multi-service Docker Compose deployment coordinating NestJS API, PostgreSQL instance with Prisma ORM, and Next.js frontend.',
+          },
+        ],
+        bullets: [
+          'Architected a full-stack enterprise onboarding application using NestJS, Prisma ORM, PostgreSQL, and Next.js 14 App Router.',
+          'Engineered a secure cryptographic document vault applying AES-256 symmetric encryption to protect uploaded identity and tax documentation.',
+          'Implemented robust role-based access control (RBAC) and JWT authentication governing distinct permissions for HR, Managers, and Candidates.',
+          'Built modular database schemas with Prisma migrations, automated role seeding, and relational audit logging.',
+          'Delivered dockerized multi-service deployment orchestrating backend APIs, database instances, and client interfaces with automated bootstrap scripts.',
         ],
       },
       {
