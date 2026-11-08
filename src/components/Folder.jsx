@@ -1496,7 +1496,7 @@ const Folder = ({
         : Math.sin(angle) * 0.5 + Math.cos(angle) * 0.86;
       const light = (flipped ? -facing : facing) / (isBook ? 0.9 : 0.86);
       const glint = clamp((light - 1) * 0.9, 0, 0.18);
-      const dim = clamp((1 - light) * (isBook ? 0.5 : 0.22), 0, 0.5);
+      const dim = clamp((1 - light) * (isBook ? 0.1 : 0.06), 0, 0.08);
 
       const front = frontRef.current;
       if (front) {

@@ -1,4 +1,4 @@
-// This file presents the modern Interactive Physics Skills Folders.
+// This file presents the modern Interactive Physics Skills Folders on desktop and an un-congested bento grid on mobile.
 import SectionShell from './SectionShell';
 import FolderFloat from './FolderFloat';
 
@@ -10,7 +10,8 @@ function SkillsSection({ skills }) {
       title={skills.title}
       intro={skills.intro}
     >
-      <div className="skills-folders-container">
+      {/* Desktop Interactive Physics Folders (>= 768px) */}
+      <div className="skills-folders-container desktop-skills-view">
         {skills.skillGroups.map((group) => (
           <div key={group.title} className="skills-folder-wrapper">
             <FolderFloat
@@ -28,6 +29,28 @@ function SkillsSection({ skills }) {
               lift={26}
             />
           </div>
+        ))}
+      </div>
+
+      {/* Mobile Streamlined Bento Grid (< 768px) */}
+      <div className="skills-bento-grid mobile-skills-view">
+        {skills.skillGroups.map((group) => (
+          <article
+            key={group.title}
+            className={`skill-bento-card skill-bento-${group.category || 'general'}`}
+          >
+            <div className="skill-bento-header">
+              <h3 className="skill-bento-title">{group.title}</h3>
+              <span className="skill-bento-tag">{group.items.length} technologies</span>
+            </div>
+            <div className="skill-badge-container">
+              {group.items.map((tech) => (
+                <span key={tech} className="tech-badge-chip">
+                  {tech}
+                </span>
+              ))}
+            </div>
+          </article>
         ))}
       </div>
     </SectionShell>

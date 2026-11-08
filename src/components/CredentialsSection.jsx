@@ -126,8 +126,8 @@ function CredentialsSection({ education, achievements, certifications }) {
             {certifications.intro || 'Core certifications strengthening programming fundamentals and applied technology knowledge.'}
           </p>
 
-          {/* Centered Showcase */}
-          <div className="certifications-single-showcase">
+          {/* Desktop Showcase with 3D WebGL Folder (>= 768px) */}
+          <div className="certifications-single-showcase desktop-certifications-showcase">
             <div className="certifications-folder-stage">
               <div className="folder-stage-backdrop" aria-hidden="true" />
               <div className="folder-stage-canvas-wrap">
@@ -150,6 +150,55 @@ function CredentialsSection({ education, achievements, certifications }) {
                 />
               </div>
             </div>
+          </div>
+
+          {/* Mobile Streamlined Certifications Grid (< 768px) */}
+          <div className="certification-grid mobile-certifications-grid">
+            {folderItems.map((entry) => (
+              <article key={entry.title} className="certification-card panel">
+                <div className="certification-head-row">
+                  <span className="skill-pill muted-pill">{entry.issuer}</span>
+                  {entry.link && (
+                    <a
+                      href={entry.link}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="doc-preview-link"
+                      title={`View ${entry.title} Certificate`}
+                    >
+                      <svg
+                        width="13"
+                        height="13"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        aria-hidden="true"
+                        className="doc-preview-icon"
+                      >
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                        <polyline points="14 2 14 8 20 8" />
+                      </svg>
+                      <span>Preview</span>
+                    </a>
+                  )}
+                </div>
+                <h4 className="certification-name">{entry.title}</h4>
+                <p className="certification-authority">{entry.authority}</p>
+                {entry.summary && <p className="certification-summary">{entry.summary}</p>}
+                {entry.skills?.length > 0 && (
+                  <div className="role-badges">
+                    {entry.skills.map((skill) => (
+                      <span key={skill} className="tech-badge-chip">
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </article>
+            ))}
           </div>
         </div>
       </div>

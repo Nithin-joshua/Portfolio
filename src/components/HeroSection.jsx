@@ -1,8 +1,27 @@
 // This file renders the focused hero section fitting within the 1280x800 fold.
+import { useState, useEffect } from 'react';
 import scrollToSection from '../utils/scrollToSection';
 import StrokeText from './StrokeText';
 
 function HeroSection({ hero, links }) {
+  const [fontSize, setFontSize] = useState(() => {
+    if (typeof window !== 'undefined') {
+      if (window.innerWidth < 480) return 32;
+      if (window.innerWidth < 768) return 42;
+    }
+    return 64;
+  });
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 480) setFontSize(32);
+      else if (window.innerWidth < 768) setFontSize(42);
+      else setFontSize(64);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
     <section
       id={hero.id}
@@ -33,9 +52,9 @@ function HeroSection({ hero, links }) {
                 trigger="loop"
                 fillMode="wipe"
                 wipeFrom="left"
-                fontSize={64}
+                fontSize={fontSize}
                 fontWeight={800}
-                letterSpacing={-1.5}
+                letterSpacing={fontSize < 48 ? -0.6 : -1.5}
                 hoverRedraw={true}
               />
             </h1>
