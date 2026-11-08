@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useRef } from 'react';
 import SectionShell from './SectionShell';
 import Folder from './Folder';
 import { privateLinks } from '../data/private_links_wrapper';
@@ -19,6 +19,8 @@ function CredentialsSection({ education, achievements, certifications }) {
     if (typeof window !== 'undefined') return window.innerWidth;
     return 1200;
   });
+  const [activeCertIndex, setActiveCertIndex] = useState(0);
+  const touchStartX = useRef(null);
 
   useEffect(() => {
     const handleResize = () => setWindowWidth(window.innerWidth);
@@ -26,7 +28,11 @@ function CredentialsSection({ education, achievements, certifications }) {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const folderSize = windowWidth < 480 ? 0.72 : windowWidth < 768 ? 0.88 : 1.3;
+  const isMobile = windowWidth < 768;
+  const isCompact = windowWidth < 480;
+
+  // On mobile, size is 1.0–1.08 so the single certificate is large, readable, and perfectly centered
+  const folderSize = isMobile ? (isCompact ? 1.0 : 1.08) : 1.3;
 
   const certEntries = certifications?.entries || [];
 
@@ -47,6 +53,29 @@ function CredentialsSection({ education, achievements, certifications }) {
       };
     });
   }, [certEntries]);
+
+  const currentItem = folderItems[activeCertIndex] || folderItems[0];
+  const displayedItems = isMobile && currentItem ? [currentItem] : folderItems;
+
+  const handleTouchStart = (e) => {
+    if (!isMobile) return;
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (e) => {
+    if (!isMobile || touchStartX.current === null) return;
+    const diff = touchStartX.current - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 45) {
+      if (diff > 0) {
+        // Swipe left -> Next certificate
+        setActiveCertIndex((prev) => (prev + 1) % folderItems.length);
+      } else {
+        // Swipe right -> Previous certificate
+        setActiveCertIndex((prev) => (prev - 1 + folderItems.length) % folderItems.length);
+      }
+    }
+    touchStartX.current = null;
+  };
 
   return (
     <SectionShell
@@ -140,19 +169,24 @@ function CredentialsSection({ education, achievements, certifications }) {
           </p>
 
           {/* Centered Showcase */}
-          <div className="certifications-single-showcase">
+          <div
+            className="certifications-single-showcase"
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
+          >
             <div className="certifications-folder-stage">
               <div className="folder-stage-backdrop" aria-hidden="true" />
               <div className="folder-stage-canvas-wrap">
                 <Folder
-                  label="Certifications"
-                  items={folderItems}
+                  key={isMobile ? `cert-${activeCertIndex}` : 'cert-desktop-spread'}
+                  label={isMobile ? (currentItem?.issuer || 'Certificate') : 'Certifications'}
+                  items={displayedItems}
                   mode="flap"
                   variant="glass"
                   color="#2563eb"
                   paperColor="#ffffff"
                   theme="dark"
-                  layout="spread"
+                  layout={isMobile ? 'stack' : 'spread'}
                   size={folderSize}
                   defaultOpen={true}
                   closeOnOutsideClick={false}
@@ -164,6 +198,73 @@ function CredentialsSection({ education, achievements, certifications }) {
               </div>
             </div>
           </div>
+
+          {/* Mobile Single Certificate Navigator */}
+          {isMobile && folderItems.length > 1 && (
+            <>
+              <div className="mobile-cert-nav">
+                <button
+                  type="button"
+                  className="mobile-cert-nav-btn"
+                  onClick={() => setActiveCertIndex((prev) => (prev - 1 + folderItems.length) % folderItems.length)}
+                  aria-label="View previous certificate"
+                >
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <polyline points="15 18 9 12 15 6" />
+                  </svg>
+                  <span>Prev</span>
+                </button>
+
+                <div className="mobile-cert-counter">
+                  <span className="mobile-cert-counter-text">
+                    {activeCertIndex + 1} of {folderItems.length}
+                  </span>
+                  <div className="mobile-cert-dots" role="tablist" aria-label="Certificate selectors">
+                    {folderItems.map((_, i) => (
+                      <button
+                        key={i}
+                        type="button"
+                        role="tab"
+                        aria-selected={activeCertIndex === i}
+                        className={`mobile-cert-dot ${activeCertIndex === i ? 'is-active' : ''}`}
+                        onClick={() => setActiveCertIndex(i)}
+                        aria-label={`Show certificate ${i + 1}`}
+                      />
+                    ))}
+                  </div>
+                </div>
+
+                <button
+                  type="button"
+                  className="mobile-cert-nav-btn"
+                  onClick={() => setActiveCertIndex((prev) => (prev + 1) % folderItems.length)}
+                  aria-label="View next certificate"
+                >
+                  <span>Next</span>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <polyline points="9 18 15 12 9 6" />
+                  </svg>
+                </button>
+              </div>
+
+              {/* Quick Topic Badges */}
+              <div className="mobile-cert-quick-pills">
+                {folderItems.map((item, i) => {
+                  const shortName = item.issuer || item.title.slice(0, 14);
+                  return (
+                    <button
+                      key={item.title}
+                      type="button"
+                      className={`mobile-cert-quick-pill ${activeCertIndex === i ? 'is-active' : ''}`}
+                      onClick={() => setActiveCertIndex(i)}
+                    >
+                      {shortName}
+                    </button>
+                  );
+                })}
+              </div>
+            </>
+          )}
         </div>
       </div>
     </SectionShell>
