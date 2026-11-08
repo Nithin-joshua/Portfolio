@@ -1317,8 +1317,8 @@ const Folder = ({
       const hovering = !drag && hover >= 0 && state.items[hover] ? state.items[hover] : null;
       const lead =
         hovering && hovering.place === 'inside' && phase === 'open' ? place(hovering.rank, inside, 'open', s) : null;
-      const focusScale = geometry.book ? 1.15 : 1.06;
-      const focusY = geometry.book ? geometry.tabH + geometry.h / 2 : geometry.tabH + geometry.h * 0.42;
+      const focusScale = geometry.book ? 1.15 : 1.18;
+      const focusY = geometry.book ? geometry.tabH + geometry.h / 2 : geometry.tabH + geometry.h * 0.38;
 
       state.items.forEach((item, index) => {
         if (item.fresh) {
@@ -1338,6 +1338,18 @@ const Folder = ({
           target = { x: geometry.w / 2, y: focusY, z: 0, r: 0, ry: 0, s: focusScale };
           lift = 2.4;
           item.layer = 'focus';
+        } else if (state.focus >= 0) {
+          const order = opening ? (geometry.book ? inside - 1 - item.rank : item.rank) : item.rank;
+          const delay = reduce
+            ? 0
+            : opening
+              ? ((geometry.book ? 0.16 : 0.05) + order * (geometry.book ? 0.055 : 0.045)) / s.speed
+              : (order * 0.03) / s.speed;
+          const active = elapsed >= delay ? phase : state.previous;
+          target = place(item.rank, inside, active, s);
+          fade = 0.35;
+          lift = 0.1;
+          item.layer = 'inside';
         } else if (drag && drag.index === index) {
           const [vx] = velocityOf(drag.samples);
           target = {
@@ -1923,10 +1935,11 @@ const Folder = ({
   };
 
   const onItemActivate = (event, index) => {
-    if (event.target.closest?.('a, button, [role="button"]:not([data-folder-item])')) {
+    event.stopPropagation();
+    const interactiveChild = event.target.closest?.('a, button');
+    if (interactiveChild && event.currentTarget?.contains(interactiveChild)) {
       return;
     }
-    event.stopPropagation();
     const engine = engineRef.current;
     if (!engine) return;
     if (engine.consumeClick()) {

@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo, useRef } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import SectionShell from './SectionShell';
 import Folder from './Folder';
 import { privateLinks } from '../data/private_links_wrapper';
@@ -19,9 +19,6 @@ function CredentialsSection({ education, achievements, certifications }) {
     if (typeof window !== 'undefined') return window.innerWidth;
     return 1200;
   });
-  const [activeCertIndex, setActiveCertIndex] = useState(0);
-  const [isOpen, setIsOpen] = useState(true);
-  const touchStartX = useRef(null);
 
   useEffect(() => {
     const handleResize = () => setWindowWidth(window.innerWidth);
@@ -29,11 +26,7 @@ function CredentialsSection({ education, achievements, certifications }) {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const isMobile = windowWidth < 768;
-  const isCompact = windowWidth < 480;
-
-  // On desktop, size is 1.25 for crisp prominence; on mobile, 1.0–1.08
-  const folderSize = isMobile ? (isCompact ? 1.0 : 1.08) : 1.25;
+  const folderSize = windowWidth < 480 ? 0.72 : windowWidth < 768 ? 0.88 : 1.3;
 
   const certEntries = certifications?.entries || [];
 
@@ -54,43 +47,6 @@ function CredentialsSection({ education, achievements, certifications }) {
       };
     });
   }, [certEntries]);
-
-  const currentItem = folderItems[activeCertIndex] || folderItems[0];
-  // Both desktop and mobile display exactly one certificate at a time centered
-  const displayedItems = currentItem ? [currentItem] : [];
-
-  const handleTouchStart = (e) => {
-    touchStartX.current = e.touches[0].clientX;
-  };
-
-  const handleTouchEnd = (e) => {
-    if (touchStartX.current === null) return;
-    const diff = touchStartX.current - e.changedTouches[0].clientX;
-    if (Math.abs(diff) > 45) {
-      if (diff > 0) {
-        // Swipe left -> Next certificate
-        setActiveCertIndex((prev) => (prev + 1) % folderItems.length);
-        setIsOpen(true);
-      } else {
-        // Swipe right -> Previous certificate
-        setActiveCertIndex((prev) => (prev - 1 + folderItems.length) % folderItems.length);
-        setIsOpen(true);
-      }
-    }
-    touchStartX.current = null;
-  };
-
-  const handleStageKeyDown = (e) => {
-    if (e.key === 'ArrowRight') {
-      e.preventDefault();
-      setActiveCertIndex((prev) => (prev + 1) % folderItems.length);
-      setIsOpen(true);
-    } else if (e.key === 'ArrowLeft') {
-      e.preventDefault();
-      setActiveCertIndex((prev) => (prev - 1 + folderItems.length) % folderItems.length);
-      setIsOpen(true);
-    }
-  };
 
   return (
     <SectionShell
@@ -183,57 +139,22 @@ function CredentialsSection({ education, achievements, certifications }) {
             {certifications.intro || 'Core certifications strengthening programming fundamentals and applied technology knowledge.'}
           </p>
 
-          {/* Quick Topic / Certificate Selector Pills (Desktop + Mobile) */}
-          <div className="cert-quick-pills" role="tablist" aria-label="Select certificate to view">
-            {folderItems.map((item, i) => {
-              const isSelected = activeCertIndex === i;
-              return (
-                <button
-                  key={item.title}
-                  type="button"
-                  role="tab"
-                  aria-selected={isSelected}
-                  className={`cert-quick-pill ${isSelected ? 'is-active' : ''}`}
-                  onClick={() => {
-                    setActiveCertIndex(i);
-                    setIsOpen(true);
-                  }}
-                  title={item.title}
-                >
-                  <span className="cert-pill-issuer">{item.issuer}</span>
-                  <span className="cert-pill-sep">•</span>
-                  <span className="cert-pill-title">{item.title}</span>
-                </button>
-              );
-            })}
-          </div>
-
           {/* Centered Showcase */}
-          <div
-            className="certifications-single-showcase"
-            onTouchStart={handleTouchStart}
-            onTouchEnd={handleTouchEnd}
-            onKeyDown={handleStageKeyDown}
-            tabIndex={0}
-            role="region"
-            aria-label="Interactive 3D Certificate Viewer. Use Left and Right arrow keys to navigate."
-          >
+          <div className="certifications-single-showcase">
             <div className="certifications-folder-stage">
               <div className="folder-stage-backdrop" aria-hidden="true" />
               <div className="folder-stage-canvas-wrap">
                 <Folder
-                  key={`cert-${activeCertIndex}`}
-                  label={currentItem?.issuer || 'Certifications'}
-                  items={displayedItems}
+                  label="Certifications"
+                  items={folderItems}
                   mode="flap"
                   variant="glass"
                   color="#2563eb"
                   paperColor="#ffffff"
                   theme="dark"
-                  layout="stack"
+                  layout="spread"
                   size={folderSize}
-                  open={isOpen}
-                  onOpenChange={setIsOpen}
+                  defaultOpen={true}
                   closeOnOutsideClick={false}
                   draggable={true}
                   zoomOnClick={true}
@@ -242,61 +163,6 @@ function CredentialsSection({ education, achievements, certifications }) {
                 />
               </div>
             </div>
-          </div>
-
-          {/* Certificate Navigation Toolbar (Desktop + Mobile) */}
-          <div className="cert-showcase-nav">
-            <button
-              type="button"
-              className="cert-nav-btn"
-              onClick={() => {
-                setActiveCertIndex((prev) => (prev - 1 + folderItems.length) % folderItems.length);
-                setIsOpen(true);
-              }}
-              aria-label="View previous certificate"
-            >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <polyline points="15 18 9 12 15 6" />
-              </svg>
-              <span>Prev</span>
-            </button>
-
-            <div className="cert-nav-counter">
-              <span className="cert-nav-counter-text">
-                {String(activeCertIndex + 1).padStart(2, '0')} / {String(folderItems.length).padStart(2, '0')}
-              </span>
-              <div className="cert-nav-dots" role="tablist" aria-label="Certificate selectors">
-                {folderItems.map((item, i) => (
-                  <button
-                    key={i}
-                    type="button"
-                    role="tab"
-                    aria-selected={activeCertIndex === i}
-                    className={`cert-nav-dot ${activeCertIndex === i ? 'is-active' : ''}`}
-                    onClick={() => {
-                      setActiveCertIndex(i);
-                      setIsOpen(true);
-                    }}
-                    aria-label={`View certificate ${i + 1}: ${item.title}`}
-                  />
-                ))}
-              </div>
-            </div>
-
-            <button
-              type="button"
-              className="cert-nav-btn"
-              onClick={() => {
-                setActiveCertIndex((prev) => (prev + 1) % folderItems.length);
-                setIsOpen(true);
-              }}
-              aria-label="View next certificate"
-            >
-              <span>Next</span>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <polyline points="9 18 15 12 9 6" />
-              </svg>
-            </button>
           </div>
         </div>
       </div>
