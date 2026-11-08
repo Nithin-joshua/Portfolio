@@ -14,19 +14,44 @@ const mapCertKey = (name) => {
   return '';
 };
 
+const computeFolderSize = () => {
+  if (typeof window === 'undefined') return 1.25;
+  const w = window.innerWidth;
+  const h = window.innerHeight;
+  const isLandscapeShort = h && h < 520 && w > h;
+
+  if (isLandscapeShort) {
+    return Math.min(0.68, Math.max(0.48, (h / 520) * 0.65));
+  }
+  if (w < 380) return 0.58;
+  if (w < 480) return 0.68;
+  if (w < 640) return 0.78;
+  if (w < 768) return 0.88;
+  if (w < 1024) return 1.05;
+  if (w < 1280) return 1.18;
+  return 1.25;
+};
+
 function CredentialsSection({ education, achievements, certifications }) {
-  const [windowWidth, setWindowWidth] = useState(() => {
-    if (typeof window !== 'undefined') return window.innerWidth;
-    return 1200;
-  });
+  const [folderSize, setFolderSize] = useState(computeFolderSize);
 
   useEffect(() => {
-    const handleResize = () => setWindowWidth(window.innerWidth);
+    let rafId = null;
+    const handleResize = () => {
+      if (rafId) cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => {
+        const next = computeFolderSize();
+        setFolderSize((prev) => (prev === next ? prev : next));
+      });
+    };
     window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener('orientationchange', handleResize);
+    return () => {
+      if (rafId) cancelAnimationFrame(rafId);
+      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('orientationchange', handleResize);
+    };
   }, []);
-
-  const folderSize = windowWidth < 480 ? 0.72 : windowWidth < 768 ? 0.88 : 1.3;
 
   const certEntries = certifications?.entries || [];
 

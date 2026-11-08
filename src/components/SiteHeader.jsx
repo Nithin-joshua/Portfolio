@@ -10,9 +10,16 @@ function SiteHeader({ logo, navigation, activeSectionId, resume }) {
       if (e.key === 'Escape') setIsOpen(false);
     };
 
+    const handleResize = () => {
+      if (window.innerWidth >= 1024 && isOpen) {
+        setIsOpen(false);
+      }
+    };
+
     if (isOpen) {
       document.body.style.overflow = 'hidden';
       window.addEventListener('keydown', handleKeyDown);
+      window.addEventListener('resize', handleResize);
     } else {
       document.body.style.overflow = '';
     }
@@ -20,6 +27,7 @@ function SiteHeader({ logo, navigation, activeSectionId, resume }) {
     return () => {
       document.body.style.overflow = '';
       window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('resize', handleResize);
     };
   }, [isOpen]);
 

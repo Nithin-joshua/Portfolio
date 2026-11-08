@@ -3,23 +3,40 @@ import { useState, useEffect } from 'react';
 import scrollToSection from '../utils/scrollToSection';
 import StrokeText from './StrokeText';
 
+const computeFontSize = () => {
+  if (typeof window === 'undefined') return 64;
+  const w = window.innerWidth;
+  const h = window.innerHeight;
+  if (h && h < 520 && w > h) {
+    return Math.min(38, Math.max(26, Math.round(w * 0.045)));
+  }
+  if (w < 380) return 30;
+  if (w < 480) return 34;
+  if (w < 640) return 38;
+  if (w < 768) return 44;
+  if (w < 1024) return 52;
+  return 64;
+};
+
 function HeroSection({ hero, links }) {
-  const [fontSize, setFontSize] = useState(() => {
-    if (typeof window !== 'undefined') {
-      if (window.innerWidth < 480) return 32;
-      if (window.innerWidth < 768) return 42;
-    }
-    return 64;
-  });
+  const [fontSize, setFontSize] = useState(computeFontSize);
 
   useEffect(() => {
+    let rafId = null;
     const handleResize = () => {
-      if (window.innerWidth < 480) setFontSize(32);
-      else if (window.innerWidth < 768) setFontSize(42);
-      else setFontSize(64);
+      if (rafId) cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => {
+        const next = computeFontSize();
+        setFontSize((prev) => (prev === next ? prev : next));
+      });
     };
     window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener('orientationchange', handleResize);
+    return () => {
+      if (rafId) cancelAnimationFrame(rafId);
+      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('orientationchange', handleResize);
+    };
   }, []);
 
   return (

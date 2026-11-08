@@ -3,26 +3,96 @@ import { useState, useEffect } from 'react';
 import SectionShell from './SectionShell';
 import FolderFloat from './FolderFloat';
 
+const computeSkillsConfig = () => {
+  if (typeof window === 'undefined') {
+    return {
+      folderWidth: 210,
+      folderHeight: 148,
+      folderSpread: 150,
+      folderLift: 26,
+      folderTrigger: 'hover',
+    };
+  }
+  const w = window.innerWidth;
+  const h = window.innerHeight;
+  const isLandscapeShort = h && h < 520 && w > h;
+
+  if (isLandscapeShort) {
+    return {
+      folderWidth: 175,
+      folderHeight: 124,
+      folderSpread: 80,
+      folderLift: 18,
+      folderTrigger: 'click',
+    };
+  }
+  if (w < 480) {
+    return {
+      folderWidth: 175,
+      folderHeight: 128,
+      folderSpread: 75,
+      folderLift: 18,
+      folderTrigger: 'click',
+    };
+  }
+  if (w < 768) {
+    return {
+      folderWidth: 190,
+      folderHeight: 136,
+      folderSpread: 90,
+      folderLift: 22,
+      folderTrigger: 'click',
+    };
+  }
+  if (w < 1024) {
+    return {
+      folderWidth: 200,
+      folderHeight: 142,
+      folderSpread: 115,
+      folderLift: 24,
+      folderTrigger: 'hover',
+    };
+  }
+  return {
+    folderWidth: 210,
+    folderHeight: 148,
+    folderSpread: 150,
+    folderLift: 26,
+    folderTrigger: 'hover',
+  };
+};
+
 function SkillsSection({ skills }) {
-  const [windowWidth, setWindowWidth] = useState(() => {
-    if (typeof window !== 'undefined') return window.innerWidth;
-    return 1200;
-  });
+  const [config, setConfig] = useState(computeSkillsConfig);
 
   useEffect(() => {
-    const handleResize = () => setWindowWidth(window.innerWidth);
+    let rafId = null;
+    const handleResize = () => {
+      if (rafId) cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => {
+        const next = computeSkillsConfig();
+        setConfig((prev) => {
+          if (
+            prev.folderWidth === next.folderWidth &&
+            prev.folderHeight === next.folderHeight &&
+            prev.folderSpread === next.folderSpread &&
+            prev.folderLift === next.folderLift &&
+            prev.folderTrigger === next.folderTrigger
+          ) {
+            return prev;
+          }
+          return next;
+        });
+      });
+    };
     window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener('orientationchange', handleResize);
+    return () => {
+      if (rafId) cancelAnimationFrame(rafId);
+      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('orientationchange', handleResize);
+    };
   }, []);
-
-  const isMobile = windowWidth < 768;
-  const isCompact = windowWidth < 480;
-
-  const folderWidth = isCompact ? 175 : isMobile ? 190 : 210;
-  const folderHeight = isCompact ? 128 : isMobile ? 136 : 148;
-  const folderSpread = isCompact ? 75 : isMobile ? 90 : 160;
-  const folderLift = isCompact ? 18 : isMobile ? 22 : 26;
-  const folderTrigger = isMobile ? 'click' : 'hover';
 
   return (
     <SectionShell
@@ -38,15 +108,15 @@ function SkillsSection({ skills }) {
               items={group.items}
               label={group.title}
               sublabel={`${group.items.length} technologies`}
-              trigger={folderTrigger}
+              trigger={config.folderTrigger}
               closeOnSelect={false}
               physics={true}
               drift={0.4}
-              width={folderWidth}
-              height={folderHeight}
+              width={config.folderWidth}
+              height={config.folderHeight}
               radius={14}
-              spread={folderSpread}
-              lift={folderLift}
+              spread={config.folderSpread}
+              lift={config.folderLift}
             />
           </div>
         ))}
