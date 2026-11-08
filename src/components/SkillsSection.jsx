@@ -1,8 +1,29 @@
-// This file presents the modern Interactive Physics Skills Folders on desktop and an un-congested bento grid on mobile.
+// This file presents the modern Interactive Physics Skills Folders.
+import { useState, useEffect } from 'react';
 import SectionShell from './SectionShell';
 import FolderFloat from './FolderFloat';
 
 function SkillsSection({ skills }) {
+  const [windowWidth, setWindowWidth] = useState(() => {
+    if (typeof window !== 'undefined') return window.innerWidth;
+    return 1200;
+  });
+
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const isMobile = windowWidth < 768;
+  const isCompact = windowWidth < 480;
+
+  const folderWidth = isCompact ? 175 : isMobile ? 190 : 210;
+  const folderHeight = isCompact ? 128 : isMobile ? 136 : 148;
+  const folderSpread = isCompact ? 75 : isMobile ? 90 : 160;
+  const folderLift = isCompact ? 18 : isMobile ? 22 : 26;
+  const folderTrigger = isMobile ? 'click' : 'hover';
+
   return (
     <SectionShell
       id={skills.id}
@@ -10,47 +31,24 @@ function SkillsSection({ skills }) {
       title={skills.title}
       intro={skills.intro}
     >
-      {/* Desktop Interactive Physics Folders (>= 768px) */}
-      <div className="skills-folders-container desktop-skills-view">
+      <div className="skills-folders-container">
         {skills.skillGroups.map((group) => (
           <div key={group.title} className="skills-folder-wrapper">
             <FolderFloat
               items={group.items}
               label={group.title}
               sublabel={`${group.items.length} technologies`}
-              trigger="hover"
+              trigger={folderTrigger}
               closeOnSelect={false}
               physics={true}
               drift={0.4}
-              width={210}
-              height={148}
+              width={folderWidth}
+              height={folderHeight}
               radius={14}
-              spread={160}
-              lift={26}
+              spread={folderSpread}
+              lift={folderLift}
             />
           </div>
-        ))}
-      </div>
-
-      {/* Mobile Streamlined Bento Grid (< 768px) */}
-      <div className="skills-bento-grid mobile-skills-view">
-        {skills.skillGroups.map((group) => (
-          <article
-            key={group.title}
-            className={`skill-bento-card skill-bento-${group.category || 'general'}`}
-          >
-            <div className="skill-bento-header">
-              <h3 className="skill-bento-title">{group.title}</h3>
-              <span className="skill-bento-tag">{group.items.length} technologies</span>
-            </div>
-            <div className="skill-badge-container">
-              {group.items.map((tech) => (
-                <span key={tech} className="tech-badge-chip">
-                  {tech}
-                </span>
-              ))}
-            </div>
-          </article>
         ))}
       </div>
     </SectionShell>

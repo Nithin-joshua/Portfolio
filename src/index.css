@@ -3055,22 +3055,6 @@ a:hover {
   .desktop-nav-center {
     display: flex !important;
   }
-
-  .desktop-skills-view {
-    display: flex !important;
-  }
-
-  .mobile-skills-view {
-    display: none !important;
-  }
-
-  .desktop-certifications-showcase {
-    display: flex !important;
-  }
-
-  .mobile-certifications-grid {
-    display: none !important;
-  }
 }
 
 /* Tablet screen scaling for floating dock */
@@ -3834,103 +3818,25 @@ a:hover {
     font-size: 0.74rem;
   }
 
-  /* --- Skills Section (Responsive View) --- */
-  .desktop-skills-view {
-    display: none !important;
-  }
-
-  .mobile-skills-view {
-    display: grid !important;
-    grid-template-columns: 1fr;
-    gap: 14px;
-    width: 100%;
-    margin-top: 10px;
-  }
-
+  /* --- Skills Section: Mobile Responsive Centered Physics Folders --- */
   .skills-folders-container {
-    display: none !important;
-  }
-
-  .skills-bento-grid {
-    display: grid !important;
-    grid-template-columns: 1fr;
-    gap: 14px;
-    width: 100%;
-  }
-
-  .skill-bento-card {
-    grid-column: span 1;
-    padding: 16px 16px;
-    border-radius: 18px;
-    background: rgba(18, 18, 22, 0.9);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-  }
-
-  .skill-bento-header {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-    margin-bottom: 12px;
-  }
-
-  .skill-bento-title {
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: #ffffff;
-    margin: 0;
-  }
-
-  .skill-bento-tag {
-    font-size: 0.74rem;
-    padding: 3px 8px;
-    border-radius: var(--radius-pill);
-    background: rgba(96, 165, 250, 0.12);
-    color: #93c5fd;
-    border: 1px solid rgba(96, 165, 250, 0.25);
-    white-space: nowrap;
-  }
-
-  /* --- Credentials & Education Section (Mobile Proportional Scaling) --- */
-  .desktop-certifications-showcase {
-    display: none !important;
-  }
-
-  .mobile-certifications-grid {
-    display: grid !important;
-    grid-template-columns: 1fr;
-    gap: 14px;
+    gap: 68px;
+    padding-top: 52px;
+    padding-bottom: 28px;
     width: 100%;
-    margin-top: 12px;
+    overflow: visible;
   }
 
-  .certification-head-row {
+  .skills-folder-wrapper {
     display: flex;
+    justify-content: center;
     align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-    margin-bottom: 8px;
-  }
-
-  .certification-name {
-    font-size: 1.12rem;
-    font-weight: 700;
-    color: #ffffff;
-    margin: 0 0 4px 0;
-  }
-
-  .certification-authority {
-    font-size: 0.84rem;
-    color: var(--color-blue);
-    font-family: var(--font-mono);
-    margin: 2px 0 8px 0;
-  }
-
-  .certification-summary {
-    font-size: 0.9rem;
-    line-height: 1.55;
-    color: var(--color-text-secondary);
-    margin-bottom: 10px;
+    width: 100%;
+    position: relative;
+    overflow: visible;
   }
   .credentials-container {
     display: flex;
@@ -4869,14 +4775,40 @@ a:hover {
 }
 
 @media (max-width: 767px) {
+  .certifications-single-showcase {
+    width: 100%;
+    overflow-x: clip;
+    display: flex;
+    justify-content: center;
+  }
+
   .certifications-folder-stage {
-    min-height: 420px;
-    padding: 2rem 0.5rem 1.5rem;
-    overflow: visible;
+    min-height: 380px;
+    padding: 1.75rem 0.5rem 1.25rem;
+    overflow-x: clip;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
   }
 
   .folder-stage-canvas-wrap {
     transform: scale(0.92);
+    transform-origin: center center;
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .certifications-folder-stage {
+    min-height: 330px;
+    padding: 1.25rem 0.25rem 1rem;
+    border-radius: 20px;
+  }
+
+  .folder-stage-canvas-wrap {
+    transform: scale(0.8);
+    transform-origin: center center;
   }
 }
 
