@@ -1,5 +1,4 @@
-// This file renders internship cards with an interactive glassmorphic fan-out deck.
-import { useState, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import SectionShell from './SectionShell';
 import formatDateRange from '../utils/formatDateRange';
 
@@ -21,9 +20,19 @@ function RoleCard({ role, index, total, isActive, onCardClick }) {
         '--z': zIndex,
       }}
       data-text={role.company}
+      tabIndex={0}
+      role="button"
+      aria-label={`${role.role} at ${role.company}`}
       onClick={(e) => {
         e.stopPropagation();
         onCardClick();
+      }}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          e.stopPropagation();
+          onCardClick();
+        }
       }}
     >
       <div className="role-top">
@@ -295,4 +304,4 @@ function ExperienceSection({ experience }) {
   );
 }
 
-export default ExperienceSection;
+export default React.memo(ExperienceSection);

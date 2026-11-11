@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import SectionShell from './SectionShell';
 import Folder from './Folder';
 import { privateLinks } from '../data/private_links_wrapper';
@@ -195,4 +195,4 @@ function CredentialsSection({ education, achievements, certifications }) {
   );
 }
 
-export default CredentialsSection;
+export default React.memo(CredentialsSection);

@@ -8,12 +8,8 @@ import PublicationsSection from './components/PublicationsSection';
 import ContactSection from './components/ContactSection';
 import SiteFooter from './components/SiteFooter';
 import { portfolio } from './data/portfolio';
-import useActiveSection from './hooks/useActiveSection';
 
 function App() {
-  const sectionIds = portfolio.navigation.map((item) => item.id);
-  const activeSectionId = useActiveSection(sectionIds);
-
   return (
     <div className="site-shell">
       <div className="page-ring ring-one" />
@@ -23,7 +19,6 @@ function App() {
       <SiteHeader
         logo={portfolio.logo}
         navigation={portfolio.navigation}
-        activeSectionId={activeSectionId}
         resume={portfolio.resume}
       />
 

@@ -1,5 +1,4 @@
-// This file presents the modern Interactive Physics Skills Folders.
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import SectionShell from './SectionShell';
 import FolderFloat from './FolderFloat';
 
@@ -125,4 +124,4 @@ function SkillsSection({ skills }) {
   );
 }
 
-export default SkillsSection;
+export default React.memo(SkillsSection);

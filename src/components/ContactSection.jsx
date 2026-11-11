@@ -1,4 +1,3 @@
-// This file renders the unified Contact section and site footer with the interactive directional clip-path links grid.
 import React, { useRef } from 'react';
 import useRevealOnScroll from '../hooks/useRevealOnScroll';
 import scrollToSection from '../utils/scrollToSection';
@@ -286,4 +285,4 @@ function ContactSection({ contact, links = [], resume, logo }) {
   );
 }
 
-export default ContactSection;
+export default React.memo(ContactSection);

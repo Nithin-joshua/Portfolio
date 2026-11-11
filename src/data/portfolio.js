@@ -1,4 +1,3 @@
-// This file holds all portfolio content in one place so it is easy to update later.
 export const portfolio = {
   brand: 'NV',
   logo: {

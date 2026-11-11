@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import SectionShell from './SectionShell';
 import formatDateRange from '../utils/formatDateRange';
 
@@ -17,7 +17,7 @@ function MobileProjectCard({ proj }) {
               target="_blank"
               rel="noreferrer"
               className="mobile-project-link-btn live"
-              aria-label="Live Demo Website"
+              aria-label={`Live Demo for ${proj.name}`}
             >
               Live Demo
             </a>
@@ -28,7 +28,7 @@ function MobileProjectCard({ proj }) {
               target="_blank"
               rel="noreferrer"
               className="mobile-project-link-btn"
-              aria-label="GitHub Repository"
+              aria-label={`GitHub repository for ${proj.name}`}
             >
               GitHub
             </a>
@@ -168,7 +168,7 @@ function ProjectsSection({ projects }) {
                   href={activeProject.liveUrl || activeProject.link || activeProject.website}
                   target="_blank"
                   rel="noreferrer"
-                  aria-label="Visit live website"
+                  aria-label={`Live demo for ${activeProject.name}`}
                 >
                   <svg
                     width="14"
@@ -196,7 +196,7 @@ function ProjectsSection({ projects }) {
                   href={activeProject.github}
                   target="_blank"
                   rel="noreferrer"
-                  aria-label="View source code on GitHub"
+                  aria-label={`View ${activeProject.name} on GitHub`}
                 >
                   <svg
                     width="14"
@@ -240,7 +240,7 @@ function ProjectsSection({ projects }) {
                     muted={true}
                     controls={true}
                     playsInline={true}
-                    preload="auto"
+                    preload="none"
                     className="project-video"
                   />
                 </div>
@@ -262,6 +262,12 @@ function ProjectsSection({ projects }) {
                     key={step}
                     className={`project-step ${activeStepIndex === idx ? 'step-active' : ''}`}
                     onClick={() => setActiveStepIndex(idx)}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        setActiveStepIndex(idx);
+                      }
+                    }}
                     role="button"
                     tabIndex={0}
                   >
@@ -301,4 +307,4 @@ function ProjectsSection({ projects }) {
   );
 }
 
-export default ProjectsSection;
+export default React.memo(ProjectsSection);

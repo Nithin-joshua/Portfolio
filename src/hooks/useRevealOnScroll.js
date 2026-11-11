@@ -1,4 +1,3 @@
-// This file reveals elements when they approach the viewport with zero blank delay.
 import { useEffect, useRef, useState } from 'react';
 
 function useRevealOnScroll(options = {}) {
@@ -15,13 +14,6 @@ function useRevealOnScroll(options = {}) {
 
     if (!currentElement) {
       return undefined;
-    }
-
-    // Check if element is already in or near viewport on mount
-    const rect = currentElement.getBoundingClientRect();
-    if (rect.top <= window.innerHeight + 300 && rect.bottom >= -300) {
-      setIsVisible(true);
-      if (once) return undefined;
     }
 
     const observer = new IntersectionObserver(

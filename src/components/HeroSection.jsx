@@ -1,21 +1,21 @@
-// This file renders the focused hero section fitting within the 1280x800 fold.
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import scrollToSection from '../utils/scrollToSection';
 import StrokeText from './StrokeText';
 
 const computeFontSize = () => {
-  if (typeof window === 'undefined') return 64;
+  if (typeof window === 'undefined') return 80;
   const w = window.innerWidth;
   const h = window.innerHeight;
   if (h && h < 520 && w > h) {
-    return Math.min(38, Math.max(26, Math.round(w * 0.045)));
+    return Math.min(48, Math.max(32, Math.round(w * 0.055)));
   }
-  if (w < 380) return 30;
-  if (w < 480) return 34;
-  if (w < 640) return 38;
-  if (w < 768) return 44;
-  if (w < 1024) return 52;
-  return 64;
+  if (w < 380) return 36;
+  if (w < 480) return 44;
+  if (w < 640) return 52;
+  if (w < 768) return 64;
+  if (w < 1024) return 78;
+  if (w < 1440) return 92;
+  return 104;
 };
 
 function HeroSection({ hero, links }) {
@@ -141,4 +141,4 @@ function HeroSection({ hero, links }) {
   );
 }
 
-export default HeroSection;
+export default React.memo(HeroSection);

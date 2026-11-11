@@ -1,5 +1,4 @@
 /* Hallmark · built: the project · redesign: polish · genre: modern-minimal */
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap');
 
 :root {
   color-scheme: dark;
@@ -85,6 +84,7 @@
 }
 
 html {
+  scroll-behavior: smooth;
   color-scheme: dark;
   font-size: 16.5px;
   background-color: #0a0a0c;
@@ -666,7 +666,7 @@ a:hover {
   align-items: center;
   text-align: center;
   width: 100%;
-  max-width: min(58rem, 100%);
+  max-width: min(68rem, 100%);
   margin: 0 auto;
 }
 
@@ -727,13 +727,13 @@ a:hover {
   width: 100%;
   margin: 0 auto 16px;
   font-family: var(--font-sans);
-  font-size: clamp(2.4rem, 6vw, 4.4rem);
+  font-size: clamp(2.8rem, 7.5vw, 5.5rem);
   font-weight: 700;
   line-height: 1.15;
   letter-spacing: -0.02em;
   color: #ffffff;
   text-shadow: 0 2px 24px rgba(255, 255, 255, 0.12);
-  max-width: min(54rem, 100%);
+  max-width: min(68rem, 100%);
   text-align: center;
 }
 
@@ -771,7 +771,7 @@ a:hover {
   width: min(40rem, 100%);
   margin: 0 auto;
   color: #cbd5e1;
-  font-size: 1.05rem;
+  font-size: clamp(1.05rem, 2vw, 1.25rem);
   line-height: 1.75;
   text-align: center;
 }
@@ -2631,9 +2631,28 @@ a:hover {
   background: var(--color-blue);
 }
 
-.reveal {
+/* Smooth Scroll Transitions */
+.section-shell.reveal,
+.contact-section.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1), transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.section-shell.reveal.is-visible,
+.contact-section.reveal.is-visible {
   opacity: 1;
-  transform: none;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .section-shell.reveal,
+  .contact-section.reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
 }
 
 /* ==========================================================================
@@ -3246,7 +3265,7 @@ a:hover {
   }
 
   .hero-headline-title {
-    font-size: clamp(1.65rem, 6.5vw, 2.3rem);
+    font-size: clamp(2.2rem, 7.8vw, 3.2rem);
     line-height: 1.15;
     margin: 0 0 12px;
     color: #ffffff;
@@ -3255,11 +3274,12 @@ a:hover {
     text-wrap: balance;
   }
 
-  .hero-subtext {
+  .hero-subtext,
+  .hero-intro {
     font-size: 0.95rem;
     line-height: 1.55;
     color: #d1d5db;
-    margin: 0 0 16px;
+    margin: 0 auto 24px;
     max-width: 95%;
   }
 
@@ -4079,13 +4099,16 @@ a:hover {
 }
 
 .hero-headline-title {
-    font-size: 1.55rem;
+    font-size: clamp(1.95rem, 7vw, 2.45rem);
     margin-bottom: 6px;
   }
 
-  .hero-subtext {
+  .hero-subtext,
+  .hero-intro {
     font-size: 0.9rem;
-    margin-bottom: 10px;
+    line-height: 1.55;
+    margin: 0 auto 20px;
+    max-width: 95%;
   }
 
   .hero-actions .hero-cta-btn {
@@ -4294,15 +4317,16 @@ a:hover {
 }
 
 .hero-headline-title {
-    font-size: clamp(1.4rem, 3.6vw, 1.85rem);
+    font-size: clamp(1.75rem, 4.8vw, 2.35rem);
     margin-bottom: 4px;
     text-align: left;
   }
 
-  .hero-subtext {
+  .hero-subtext,
+  .hero-intro {
     font-size: 0.92rem;
     line-height: 1.45;
-    margin-bottom: 0;
+    margin-bottom: 14px;
     text-align: left;
   }
 

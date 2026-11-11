@@ -1,4 +1,3 @@
-// This file formats simple year-month strings into readable date ranges.
 const monthNames = [
   'Jan',
   'Feb',

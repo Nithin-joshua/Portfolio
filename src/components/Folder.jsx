@@ -1845,7 +1845,7 @@ const Folder = ({
             observer?.disconnect();
             beginIntro();
           },
-          { threshold: 0.2 }
+          { rootMargin: '350px 0px 350px 0px', threshold: 0 }
         );
         observer.observe(root);
       }

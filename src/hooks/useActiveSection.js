@@ -1,4 +1,3 @@
-// This file tracks which section is currently active without causing layout thrashing during fast scroll.
 import { useEffect, useRef, useState } from 'react';
 
 function useActiveSection(sectionIds) {

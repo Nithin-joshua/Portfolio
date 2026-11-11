@@ -1,9 +1,13 @@
-// This file renders the responsive header: logo left, desktop centered dock, and mobile hamburger drawer.
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import scrollToSection from '../utils/scrollToSection';
+import useActiveSection from '../hooks/useActiveSection';
 
-function SiteHeader({ logo, navigation, activeSectionId, resume }) {
+function SiteHeader({ logo, navigation, activeSectionId: propActiveId, resume }) {
   const [isOpen, setIsOpen] = useState(false);
+
+  const sectionIds = useMemo(() => (navigation ? navigation.map((item) => item.id) : []), [navigation]);
+  const hookActiveId = useActiveSection(sectionIds);
+  const activeSectionId = propActiveId !== undefined ? propActiveId : hookActiveId;
 
   useEffect(() => {
     const handleKeyDown = (e) => {

@@ -1,3 +1,4 @@
+import React from 'react';
 import SectionShell from './SectionShell';
 import { privateLinks } from '../data/private_links_wrapper';
 
@@ -62,4 +63,4 @@ function PublicationsSection({ publications }) {
   );
 }
 
-export default PublicationsSection;
+export default React.memo(PublicationsSection);
